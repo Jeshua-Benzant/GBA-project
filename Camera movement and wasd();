@@ -1,0 +1,201 @@
+/** CAMERA MOVEMENT TEST AND KEYBOARD MOVEMENT SIMULATOR **/
+
+/** PURPOSE: TO TRY AND PLAY AROUND WITH DIFFERENT CAMERA ANGLES WHILE KEEPING THE SCENE IN STEADY IN DIFFERENT AREAS OF SCENERY**/
+/*mapX & mapY values that map out the entire area, 
+
+TODO:
+1. Finish up the stationary scrolling on the left side
+2. Start and finsih transition from stationary scrolling to tradional scrolling
+2. Setup mapX and mapY array values for maps
+3. Setup different Scene Sizes for those coordinates
+4. Organize everything in a more concise manner with commenting
+*/
+
+//starting map position through mapX and mapY values
+var mapX = 0;
+var mapY = 0;
+
+//array for keyboard command movement (seen later down)
+var keys = [];
+
+//properties for the moving ellipse
+var obj = {
+    mapX: 300,
+    mapY: 300,
+    width: 100,
+    height: 100,
+    ellipse: function(){
+    },
+};
+//the sizes for each and every individual (when done) scene on the map ( - Must make an array for each corresponding mapX and mapY value - )
+var SceneSizeX = 600;
+var SceneSizeY = 600;
+//variable to boolean the difference between stationary and traditional scrolling
+var Stationary = false;
+var SceneMove = false; //variable that stops the ellipses' movement momentarily as the map adjusts
+
+//Properties and logic of the scenes
+var scene = {
+    //current camera movement of the scene 
+    mapX: 0,
+    mapY: 0,
+collision: { //collision detections
+    RightX: (SceneSizeX- scene.collision.width),
+    TopY: (-SceneSizeY+scene.collision.width+height),
+    LeftX: (-SceneSizeX+scene.collision.width+width),
+    BottomY: (SceneSizeY-scene.collision.width),
+    width: 10, //width of detection range
+    active: function(a,b) //active detection function (uses mapX & mapY)
+    {
+        if(Stationary) //stationary camera logic
+        { 
+            
+            var cameraIf = false;
+            if(scene.mapX+width < scene.collision.RightX && 
+            (scene.mapX) > scene.collision.LeftX || 
+            (obj.mapX >scene.collision.LeftX+width/2) && 
+            (obj.mapX <scene.collision.RightX- width/2))
+           {
+           
+            println("it works");
+            scene.mapX = obj.mapX-width/2;
+           
+           }
+            scene.mapY = obj.mapY-height/2;
+        }
+        
+        //Right Scroll detection
+        if((obj.mapX-scene.collision.RightX)>=25+(SceneSizeX*(a)))
+        {
+            Stationary = false;
+                SceneMove = true;
+                if(SceneMove)
+                {
+                scene.mapX+= cos(1)*8;
+                    if(scene.mapX >=SceneSizeX*(a+1))
+                    {
+                        mapX++;
+                        SceneMove = false;
+                    }
+                }
+        }
+        //Bottom Scroll detection
+        if((obj.mapY-scene.collision.BottomY)>=25+(SceneSizeY*(b)))
+        {
+            Stationary = false;
+                SceneMove = true;
+                if(SceneMove)
+                {
+                scene.mapY+= cos(1)*8;
+                    if(scene.mapY >=SceneSizeX*(b+1))
+                    {
+                        mapY++;
+                        SceneMove = false;
+                    }
+                }
+        }
+        //Top Scroll detection
+        if((obj.mapY-scene.collision.TopY)<=-25+(SceneSizeY*(b)))
+        {
+            Stationary = false;
+                SceneMove = true;
+                if(SceneMove)
+                {
+                scene.mapY-= cos(1)*8;
+                    if(scene.mapY <=SceneSizeX*(b-1))
+                    {
+                        mapY--;
+                        SceneMove = false;
+                    }
+                }
+        }
+        //Left Scroll detection
+        if((obj.mapX-scene.collision.LeftX)<=-25+(SceneSizeX*(a)))
+        {
+            Stationary = false;
+                SceneMove = true;
+                if(SceneMove)
+                {
+                scene.mapX-= cos(1)*8;
+                    if(scene.mapX <=SceneSizeX*(a-1))
+                    {
+                        mapX--;
+                        SceneMove = false;
+                    }
+                }
+        }
+    },
+}
+};
+fill(0,0,0);
+//the circle that fill in as our test character
+obj.ellipse = function(){
+    ellipse(obj.mapX-scene.mapX,obj.mapY-scene.mapY,obj.width,obj.height);
+};
+
+//Logic for the key presses that in turn becomes the movement
+var firstClick = []; //array used for when the key is only pressed once
+keyPressed = function() {
+    
+    if (keys[keyCode]) {
+        firstClick[keyCode] = false; //makes it false so that it is only one
+    } else {
+        firstClick[keyCode] = true; // first time you click
+    }
+    
+    keys[keyCode] = true; //adds into the keys array as true
+}; 
+keyReleased = function() {
+    keys[keyCode] = false; //gets rid of value from keys array by setting it as false
+    firstClick[keyCode] = false; //makes it false so that it is only one
+};
+var wasd = function() //variable just to organize it and make it easier to access
+{ if (!SceneMove)
+{
+        if(keys[68] )
+    {//println("it d");
+        obj.mapX+= 2;
+    }
+    if(keys[65])
+    {//println("it a");
+        obj.mapX-= 2;
+    }
+    if(keys[87])
+    {//println("it w");
+        obj.mapY-= 2;
+    }
+    if(keys[83])
+    {//println("it s");
+        obj.mapY+= 2;
+    }
+}
+};
+draw = function() {
+    background(255,255,255);
+    wasd();
+    fill(8, 8, 8);
+    
+obj.ellipse(); //ellipse character and random rect placed throughout several locations to prove that camera is functioning
+    //rect(scene.collision.LeftX,0,10,500);
+    rect(100-scene.mapX,800-scene.mapY,100,100);
+    rect(100-scene.mapX,100-scene.mapY,100,100);
+    rect(-800-scene.mapX,0-scene.mapY,100,100);
+    rect(800-scene.mapX,0-scene.mapY,100,100);
+    scene.collision.active(mapX,mapY);
+    /**** Final Test ( - NOT DONE - )
+     * Find squares at coordinates:
+     * (_,_),(_,_),(_,_), & (_,_),
+****/
+
+
+/** ACTIVE DEBUGGING **/
+//println(obj.mapX);
+//println(obj.mapY);
+//println(scene.mapX-width/2);
+//println(-scene.mapY+width);
+//println(Stationary);
+//println(mapX);
+//println(mapY);
+//println(scene.collision.LeftX+width/2);
+};
+
