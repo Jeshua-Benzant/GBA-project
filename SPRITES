@@ -2,14 +2,23 @@ MAIN CHARACTER:
  - front: https://www.khanacademy.org/computer-programming/main-character-front/4693719914594304
  - back: https://www.khanacademy.org/computer-programming/main-character-back/4611156416086016
  - side: https://www.khanacademy.org/computer-programming/main-character-side/4983303990886400
+       - front hurt: https://www.khanacademy.org/computer-programming/mcf-hurt/5009617879777280
+       - back hurt: https://www.khanacademy.org/computer-programming/mcb-hurt/5493443043213312
+       - side hurt: https://www.khanacademy.org/computer-programming/mcs-hurt/5958925290520576
 
 GHOSTS (minions):
  - front: https://www.khanacademy.org/computer-programming/ghost-front/6175684387880960
  - back: https://www.khanacademy.org/computer-programming/ghost-back/6021471473188864
  - side: https://www.khanacademy.org/computer-programming/ghost-side/6509663420891136
+       - front hurt: https://www.khanacademy.org/computer-programming/gf-hurt/4943490734571520
+       - back hurt: https://www.khanacademy.org/computer-programming/gb-hurt/4873451041931264
+       - side hurt: https://www.khanacademy.org/computer-programming/gs-hurt/6361276618850304
 
 BOSS (wizard):
  - front: https://www.khanacademy.org/computer-programming/wizard-front/6683611783708672
  - back: https://www.khanacademy.org/computer-programming/wizard-back/5856913156685824
  - side: https://www.khanacademy.org/computer-programming/wizard-side/4787187630424064
+       - front hurt: https://www.khanacademy.org/computer-programming/wf-hurt/5586901531574272
+       - back hurt: https://www.khanacademy.org/computer-programming/wb-hurt/4871070203985920
+       - side hurt: https://www.khanacademy.org/computer-programming/ws-hurt/6529296947429376
 
