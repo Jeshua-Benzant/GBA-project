@@ -1,8 +1,6 @@
-//program
 var colors = {
     colorData: [
-    /*      ORDER OF COLORS:
-0 = null,*/
+    /*      ORDER OF COLORS: 0 = null,*/
     color(0,0,0), // 1 = black
     color(81, 255, 38),// , 2 = green, 
     color(79, 153, 19),//3 = darkGreen,
@@ -18,39 +16,96 @@ var colors = {
     color(255,255,255),// 13 = white, 
     color(0, 145, 255),//14 = lightBlue,
     color(135, 0, 0),//15 = darkRed, 
-    color(7, 105, 0)]};//16 = DarkerGreen
+    color(7, 105, 0),//16 = DarkerGreen
+    color(14, 30, 201),//17 = darkBlue,
+    color(60, 173, 214),// 18 = babyBlue,
+    color(229, 232, 35),//19 = gold, 
+    color(31, 219, 219),//20 = cyan
+    color(255, 255, 255),//,21 = white,
+    color(240, 158, 158),//22 = pinkish
+    color(196, 242, 235),//, 23 = eyeBlue,
+    color(247, 222, 175),//24 = lightPeach,
+    color(237, 199, 133),//25 = darkPeach,
+    color(21, 148, 127),// 26 = darkCyan,
+    color(255, 0, 0),//27 = red
+    color(155, 240, 113),//28 = lighterGreen,
+    color(20, 201, 56),//29 = lightGreen,
+    color(86, 36, 224),//30 = midnightPurple
+    color(113, 62, 207),//31 = lightPurple
+    color(163, 163, 163),//32 = grey,
+    color(195, 104, 237),//33 = brightPurple
+    color(173, 17, 17),//34 = darkRed,
+    color(255, 255, 0),//35 = yellow,
+    color(242, 158, 63),//36 = orange,
+    color(224, 143, 56),//37 = darkOrange
+    ]};
+    
+    var Tile = function()
+    {if(round(random(1,10)) < 9)
+    {return 2;}
+    else {return 3;}
+    };
 var map_sprite = [
 {imageData: [
-/*LinkHeadStart - front*/
+/*floor tile - 1 - corner*/
 [1,1,1,1,1,1,1,1],
-[1,2,2,2,2,2,2,1],
-[1,2,2,2,2,2,2,1],
-[1,2,2,2,2,2,2,1],
-[1,2,2,2,2,2,2,1],
-[1,2,2,2,2,2,2,1],
-[1,2,2,2,2,2,2,1],
-[1,1,1,1,1,1,1,1],
+[30,31,31,30,30,30,30,30],
+[30,31,31,30,31,31,31,31],
+[30,31,31,30,31,31,31,31],
+[30,30,30,30,31,31,31,31],
+[30,31,31,30,31,31,31,31],
+[30,31,31,30,30,30,30,30],
+[30,31,31,30,31,31,31,31],
 ], 
 },{imageData: [
-/*LinkHeadStart - front*/
+/*floor tile - 1 - */
+[30,31,31,30,31,31,31,31],
+[30,31,31,30,30,30,30,30],
+[30,31,31,30,31,31,31,31],
+[30,31,31,30,31,31,31,31],
+[30,30,30,30,31,31,31,31],
+[30,31,31,30,31,31,31,31],
+[30,31,31,30,30,30,30,30],
+[30,31,31,30,31,31,31,31],
+], 
+
+},{imageData: [
+/*floor tile - 2*/
+[30,33,31,30,31,32,31,31],
+[30,33,31,30,30,30,30,30],
+[30,31,31,30,32,33,30,31],
+[30,31,31,30,1,1,30,31],
+[30,30,30,30,33,34,1,31],
+[30,31,31,30,34,32,3,31],
+[30,31,31,30,30,30,30,30],
+[30,31,31,30,31,31,33,31],
+], 
+},{imageData: [
+/*wall tile - 1*/
+[30,31,31,1,30,30,31,33],
+[31,31,31,1,31,31,31,31],
+[30,33,31,1,30,30,30,30],
 [1,1,1,1,1,1,1,1],
-[1,3,2,8,6,6,6,1],
-[1,2,12,2,2,2,2,1],
-[1,5,2,3,2,2,2,1],
-[1,2,5,2,12,2,2,1],
-[1,8,8,5,2,8,2,1],
-[1,2,2,2,2,5,12,1],
+[31,30,1,31,30,31,1,31],
+[30,30,1,30,30,30,1,31],
 [1,1,1,1,1,1,1,1],
-],
+[30,1,31,30,1,30,30,30],
+], 
+},{imageData: [
+/*wall tile - 2*/
+[30,31,31,31,33,30,31,3],
+[31,31,31,31,31,31,31,31],
+[1,1,1,1,1,1,1,1],
+[1,1,1,1,1,1,1,1],
+[31,30,31,31,30,31,1,31],
+[30,30,31,30,30,30,1,31],
+[31,31,31,31,31,31,1,31],
+[1,1,1,1,1,1,1,1],
+], 
 }
 
 ];
-var sprites = [
-{imageData: [
-/*LinkHeadStart - front*/
-[1,2,1,2,2,2,2,2]], 
-
-},];
+var GameMap;
 var mapSprite = function(sprite,x,y,w,h,flip,bw){
     noStroke();
     var currentSprite = map_sprite[sprite];
@@ -104,9 +159,9 @@ var mapSprite = function(sprite,x,y,w,h,flip,bw){
     }
     popMatrix();
 };
- var drawSprite = function(sprite,x,y,w,h,flip,bw){
+ var drawMap = function(sprite,x,y,w,h,flip,bw){
     noStroke();
-    var currentSprite = sprites[sprite];
+    var currentSprite = GameMap[sprite];
     var tiledata = map_sprite[0];
     var yarray = 0;
     var xarray = 0;
@@ -116,7 +171,7 @@ var mapSprite = function(sprite,x,y,w,h,flip,bw){
     var tileHeight = map_sprite[0].imageData[0].length*6;
     var last = currentSprite.imageData[yarray][xarray];
     var stop = true;
-    pushMatrix();
+pushMatrix();
     translate(x,y);
     for(yarray = 0; yarray < currentSprite.imageData.length; yarray++){
         for(xarray = 0; xarray < currentSprite.imageData[yarray].length; xarray++){
@@ -142,32 +197,32 @@ var mapSprite = function(sprite,x,y,w,h,flip,bw){
                     if(currentSprite.imageData[yarray][xarray] === i+1)
                     {
                         
-                    currentSprite.imageData[yarray][xarray] = mapSprite(i,xarray*tileWidth-70,yarray,tileWidth,tileHeight,false);
+                    currentSprite.imageData[yarray][xarray] = mapSprite(i,xarray*tileWidth-70,yarray*tileHeight,tileWidth,tileHeight,false);
                     }
                     }
                 
                 }
-                
- 
-                pushMatrix();
-                if(!flip){/*
-                    rect(w * xarray/currentSprite.imageData[yarray].length ,h *yarray/currentSprite.imageData.length, w * 1/currentSprite.imageData[yarray].length,h * 1/currentSprite.imageData.length);
-                }else{
-                    rect(-w * xarray/currentSprite.imageData[yarray].length+w,h *yarray/currentSprite.imageData.length,-w * 1/currentSprite.imageData[yarray].length,h * 1/currentSprite.imageData.length);
-                */}
-                popMatrix();
             }
             count = 0;
             stop = true;
-            last = currentSprite.imageData[yarray][xarray];
-            //text(currentSprite.imageData[yarray][xarray],xarray*5,yarray*5);
-            }
-            //text(currentSprite.imageData[yarray][xarray],xarray*5,yarray*5);
-        }
+            last = currentSprite.imageData[yarray][xarray];}}
         pyarray = yarray+1;
     }
-    popMatrix();
+popMatrix();
 };
-drawSprite(0,77,10,219,42,false);
 
-var Game_map = [[]];
+GameMap = [
+    
+{imageData: [
+[5,5,5,5,5,5,5,5],
+[4,4,4,4,4,4,4,4],
+[1,1,1,1,1,1,1,1],
+[Tile(),Tile(),Tile(),Tile(),Tile(),Tile(),Tile(),Tile()],
+[Tile(),Tile(),Tile(),Tile(),Tile(),Tile(),Tile(),Tile()],
+[Tile(),Tile(),Tile(),Tile(),Tile(),Tile(),Tile(),Tile()]
+],  
+
+},];
+drawMap(0,77,10);
+//mapSprite(2,185,271,44*2,44*2);
+//mapSprite(3,185,183,44*2,44*2);
