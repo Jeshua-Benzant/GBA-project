@@ -1,0 +1,172 @@
+var colors = {
+    colorData: [
+    /*      ORDER OF COLORS:
+0 = null,*/
+    color(0,0,0), // 1 = black
+    color(81, 255, 38),// , 2 = green, 
+    color(79, 153, 19),//3 = darkGreen,
+    color(159, 240, 139),//4 = lightGreen
+    color(36, 179, 0),//, 5 = darkishGreen
+    color(255, 242, 0),//, 6 = yellow,
+    color(207, 107, 0),//7 = light brown, 
+    color(143, 79, 0),//8 = darkBrown, 
+    color(247, 222, 175),//9 = lightPeach,
+    color(224, 184, 110),//   10 = darkPeach/Super-lightBrown, 
+    color(245, 250, 103),//11 = lightYellow,
+    color(209, 0, 0),//12 = darkishRed, 
+    color(255,255,255),// 13 = white, 
+    color(0, 145, 255),//14 = lightBlue,
+    color(135, 0, 0),//15 = darkRed, 
+    color(7, 105, 0)]};//16 = DarkerGreen
+var map_sprite = [
+{imageData: [
+/*LinkHeadStart - front*/
+[1,1,1,1,1,1,1,1],
+[1,2,2,2,2,2,2,1],
+[1,2,2,2,2,2,2,1],
+[1,2,2,2,2,2,2,1],
+[1,2,2,2,2,2,2,1],
+[1,2,2,2,2,2,2,1],
+[1,2,2,2,2,2,2,1],
+[1,1,1,1,1,1,1,1],
+], 
+},{imageData: [
+/*LinkHeadStart - front*/
+[1,1,1,1,1,1,1,1],
+[1,3,2,8,6,6,6,1],
+[1,2,12,2,2,2,2,1],
+[1,5,2,3,2,2,2,1],
+[1,2,5,2,12,2,2,1],
+[1,8,8,5,2,8,2,1],
+[1,2,2,2,2,5,12,1],
+[1,1,1,1,1,1,1,1],
+],
+}
+
+];
+var sprites = [
+{imageData: [
+/*LinkHeadStart - front*/
+[1,2,1,2,2,2,2,2]], 
+
+},];
+var mapSprite = function(sprite,x,y,w,h,flip,bw){
+    noStroke();
+    var currentSprite = map_sprite[sprite];
+    var yarray = 0;
+    var xarray = 0;
+    var pyarray = 0;
+    var count = 1;
+    var last = currentSprite.imageData[yarray][xarray];
+    var stop = true;
+    pushMatrix();
+    translate(x,y);
+    for(yarray = 0; yarray < currentSprite.imageData.length; yarray++){
+        for(xarray = 0; xarray < currentSprite.imageData[yarray].length; xarray++){
+            if(!stop){
+                if(last === currentSprite.imageData[yarray][xarray] && pyarray === yarray){
+                    last = currentSprite.imageData[yarray][xarray];
+                    count+=1;
+                }else{
+                    stop = true;
+                }
+            }
+            if(stop){
+            if(currentSprite.imageData[yarray][xarray] === 0){
+                noFill();
+                fill(0, 0, 0);
+                //last = currentSprite.imageData[yarray][xarray];
+            }else{
+                var a;
+                if(!bw){
+                a = colors.colorData[currentSprite.imageData[yarray][xarray]-1];
+                }else{
+                a = color(0, 0, 0);
+                }
+                fill(a);
+                pushMatrix();
+                if(!flip){
+                    rect(w * xarray/currentSprite.imageData[yarray].length ,h *yarray/currentSprite.imageData.length, w * 1/currentSprite.imageData[yarray].length,h * 1/currentSprite.imageData.length);
+                }else{
+                    rect(-w * xarray/currentSprite.imageData[yarray].length+w,h *yarray/currentSprite.imageData.length,-w * 1/currentSprite.imageData[yarray].length,h * 1/currentSprite.imageData.length);
+                }
+                popMatrix();
+            }
+            count = 0;
+            stop = true;
+            last = currentSprite.imageData[yarray][xarray];
+            //text(currentSprite.imageData[yarray][xarray],xarray*5,yarray*5);
+            }
+            //text(currentSprite.imageData[yarray][xarray],xarray*5,yarray*5);
+        }
+        pyarray = yarray+1;
+    }
+    popMatrix();
+};
+ var drawSprite = function(sprite,x,y,w,h,flip,bw){
+    noStroke();
+    var currentSprite = sprites[sprite];
+    var tiledata = map_sprite[0];
+    var yarray = 0;
+    var xarray = 0;
+    var pyarray = 0;
+    var count = 1;
+    var tileWidth = map_sprite[0].imageData.length*6;
+    var tileHeight = map_sprite[0].imageData[0].length*6;
+    var last = currentSprite.imageData[yarray][xarray];
+    var stop = true;
+    pushMatrix();
+    translate(x,y);
+    for(yarray = 0; yarray < currentSprite.imageData.length; yarray++){
+        for(xarray = 0; xarray < currentSprite.imageData[yarray].length; xarray++){
+            if(!stop){
+                if(last === currentSprite.imageData[yarray][xarray] && pyarray === yarray){
+                    last = currentSprite.imageData[yarray][xarray];
+                    count+=1;
+                }else{
+                    stop = true;
+                }
+            }
+            if(stop){
+            if(currentSprite.imageData[yarray][xarray] === 0){
+                noFill();
+                fill(0, 0, 0);
+                //last = currentSprite.imageData[yarray][xarray];
+            }else{
+                var a;
+                var b;
+                if(!bw){
+                    for(var i = 0; i < 10;i++)
+                    {
+                    if(currentSprite.imageData[yarray][xarray] === i+1)
+                    {
+                        
+                    currentSprite.imageData[yarray][xarray] = mapSprite(i,xarray*tileWidth-70,yarray,tileWidth,tileHeight,false);
+                    }
+                    }
+                
+                }
+                
+ 
+                pushMatrix();
+                if(!flip){/*
+                    rect(w * xarray/currentSprite.imageData[yarray].length ,h *yarray/currentSprite.imageData.length, w * 1/currentSprite.imageData[yarray].length,h * 1/currentSprite.imageData.length);
+                }else{
+                    rect(-w * xarray/currentSprite.imageData[yarray].length+w,h *yarray/currentSprite.imageData.length,-w * 1/currentSprite.imageData[yarray].length,h * 1/currentSprite.imageData.length);
+                */}
+                popMatrix();
+            }
+            count = 0;
+            stop = true;
+            last = currentSprite.imageData[yarray][xarray];
+            //text(currentSprite.imageData[yarray][xarray],xarray*5,yarray*5);
+            }
+            //text(currentSprite.imageData[yarray][xarray],xarray*5,yarray*5);
+        }
+        pyarray = yarray+1;
+    }
+    popMatrix();
+};
+drawSprite(0,77,10,219,42,false);
+
+var Game_map = [[]];
