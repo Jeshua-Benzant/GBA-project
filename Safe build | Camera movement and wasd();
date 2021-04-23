@@ -9,6 +9,271 @@ TODO:
 */
 
 //starting map position through mapX & mapY values that map out the entire area as a counted number and tells the system what information about the rooms to use based on what room you're in
+var colors = {
+    /*      ORDER OF COLORS:
+0 = null, 1 = black, 2 = green, 3 = darkGreen,
+4 = lightGreen, 5 = darkishGreen, 6 = yellow,
+7 = light brown, 8 = darkBrown, 9 = lightPeach,   10 = darkPeach/Super-lightBrown, 11 = lightYellow,
+12 = darkishRed, 13 = white, 14 = lightBlue,
+15 = darkRed, 16 = shadow(gray - add in when you can)*/
+    black: color(0,0,0),
+    green: color(81, 255, 38),
+    darkGreen: color(79, 153, 19),
+    lightGreen: color(159, 240, 139),
+    darkishGreen: color(36, 179, 0),
+    yellow: color(255, 242, 0),
+    lightBrown: color(207, 107, 0),
+    darkBrown: color(143, 79, 0),
+    lightPeach: color(247, 222, 175),
+    darkPeach: color(224, 184, 110),
+    lightYellow: color(245, 250, 103),
+    darkishRed: color(209, 0, 0),
+    white: color(255,255,255), 
+    lightBlue: color(0, 145, 255),
+    darkRed: color(135, 0, 0),
+    DarkerGreen: color(7, 105, 0)
+};
+var map_sprite = [
+{imageData: [
+/*LinkHeadStart - front*/
+[0,0,0,0,0,0,0,0,0,1,3,3,3,3,1,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,1,3,2,2,2,2,3,1,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,1,3,2,2,2,2,2,2,3,1,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,1,3,2,2,2,2,2,2,2,2,3,1,0,0,0,0,0,0],
+[0,0,0,0,0,0,1,2,7,6,6,6,6,6,6,7,2,1,0,0,0,0,0,0],
+[0,0,0,0,0,1,3,7,6,6,6,6,6,6,6,6,7,5,1,0,0,0,0,0],
+[0,0,0,8,10,8,8,10,6,10,6,6,6,10,7,6,6,8,8,10,8,0,0,0],
+[0,0,0,8,9,9,10,6,7,6,6,6,6,7,10,7,6,10,9,9,8,0,0,0],
+[0,0,0,0,8,10,8,10,10,6,6,10,8,10,9,7,10,8,10,8,0,0,0,0],
+[0,0,0,0,0,8,6,8,10,10,7,8,10,9,9,10,8,6,8,0,0,0,0,0],
+[0,0,0,0,0,1,6,7,1,1,8,10,9,10,1,1,7,6,1,0,0,0,0,0],
+[0,0,0,0,0,1,10,8,13,14,1,9,9,1,14,13,8,10,1,0,0,0,0,0],
+[0,0,0,0,0,0,1,1,9,14,13,9,9,13,14,9,1,1,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,1,10,9,9,9,9,9,9,10,1,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,1,4,8,8,10,10,10,10,8,8,4,1,0,0,0,0,0,0],
+//LinkHeadFinish - left off here in rebalance
+[0,0,0,0,0,1,4,4,3,3,3,3,3,3,3,3,4,4,1,0,0,0,0,0],
+[0,0,0,0,1,9,9,1,8,3,3,3,3,3,3,8,1,9,9,1,0,0,0,0],
+[0,0,0,0,1,10,9,3,2,8,8,11,11,8,8,2,3,9,10,1,0,0,0,0],
+[0,0,0,0,0,1,1,1,2,2,3,11,11,3,2,2,1,1,1,0,0,0,0,0],
+[0,0,0,0,0,0,0,1,1,3,2,2,2,2,3,1,1,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,1,12,15,1,1,1,1,1,1,15,12,1,0,0,0,0,0,0],
+[0,0,0,0,0,0,1,12,12,15,1,0,0,1,15,12,12,1,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,1,1,1,0,0,0,0,1,1,1,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+], 
+    colorData: [colors.black,
+    colors.green,
+    colors.darkGreen,
+    colors.lightGreen,
+    colors.darkishGreen,
+    colors.yellow,
+    colors.lightBrown,
+    colors.darkBrown,
+    colors.lightPeach,
+    colors.darkPeach,
+    colors.lightYellow,
+    colors.darkishRed,
+    colors.white, 
+    colors.lightBlue,
+    colors.darkRed, colors.DarkerGreen]
+}
+];
+var sprites = [
+{imageData: [
+/*LinkHeadStart - front*/
+[0,0,0,0,0,0,0,0,0,1,3,3,3,3,1,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,1,3,2,2,2,2,3,1,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,1,3,2,2,2,2,2,2,3,1,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,1,3,2,2,2,2,2,2,2,2,3,1,0,0,0,0,0,0],
+[0,0,0,0,0,0,1,2,7,6,6,6,6,6,6,7,2,1,0,0,0,0,0,0],
+[0,0,0,0,0,1,3,7,6,6,6,6,6,6,6,6,7,5,1,0,0,0,0,0],
+[0,0,0,8,10,8,8,10,6,10,6,6,6,10,7,6,6,8,8,10,8,0,0,0],
+[0,0,0,8,9,9,10,6,7,6,6,6,6,7,10,7,6,10,9,9,8,0,0,0],
+[0,0,0,0,8,10,8,10,10,6,6,10,8,10,9,7,10,8,10,8,0,0,0,0],
+[0,0,0,0,0,8,6,8,10,10,7,8,10,9,9,10,8,6,8,0,0,0,0,0],
+[0,0,0,0,0,1,6,7,1,1,8,10,9,10,1,1,7,6,1,0,0,0,0,0],
+[0,0,0,0,0,1,10,8,13,14,1,9,9,1,14,13,8,10,1,0,0,0,0,0],
+[0,0,0,0,0,0,1,1,9,14,13,9,9,13,14,9,1,1,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,1,10,9,9,9,9,9,9,10,1,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,1,4,8,8,10,10,10,10,8,8,4,1,0,0,0,0,0,0],
+//LinkHeadFinish - left off here in rebalance
+[0,0,0,0,0,1,4,4,3,3,3,3,3,3,3,3,4,4,1,0,0,0,0,0],
+[0,0,0,0,1,9,9,1,8,3,3,3,3,3,3,8,1,9,9,1,0,0,0,0],
+[0,0,0,0,1,10,9,3,2,8,8,11,11,8,8,2,3,9,10,1,0,0,0,0],
+[0,0,0,0,0,1,1,1,2,2,3,11,11,3,2,2,1,1,1,0,0,0,0,0],
+[0,0,0,0,0,0,0,1,1,3,2,2,2,2,3,1,1,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,1,12,15,1,1,1,1,1,1,15,12,1,0,0,0,0,0,0],
+[0,0,0,0,0,0,1,12,12,15,1,0,0,1,15,12,12,1,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,1,1,1,0,0,0,0,1,1,1,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+], 
+    colorData: [colors.black,
+    colors.green,
+    colors.darkGreen,
+    colors.lightGreen,
+    colors.darkishGreen,
+    colors.yellow,
+    colors.lightBrown,
+    colors.darkBrown,
+    colors.lightPeach,
+    colors.darkPeach,
+    colors.lightYellow,
+    colors.darkishRed,
+    colors.white, 
+    colors.lightBlue,
+    colors.darkRed, colors.DarkerGreen]
+},{imageData: [
+/*LinkHeadStart - side*/
+[0,0,0,0,0,0,0,0,0,3,2,2,2,2,3,8,7,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,3,3,2,2,2,2,2,2,6,6,7,8,0,0,0,0,0],
+[0,0,0,0,0,0,16,3,2,2,2,2,2,2,7,7,6,6,6,8,0,0,0,0],
+[0,0,0,0,0,16,3,3,2,2,2,2,2,2,6,6,8,7,6,6,7,0,0,0],
+[0,0,0,0,0,16,3,3,3,2,2,2,2,6,6,6,10,8,7,6,8,0,0,0],
+[0,0,0,0,16,3,3,3,3,3,3,3,3,6,6,8,10,10,8,8,0,0,0,0],
+[0,0,0,0,16,3,3,16,16,3,3,3,7,6,6,10,9,10,1,0,0,0,0,0],
+[0,0,0,0,1,3,16,1,16,16,3,16,8,7,6,9,1,8,1,0,0,0,0,0],
+[0,0,0,0,1,3,16,1,16,9,9,10,8,10,8,9,13,14,10,1,0,0,0,0],
+[0,0,0,0,1,3,1,0,1,7,9,9,1,6,8,9,13,14,10,1,0,0,0,0],
+[0,0,0,0,1,16,1,0,1,1,8,10,1,6,8,9,9,10,1,0,0,0,0,0],
+[0,0,0,0,0,1,0,0,6,7,1,1,1,6,8,10,10,1,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,1,16,3,1,7,1,5,1,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,1,3,1,8,1,3,3,3,1,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,1,3,1,4,4,1,3,3,11,1,0,0,0,0,0],
+//LinkHeadFinish - left off here in rebalance
+[0,0,0,0,0,0,0,0,1,3,8,1,4,4,1,8,8,11,1,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,1,3,2,1,4,4,1,2,2,2,1,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,1,2,1,9,9,1,2,2,1,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,1,1,10,9,1,1,1,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,1,1,1,15,15,12,1,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,1,1,15,12,12,1,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+], 
+    colorData: [colors.black,
+    colors.green,
+    colors.darkGreen,
+    colors.lightGreen,
+    colors.darkishGreen,
+    colors.yellow,
+    colors.lightBrown,
+    colors.darkBrown,
+    colors.lightPeach,
+    colors.darkPeach,
+    colors.lightYellow,
+    colors.darkishRed,
+    colors.white, 
+    colors.lightBlue,
+    colors.darkRed, colors.DarkerGreen]
+},];
+ var drawSprite = function(sprite,x,y,w,h,flip,bw){
+    noStroke();
+    var currentSprite = sprites[sprite];
+    var yarray = 0;
+    var xarray = 0;
+    var pyarray = 0;
+    var count = 1;
+    var last = currentSprite.imageData[yarray][xarray];
+    var stop = true;
+    pushMatrix();
+    translate(x,y);
+    for(yarray = 0; yarray < currentSprite.imageData.length; yarray++){
+        for(xarray = 0; xarray < currentSprite.imageData[yarray].length; xarray++){
+            if(!stop){
+                if(last === currentSprite.imageData[yarray][xarray] && pyarray === yarray){
+                    last = currentSprite.imageData[yarray][xarray];
+                    count+=1;
+                }else{
+                    stop = true;
+                }
+            }
+            if(stop){
+            if(currentSprite.imageData[yarray][xarray] === 0){
+                noFill();
+                fill(0, 0, 0);
+                //last = currentSprite.imageData[yarray][xarray];
+            }else{
+                var a;
+                if(!bw){
+                a = currentSprite.colorData[currentSprite.imageData[yarray][xarray]-1];
+                }else{
+                a = color(0, 0, 0);
+                }
+                fill(a);
+                pushMatrix();
+                if(!flip){
+                    rect(w * xarray/currentSprite.imageData[yarray].length ,h *yarray/currentSprite.imageData.length, w * 1/currentSprite.imageData[yarray].length,h * 1/currentSprite.imageData.length);
+                }else{
+                    rect(-w * xarray/currentSprite.imageData[yarray].length+w,h *yarray/currentSprite.imageData.length,-w * 1/currentSprite.imageData[yarray].length,h * 1/currentSprite.imageData.length);
+                }
+                popMatrix();
+            }
+            count = 0;
+            stop = true;
+            last = currentSprite.imageData[yarray][xarray];
+            //text(currentSprite.imageData[yarray][xarray],xarray*5,yarray*5);
+            }
+            //text(currentSprite.imageData[yarray][xarray],xarray*5,yarray*5);
+        }
+        pyarray = yarray+1;
+    }
+    popMatrix();
+};
+var mapSprite = function(sprite,x,y,w,h,flip,bw){
+    noStroke();
+    var currentSprite = map_sprite[sprite];
+    var yarray = 0;
+    var xarray = 0;
+    var pyarray = 0;
+    var count = 1;
+    var last = currentSprite.imageData[yarray][xarray];
+    var stop = true;
+    pushMatrix();
+    translate(x,y);
+    for(yarray = 0; yarray < currentSprite.imageData.length; yarray++){
+        for(xarray = 0; xarray < currentSprite.imageData[yarray].length; xarray++){
+            if(!stop){
+                if(last === currentSprite.imageData[yarray][xarray] && pyarray === yarray){
+                    last = currentSprite.imageData[yarray][xarray];
+                    count+=1;
+                }else{
+                    stop = true;
+                }
+            }
+            if(stop){
+            if(currentSprite.imageData[yarray][xarray] === 0){
+                noFill();
+                fill(0, 0, 0);
+                //last = currentSprite.imageData[yarray][xarray];
+            }else{
+                var a;
+                if(!bw){
+                a = currentSprite.colorData[currentSprite.imageData[yarray][xarray]-1];
+                }else{
+                a = color(0, 0, 0);
+                }
+                fill(a);
+                pushMatrix();
+                if(!flip){
+                    rect(w * xarray/currentSprite.imageData[yarray].length ,h *yarray/currentSprite.imageData.length, w * 1/currentSprite.imageData[yarray].length,h * 1/currentSprite.imageData.length);
+                }else{
+                    rect(-w * xarray/currentSprite.imageData[yarray].length+w,h *yarray/currentSprite.imageData.length,-w * 1/currentSprite.imageData[yarray].length,h * 1/currentSprite.imageData.length);
+                }
+                popMatrix();
+            }
+            count = 0;
+            stop = true;
+            last = currentSprite.imageData[yarray][xarray];
+            //text(currentSprite.imageData[yarray][xarray],xarray*5,yarray*5);
+            }
+            //text(currentSprite.imageData[yarray][xarray],xarray*5,yarray*5);
+        }
+        pyarray = yarray+1;
+    }
+    popMatrix();
+};
+
 var mapX = 0;
 var mapY = 0;
 var GameMapX = [[800,800,600], //The size of each room 
@@ -45,8 +310,8 @@ var lastCollision = {
 var obj = {
     mapX: 300, //if you want to start in another room you must 
     mapY: 300, //write in the value between where the room is found( for now)
-    width: 100,
-    height: 100,
+    width: 24,
+    height: 24,
     ellipse: function(){
     },
 };
@@ -212,7 +477,8 @@ y: function() //adds up all the  x collision values starting from zero to curren
 };
 //the circle that fill in as our test character
 obj.ellipse = function(){
-    ellipse(obj.mapX-scene.x,obj.mapY-scene.y,obj.width,obj.height);
+    drawSprite(0,obj.mapX-scene.x,obj.mapY-scene.y,obj.width*4,obj.height*4,false);
+    
 };
 //Logic for the key presses that in turn becomes the movement
 var firstClick = []; //array used for when the key is only pressed once
