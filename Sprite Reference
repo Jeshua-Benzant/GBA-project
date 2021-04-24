@@ -324,7 +324,7 @@ var Link = {
         }
         
 };
-frameRate(11);
+frameRate(1);
 
 //drawSprite(5,70,10,spriteX*scaled_size,(spriteY)*scaled_size,false);
 //Link.front.still();
