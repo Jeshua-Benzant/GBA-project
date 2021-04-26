@@ -263,7 +263,6 @@ var mapSprite = function(sprite,x,y,w,h,flip,vflip,bw){
  var drawMap = function(sprite,x,y,w){
     noStroke();
     var currentSprite = GameMap[sprite];
-    var tiledata = map_sprite[0];
     var yarray = 0;
     var xarray = 0;
     var pyarray = 0;
@@ -393,4 +392,23 @@ GameMap = [
 ],
 
 },];
-drawMap(0,70,10,4);
+
+drawMap(0,283,115,2);
+GameMap = [{
+    imageData: [
+[1,0,2,0,3,0,4,0,0,0,0,29],
+[0,0,0,0,0,0,0],
+[5,0,6,0,7,0,8],
+[0,0,0,0,0,0,0],
+[9,0,10,0,11,0,12],
+[0,0,0,0,0,0,0],
+[13,0,14,0,15,0,16],
+[0,0,0,0,0,0,0],
+[17,0,18,0,19,0,20],
+[0,0,0,0,0,0,0],
+[21,0,22,0,23,0,24],
+[0,0,0,0,0,0,0],
+[25,0,26,0,27,0,28],
+[0,0,0,0,0,0,0],
+],},];
+drawMap(0,70,10,3.75);
