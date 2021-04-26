@@ -42,12 +42,24 @@ var colors = {
     
     var Tile = function()
     {if(round(random(1,10)) < 9)
-    {return 2;}
-    else {return 3;}
+    {return 4;}
+    else {return 5;}
     };
 var map_sprite = [
 {imageData: [
-/*floor tile - 1 - corner*/
+/*floor tile - 1 - corners side*/
+[1,31,31,30,31,31,31,31],
+[1,31,31,30,30,30,30,30],
+[1,31,31,30,31,31,31,31],
+[1,31,31,30,31,31,31,31],
+[1,30,30,30,31,31,31,31],
+[1,31,31,30,31,31,31,31],
+[1,31,31,30,30,30,30,30],
+[1,31,31,30,31,31,31,31],
+], 
+},
+{imageData: [
+/*floor tile - 2 - corners top*/
 [1,1,1,1,1,1,1,1],
 [30,31,31,30,30,30,30,30],
 [30,31,31,30,31,31,31,31],
@@ -57,8 +69,20 @@ var map_sprite = [
 [30,31,31,30,30,30,30,30],
 [30,31,31,30,31,31,31,31],
 ], 
+
 },{imageData: [
-/*floor tile - 1 - */
+/*floor tile - 3 - corners side*/
+[1,1,1,1,1,1,1,1],
+[1,31,31,30,30,30,30,30],
+[1,31,31,30,31,31,31,31],
+[1,31,31,30,31,31,31,31],
+[1,30,30,30,31,31,31,31],
+[1,31,31,30,31,31,31,31],
+[1,31,31,30,30,30,30,30],
+[1,31,31,30,31,31,31,31],
+], 
+},{imageData: [
+/*floor tile - 4 - regular*/
 [30,31,31,30,31,31,31,31],
 [30,31,31,30,30,30,30,30],
 [30,31,31,30,31,31,31,31],
@@ -70,7 +94,7 @@ var map_sprite = [
 ], 
 
 },{imageData: [
-/*floor tile - 2*/
+/*floor tile - 5 - cracked - #5*/
 [30,33,31,30,31,32,31,31],
 [30,33,31,30,30,30,30,30],
 [30,31,31,30,32,33,30,31],
@@ -81,7 +105,7 @@ var map_sprite = [
 [30,31,31,30,31,31,33,31],
 ], 
 },{imageData: [
-/*wall tile - 1*/
+/*wall tile - front 1*/
 [30,31,31,1,30,30,31,33],
 [31,31,31,1,31,31,31,31],
 [30,33,31,1,30,30,30,30],
@@ -90,10 +114,10 @@ var map_sprite = [
 [30,30,1,30,30,30,1,31],
 [1,1,1,1,1,1,1,1],
 [30,1,31,30,1,30,30,30],
-], 
-},{imageData: [
-/*wall tile - 2*/
-[30,31,31,31,33,30,31,3],
+], },
+{imageData: [
+/*wall tile - front 2*/
+[31,31,31,31,30,30,30,30],
 [31,31,31,31,31,31,31,31],
 [1,1,1,1,1,1,1,1],
 [1,1,1,1,1,1,1,1],
@@ -101,12 +125,87 @@ var map_sprite = [
 [30,30,31,30,30,30,1,31],
 [31,31,31,31,31,31,1,31],
 [1,1,1,1,1,1,1,1],
-], 
-}
-
+], },
+{imageData: [
+/*wall tile - front 3 - top*/
+[31,31,31,30,31,31,31,31],
+[31,31,31,30,30,31,31,31],
+[30,31,31,31,31,31,30,31],
+[31,31,31,30,31,31,31,31],
+[31,31,31,30,30,31,31,31],
+[31,31,31,31,31,31,31,33],
+[30,30,31,30,30,30,31,31],
+[31,31,31,31,31,31,31,31],
+], },
+{imageData: [
+/*wall tile -  side 1*/
+[30,31,30,1,31,31,1,31],
+[30,34,30,1,31,31,1,1],
+[30,31,30,1,1,1,1,31],
+[30,30,31,1,31,31,1,31],
+[31,31,30,1,30,31,1,1],
+[1,1,1,1,31,31,1,30],
+[33,31,30,1,1,1,1,30],
+[31,31,30,1,31,30,1,30],
+], },
+{imageData: [
+/*wall tile -  side 2 - #10*/
+[31,31,1,1,30,31,31,1],
+[31,31,1,1,1,1,1,1],
+[30,31,1,1,31,31,30,1],
+[31,31,1,1,30,31,31,1],
+[31,31,1,1,30,31,31,1],
+[33,31,1,1,31,31,30,1],
+[30,31,1,1,31,31,30,1],
+[31,31,1,1,31,31,30,1],
+], },
+{imageData: [
+/*wall tile -  side 3*/
+[31,31,31,31,30,31,31,31],
+[31,31,31,31,31,31,31,31],
+[31,31,31,31,31,31,31,31],
+[31,31,31,31,31,31,31,31],
+[31,31,31,31,31,31,31,31],
+[31,31,31,31,31,31,31,31],
+[31,31,31,31,31,31,31,31],
+[31,31,31,31,31,31,31,31],
+], },
+{imageData: [
+/*wall tile -  corner 1  top*/
+[31,31,30,31,31,31,31,31],
+[31,31,31,31,30,31,33,31],
+[31,31,30,31,31,31,31,31],
+[31,31,31,31,30,31,33,31],
+[31,31,31,30,30,31,31,31],
+[31,31,31,30,31,31,30,31],
+[31,31,31,31,31,31,31,31],
+[31,31,32,31,30,30,30,31],
+], },
+{imageData: [
+/*wall tile -  corner 1 bottom*/
+[1,31,31,31,1,31,31,31],
+[31,1,1,1,1,31,31,31],
+[30,1,1,31,1,31,31,31],
+[1,1,31,1,1,1,1,1],
+[31,31,31,1,1,31,31,1],
+[1,1,1,1,31,1,1,31],
+[30,31,31,1,31,1,1,1],
+[31,31,31,1,1,31,1,1],
+], },
+{imageData: [
+/*wall tile -  corner 2 middle*/
+[31,31,31,31,30,31,31,31],
+[31,31,31,31,31,31,31,31],
+[30,31,1,1,1,1,1,1],
+[31,31,1,1,1,1,1,1],
+[31,31,1,1,1,31,31,1],
+[33,31,1,1,31,1,1,31],
+[30,31,1,1,31,1,1,31],
+[31,31,1,1,1,31,1,1],
+], },
 ];
 var GameMap;
-var mapSprite = function(sprite,x,y,w,h,flip,bw){
+var mapSprite = function(sprite,x,y,w,h,flip,vflip,bw){
     noStroke();
     var currentSprite = map_sprite[sprite];
     var yarray = 0;
@@ -131,7 +230,6 @@ var mapSprite = function(sprite,x,y,w,h,flip,bw){
             if(currentSprite.imageData[yarray][xarray] === 0){
                 noFill();
                 fill(0, 0, 0);
-                //last = currentSprite.imageData[yarray][xarray];
             }else{
                 var a;
                 if(!bw){
@@ -141,25 +239,28 @@ var mapSprite = function(sprite,x,y,w,h,flip,bw){
                 }
                 fill(a);
                 pushMatrix();
-                if(!flip){
+                if(!flip && !vflip){
                     rect(w * xarray/currentSprite.imageData[yarray].length ,h *yarray/currentSprite.imageData.length, w * 1/currentSprite.imageData[yarray].length,h * 1/currentSprite.imageData.length);
-                }else{
+                }else if (flip && !vflip){
                     rect(-w * xarray/currentSprite.imageData[yarray].length+w,h *yarray/currentSprite.imageData.length,-w * 1/currentSprite.imageData[yarray].length,h * 1/currentSprite.imageData.length);
+                }
+                   else if(vflip && !flip){
+                    rect(w * xarray/currentSprite.imageData[yarray].length ,-h *yarray/currentSprite.imageData.length+h, w * 1/currentSprite.imageData[yarray].length,-h * 1/currentSprite.imageData.length);
+                }
+                else if(vflip && flip){
+                    rect(-w * xarray/currentSprite.imageData[yarray].length+w ,-h *yarray/currentSprite.imageData.length+h, -w * 1/currentSprite.imageData[yarray].length,-h * 1/currentSprite.imageData.length);
                 }
                 popMatrix();
             }
             count = 0;
             stop = true;
             last = currentSprite.imageData[yarray][xarray];
-            //text(currentSprite.imageData[yarray][xarray],xarray*5,yarray*5);
-            }
-            //text(currentSprite.imageData[yarray][xarray],xarray*5,yarray*5);
-        }
+            }}
         pyarray = yarray+1;
     }
     popMatrix();
 };
- var drawMap = function(sprite,x,y,w,h,flip,bw){
+ var drawMap = function(sprite,x,y,w){
     noStroke();
     var currentSprite = GameMap[sprite];
     var tiledata = map_sprite[0];
@@ -167,8 +268,8 @@ var mapSprite = function(sprite,x,y,w,h,flip,bw){
     var xarray = 0;
     var pyarray = 0;
     var count = 1;
-    var tileWidth = map_sprite[0].imageData.length*6;
-    var tileHeight = map_sprite[0].imageData[0].length*6;
+    var tileWidth = map_sprite[0].imageData.length*(w);
+    var tileHeight = map_sprite[0].imageData[0].length*(w);
     var last = currentSprite.imageData[yarray][xarray];
     var stop = true;
 pushMatrix();
@@ -187,21 +288,84 @@ pushMatrix();
             if(currentSprite.imageData[yarray][xarray] === 0){
                 noFill();
                 fill(0, 0, 0);
-                //last = currentSprite.imageData[yarray][xarray];
-            }else{
-                var a;
-                var b;
-                if(!bw){
-                    for(var i = 0; i < 10;i++)
-                    {
-                    if(currentSprite.imageData[yarray][xarray] === i+1)
-                    {
-                        
-                    currentSprite.imageData[yarray][xarray] = mapSprite(i,xarray*tileWidth-70,yarray*tileHeight,tileWidth,tileHeight,false);
-                    }
-                    }
                 
-                }
+            }
+            var a;
+            var b;
+                    for(var i = 0; i < 60;i++)
+                    {
+                        if(currentSprite.imageData[yarray][xarray] === 15)
+                        {
+                         //println(i);   
+                        currentSprite.imageData[yarray][xarray] = mapSprite(0,xarray*tileWidth-70,yarray*tileHeight,tileWidth,tileHeight,true);
+                        }
+                      else  if(currentSprite.imageData[yarray][xarray] === 16 )
+                        {
+                         //println(i);   
+                        currentSprite.imageData[yarray][xarray] = mapSprite(8,xarray*tileWidth-70,yarray*tileHeight,tileWidth,tileHeight,true);
+                    }
+                    else  if(currentSprite.imageData[yarray][xarray] === 17 )
+                        {
+                         //println(i);   
+                        currentSprite.imageData[yarray][xarray] = mapSprite(9,xarray*tileWidth-70,yarray*tileHeight,tileWidth,tileHeight,true);
+                    }
+                        else if(currentSprite.imageData[yarray][xarray] === 18)
+                        {
+                         //println(i);   
+                        currentSprite.imageData[yarray][xarray] = mapSprite(2,xarray*tileWidth-70,yarray*tileHeight,tileWidth,tileHeight,true);
+                        }
+                       else if(currentSprite.imageData[yarray][xarray] === 19)
+                        {
+                         //println(i);   
+                        currentSprite.imageData[yarray][xarray] = mapSprite(12,xarray*tileWidth-70,yarray*tileHeight,tileWidth,tileHeight,true);
+                        }
+                        else if(currentSprite.imageData[yarray][xarray] === 20)
+                        {
+                         //println(i);   
+                        currentSprite.imageData[yarray][xarray] = mapSprite(13,xarray*tileWidth-70,yarray*tileHeight,tileWidth,tileHeight,true);
+                        }
+                       else if(currentSprite.imageData[yarray][xarray] === 21)
+                        {
+                            
+                        currentSprite.imageData[yarray][xarray] = mapSprite(1,xarray*tileWidth-70,yarray*tileHeight,tileWidth,tileHeight,false,true);
+                        }
+                        
+                       else if(currentSprite.imageData[yarray][xarray] === 22 )
+                        {
+                            //println(i);
+                        currentSprite.imageData[yarray][xarray] = mapSprite(2,xarray*tileWidth-70,yarray*tileHeight,tileWidth,tileHeight,false,true);}
+                       else if(currentSprite.imageData[yarray][xarray] === 23 )
+                        {
+                            //println(i);
+                        currentSprite.imageData[yarray][xarray] = mapSprite(12,xarray*tileWidth-70,yarray*tileHeight,tileWidth,tileHeight,false,true);}   
+                       else if(currentSprite.imageData[yarray][xarray] === 24 )
+                        {
+                            //println(i);
+                        currentSprite.imageData[yarray][xarray] = mapSprite(13,xarray*tileWidth-70,yarray*tileHeight,tileWidth,tileHeight,false,true);}
+                       else if(currentSprite.imageData[yarray][xarray] === 25 )
+                        {
+                            //println(i);
+                        currentSprite.imageData[yarray][xarray] = mapSprite(5,xarray*tileWidth-70,yarray*tileHeight,tileWidth,tileHeight,false,true);}
+                        else if(currentSprite.imageData[yarray][xarray] === 26 )
+                        {
+                            //println(i);
+                        currentSprite.imageData[yarray][xarray] = mapSprite(2,xarray*tileWidth-70,yarray*tileHeight,tileWidth,tileHeight,true,true);}
+                       else if(currentSprite.imageData[yarray][xarray] === 27 )
+                        {
+                            //println(i);
+                        currentSprite.imageData[yarray][xarray] = mapSprite(6,xarray*tileWidth-70,yarray*tileHeight,tileWidth,tileHeight,false,true);}
+                      else  if(currentSprite.imageData[yarray][xarray] === 28 )
+                        {
+                            //println(i);
+                        currentSprite.imageData[yarray][xarray] = mapSprite(12,xarray*tileWidth-70,yarray*tileHeight,tileWidth,tileHeight,true,true);}
+                      else  if(currentSprite.imageData[yarray][xarray] === 29 )
+                        {
+                            //println(i);
+                        currentSprite.imageData[yarray][xarray] = mapSprite(13,xarray*tileWidth-70,yarray*tileHeight,tileWidth,tileHeight,true,true);}
+                    else if(currentSprite.imageData[yarray][xarray] === i+1 && i<15)
+                        {
+                        currentSprite.imageData[yarray][xarray] = mapSprite(i,xarray*tileWidth-70,yarray*tileHeight,tileWidth,tileHeight,false);
+                        }    
             }
             count = 0;
             stop = true;
@@ -214,15 +378,19 @@ popMatrix();
 GameMap = [
     
 {imageData: [
-[5,5,5,5,5,5,5,5],
-[4,4,4,4,4,4,4,4],
-[1,1,1,1,1,1,1,1],
-[Tile(),Tile(),Tile(),Tile(),Tile(),Tile(),Tile(),Tile()],
-[Tile(),Tile(),Tile(),Tile(),Tile(),Tile(),Tile(),Tile()],
-[Tile(),Tile(),Tile(),Tile(),Tile(),Tile(),Tile(),Tile()]
-],  
+[12,8,8,8,8,8,8,8,8,8,12],
+[8,14,7,7,7,7,7,7,7,20,8],
+[8,10,13,6,6,6,6,6,19,17,8],
+[8,10,9,3,2,2,2,18,16,17,8],
+[8,10,9,1,Tile(),Tile(),Tile(),15,16,17,8],
+[8,10,9,1,Tile(),Tile(),Tile(),15,16,17,8],
+[8,10,9,1,Tile(),Tile(),Tile(),15,16,17,8],
+[8,10,9,22,21,21,21,26,16,17,8],
+[8,10,23,25,25,25,25,25,28,17,8],
+[8,24,27,27,27,27,27,27,27,29,8],
+[12,8,8,8,8,8,8,8,8,8,12],
+
+],
 
 },];
-drawMap(0,77,10);
-//mapSprite(2,185,271,44*2,44*2);
-//mapSprite(3,185,183,44*2,44*2);
+drawMap(0,70,10,4);
