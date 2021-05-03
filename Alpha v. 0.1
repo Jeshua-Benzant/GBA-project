@@ -41,8 +41,6 @@ var colors = {
     color(43, 39, 43)// 38 = almostBlack
     ]};
 
-
-
 var sprites = [
     ///* MAIN CHARACTER ANIMATIONS *///
 {imageData: [
@@ -2149,7 +2147,7 @@ keyReleased = function() {
 
 var frame = 0; //remembers which movement key is currently being pressed
 
-MainCharacter.ellipse = function(){
+MainCharacter.sprite = function(){
     var wasd = function() //variable to organize movement and make it easier to access
 {if (!SceneMove) //wont move if there is a room transition (old Nintendo Gameboy effect)
 {
@@ -2250,7 +2248,7 @@ draw = function() {
     collisions(); //collisions of the rooms
     scene.collision.active(mapX,mapY); //call function for active collisions
     fill(8, 8, 8);
-    MainCharacter.ellipse();
+    MainCharacter.sprite();
     
     //several rectangles scattered across to prove that the system is working 
     rect(100-scene.x,800-scene.y,100,100);
