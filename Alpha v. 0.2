@@ -1,3 +1,97 @@
+/***Global Variables***/
+var mapX = 0; //starting x coordinate for map
+var mapY = 0; //starting y coordinate for map
+var GameMapX = [[800,1200,800],//The size of each room in the map
+           [1000,800,1000],
+           [1100,600,1100]]; //that can be adjusted
+
+var GameMapY = [[1200,1200,1200], //however you want
+[600,600,600],
+[600,600,600]];//and the system will adjust all the camera aspects to it.
+
+var limit = {
+    x: function() //adds up all the  x collision values starting from zero to current x Right collision
+{
+    var temp = 0;
+    for(var i = 0; i < GameMapX[mapY].length; i++)
+    {
+        temp += GameMapX[mapY][i];
+        //println(temp);
+    }
+    return temp;
+},
+y: function() //adds up all the  x collision values starting from zero to current x Right collision
+{
+    var temp = 0;
+    for(var i = 0; i < GameMapY.length; i++)
+    {
+        temp += GameMapY[i][mapX];
+        //println(temp);
+    }
+    return temp;
+},
+}; //adds up all the room width and heights to declare how far the character should be allowed to go
+
+var lastCollision = {
+    x: 0, 
+    y: 0 ,
+    }; //checks for the most recently used(used mainly for debugging purposes)
+    
+var Actual = {
+    x: function() //adds up all the  x collision values starting from zero to current x Right collision
+{
+    var temp = 0;
+    for(var i = 0; i <= mapX; i++)
+    {
+        temp += GameMapX[mapY][i];
+    }
+    return temp;
+},
+y:  function() //adds up all the  y collision values starting from zero to current y Bottom collision
+{
+    var temp = 0;
+    for(var i = 0; i <= mapY; i++)
+    {
+
+        temp += GameMapY[i][mapX];
+    }
+    return temp;
+},
+}; //accounts for the accumulated x and y positons based on where you are in the map.
+
+var spriteX = 24; //default sprite x position
+var spriteY = 24; //default sprite y position
+var spriteSize = 24; //default sprite size
+var scaled_size = 14; //default sprite size scaling factor
+
+var keys = [];//array for keyboard command movement (seen later down)
+
+var firstClick = []; //array used for when the key is only pressed once
+
+var key_temp = false; //checks to see if one of the allowed keys are being pressed
+
+keyPressed = function() {
+    
+    if (keys[keyCode]) {
+        firstClick[keyCode] = false; //makes it false so that it is only one
+    } else {
+        firstClick[keyCode] = true; // first time you click
+    }
+    
+    keys[keyCode] = true; //adds into the keys array as true for when you press the key
+    key_temp = true;
+}; 
+keyReleased = function() {
+    keys[keyCode] = false; //gets rid of value from keys array by setting it as false
+    firstClick[keyCode] = false; //makes it false so that it is only one for when you release it
+};
+var frame = 0; //remembers which movement key is currently being pressed
+
+var Stationary = true; //variable that tells the camera whether the room is bigger than the actual canvas size.
+
+var SceneMove = false; //variable that stops the ellipses' movement momentarily as the map adjusts (done on purpose)
+
+/***Game Variables, Logic, Collision Detections, and Sprites***/
 var colors = {
     colorData: [
     /*      ORDER OF COLORS: 0 = null,*/
@@ -40,7 +134,6 @@ var colors = {
     color(224, 143, 56),//37 = darkOrange
     color(43, 39, 43)// 38 = almostBlack
     ]};
-
 var sprites = [
     ///* MAIN CHARACTER ANIMATIONS *///
 {imageData: [
@@ -938,7 +1031,7 @@ var sprites = [
 /*MC FALLING FRAME*/
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-[0,1,1,5,5,5,5,5,5,5,1,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,1,1,18,5,5,5,5,5,5,1,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,1,5,5,5,1,1,1,1,1,5,1,0,0,0,0,0,0,1,1,0,0,0,0],
 [0,1,5,5,1,9,9,9,9,9,1,0,0,0,0,0,0,1,9,1,0,0,0,0],
 [0,1,5,1,9,9,9,1,6,9,1,1,0,0,0,0,1,2,1,0,0,0,0,0],
@@ -1974,7 +2067,7 @@ var sprites = [
 ], 
 },
 ];
- var drawSprite = function(sprite,x,y,w,h,flip,bw){
+var drawSprite = function(sprite,x,y,w,h,flip,bw){
     noStroke();
     var currentSprite = sprites[sprite];
     var yarray = 0;
@@ -2024,14 +2117,17 @@ var sprites = [
     }
     popMatrix();
 };
-var spriteX = 24; //default sprite x position
-var spriteY = 24; //default sprite y position
-var spriteSize = 24; //default sprite size
-var scaled_size = 14; //default sprite size scaling factor
-var walkAnimation = 1; //A sprite counter variable used to switch through different frames of sprites through different interactions
-var flip = false; ////default variable that will mirror the sprite itselfnrelative to the y-axis
-var MC = {
+
+var MainCharacter = {
+    mapX: 300, //if you want to start in another room you must 
+    mapY: 300, //write in the value between where the room is found( for now)
+    width: 24,
+    height: 24,
+    animationFrame: 1,//A sprite counter variable used to switch through different frames of sprites through different interactions
+    flip: false,
+    flag: false,
     front: {
+        
         still: function(a,b,c)
         {
             drawSprite(0, a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),  (spriteSize)*(c || scaled_size),false);
@@ -2046,27 +2142,46 @@ var MC = {
         },
         animation: function(a,b,c)//uses sprite's walking frames and portays an illusion of it walking
         {
-            if(walkAnimation < 2 || walkAnimation > 6.49)
+            if(MainCharacter.animationFrame < 2 || MainCharacter.animationFrame > 6.49)
                 {
-                    walkAnimation = 2;
+                    MainCharacter.animationFrame = 2;
                     
                 }
-            if(walkAnimation >= 6 && walkAnimation <= 6.49 && !flip)
+            if(MainCharacter.animationFrame >= 6 && MainCharacter.animationFrame <= 6.49 && !MainCharacter.flip)
                 {
-                    flip = true;
-                    walkAnimation = 2;
+                    MainCharacter.flip = true;
+                    MainCharacter.animationFrame = 2;
                     
                 }
-                if(walkAnimation >= 6 && walkAnimation <= 6.49 && flip)
+                if(MainCharacter.animationFrame >= 6 && MainCharacter.animationFrame <= 6.49 && MainCharacter.flip)
                 {
-                    flip = false;
-                    walkAnimation = 2;
+                    MainCharacter.flip = false;
+                    MainCharacter.animationFrame = 2;
                 }
-                walkAnimation+= 0.15;
+                MainCharacter.animationFrame+= 0.15;
                 //println(walkAnimation);
                 //rect(a,b,(spriteSize)*(c || scaled_size),(spriteSize)*(c || scaled_size));
-            drawSprite(floor(walkAnimation), a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),  (spriteSize)*(c || scaled_size),flip);
-            }
+            drawSprite(floor(MainCharacter.animationFrame), a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),  (spriteSize)*(c || scaled_size),MainCharacter.flip);
+            },
+        attack: function(a,b,c)
+        {
+            if(MainCharacter.animationFrame < 7 || MainCharacter.animationFrame > 11.49)
+                {
+                    MainCharacter.animationFrame = 7;
+                    
+                }
+            if(MainCharacter.animationFrame >= 11 && MainCharacter.animationFrame <= 11.49 && !MainCharacter.flip)
+                {
+                    MainCharacter.flag = true;
+                    return MainCharacter.flag;
+                    
+                }
+                else{ MainCharacter.flag = false; }
+                MainCharacter.animationFrame+= 0.15;
+                //println(walkAnimation);
+                //rect(a,b,(spriteSize)*(c || scaled_size),(spriteSize)*(c || scaled_size));
+            drawSprite(floor(MainCharacter.animationFrame), a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),  (spriteSize)*(c || scaled_size),MainCharacter.flip);
+        }
         },
     side: {
         still: function(a,b,c,d)
@@ -2086,29 +2201,50 @@ var MC = {
     },
     animation: function(a,b,c,d)//uses sprite's walking frames and portays an illusion of it walking
     {
-        if(walkAnimation < 12 || walkAnimation > 16.49)
+        if(MainCharacter.animationFrame < 12 || MainCharacter.animationFrame > 16.49)
                 {
-                    walkAnimation = 12;
+                    MainCharacter.animationFrame = 12;
                     
                 }
-        if(walkAnimation >= 16 && walkAnimation <= 16.49 && !flip)
+        if(MainCharacter.animationFrame >= 16 && MainCharacter.animationFrame <= 16.49 && !MainCharacter.flip)
             {
-                flip = true;
-                walkAnimation = 12;
+                MainCharacter.flip = true;
+                MainCharacter.animationFrame = 12;
                 
             }
-            if(walkAnimation >= 16 && walkAnimation <= 16.49 && flip)
+            if(MainCharacter.animationFrame >= 16 && MainCharacter.animationFrame <= 16.49 && MainCharacter.flip)
             {
                 //println(walkAnimation);
-                flip = false;
-                walkAnimation = 12;
+                MainCharacter.flip = false;
+                MainCharacter.animationFrame = 12;
             }
-            walkAnimation+= 0.15;
+            MainCharacter.animationFrame+= 0.15;
             //println(walkAnimation);
             //rect(a,b,(spriteSize)*(c || scaled_size),(spriteSize)*(c || scaled_size));
-        drawSprite(floor(walkAnimation), a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),  (spriteSize)*(c || scaled_size),d);
-        
-        }
+        drawSprite(floor(MainCharacter.animationFrame), a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),  (spriteSize)*(c || scaled_size),d);
+        },
+    attack: function(a,b,c)
+    {
+        if(MainCharacter.flag === false)
+        {
+        if(MainCharacter.animationFrame < 18 || MainCharacter.animationFrame > 22.49)
+            {
+                MainCharacter.animationFrame = 18;
+                
+            }
+        if(MainCharacter.animationFrame >= 22 && MainCharacter.animationFrame <= 22.49 && !MainCharacter.flip)
+            {
+                MainCharacter.flag = true;
+                return MainCharacter.flag;
+                
+            }
+            
+            MainCharacter.animationFrame+= 0.15;
+            //println(walkAnimation);
+            //rect(a,b,(spriteSize)*(c || scaled_size),(spriteSize)*(c || scaled_size));
+        drawSprite(floor(MainCharacter.animationFrame), a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),  (spriteSize)*(c || scaled_size),MainCharacter.flip);
+    }
+    }
     },
     back: {
         still: function(a,b,c,d)
@@ -2128,85 +2264,34 @@ var MC = {
     },
     animation: function(a,b,c,d)//uses sprite's walking frames and portays an illusion of it walking
     {
-        if(walkAnimation < 22 || walkAnimation > 27.49)
+        if(MainCharacter.animationFrame < 22 || MainCharacter.animationFrame > 27.49)
                 {
-                    walkAnimation = 23;
+                    MainCharacter.animationFrame = 23;
                     
                 }
-        if(walkAnimation >= 27 && walkAnimation <= 27.49 && !flip)
+        if(MainCharacter.animationFrame >= 27 && MainCharacter.animationFrame <= 27.49 && !MainCharacter.flip)
             {
-                flip = true;
-                walkAnimation = 23;
+                MainCharacter.flip = true;
+                MainCharacter.animationFrame = 23;
                 
             }
-            if(walkAnimation >= 27 && walkAnimation <= 27.49 && flip)
+            if(MainCharacter.animationFrame >= 27 && MainCharacter.animationFrame <= 27.49 && MainCharacter.flip)
             {
                 //println(walkAnimation);
-                flip = false;
-                walkAnimation = 23;
+                MainCharacter.flip = false;
+                MainCharacter.animationFrame = 23;
             }
-            walkAnimation+= 0.15;
+            MainCharacter.animationFrame+= 0.15;
+            
             //println(walkAnimation);
             //rect(a,b,(spriteSize)*(c || scaled_size),(spriteSize)*(c || scaled_size));
-        drawSprite(floor(walkAnimation), a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),  (spriteSize)*(c || scaled_size),d);
+            
+        drawSprite(floor(MainCharacter.animationFrame), a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),  (spriteSize)*(c || scaled_size),d);
         
         }
     },
-}; //Main character assortment and interactions
+};//Main character assortment and interactions
 
-//startup room counter and data used for the map and camera scrolling element of the game. The map itself is variable and can be configured to many different forms
-
-var mapX = 0; //starting x coordinate
-var mapY = 0; //starting y coordinate
-var GameMapX = [[800,1200,800], //The size of each room 
-           [1000,800,1000],
-           [1100,600,1100]]; //that can be adjusted
-var GameMapY = [[1200,1200,1200], //however you want
-[600,600,600],
-[600,600,600]];        //and the system will adjust all the camera aspects to it.
-
-var Actual = {
-    x: function() //adds up all the  x collision values starting from zero to current x Right collision
-{
-    var temp = 0;
-    for(var i = 0; i <= mapX; i++)
-    {
-        temp += GameMapX[mapY][i];
-    }
-    return temp;
-},
-y:  function() //adds up all the  y collision values starting from zero to current y Bottom collision
-{
-    var temp = 0;
-    for(var i = 0; i <= mapY; i++)
-    {
-
-        temp += GameMapY[i][mapX];
-    }
-    return temp;
-},
-}; //accounts for the accumulated x and y positons based on where you are in the map.
-
-var keys = [];//array for keyboard command movement (seen later down)
-var lastCollision = {
-    x: 0, 
-    y: 0 ,
-    }; //checks for the most recently used(used mainly for debugging purposes)
-    
-//properties for the moving ellipse
-var MainCharacter = {
-    mapX: 300, //if you want to start in another room you must 
-    mapY: 300, //write in the value between where the room is found( for now)
-    width: 24,
-    height: 24,
-    ellipse: function(){
-    },
-};
-//the sizes for each and every individual (when done) scene on the map ( - Must make an array for each corresponding aaamapX and mapY value - )
-var Stationary = true; //variable that tells the camera whether the room is bigger than the actual canvas size.
-var SceneMove = false; //variable that stops the ellipses' movement momentarily as the map adjusts (done on purpose)
-
-//Properties and logic of the camera system
 var scene = {
     sizeX: 0, //current room width (is called and assigned a value later down the line)
     sizeY: 0, // same thing here
@@ -2339,51 +2424,7 @@ collision: { //collision detections
                     }
                 }
     }   },
-}};
-var limit = {
-    x: function() //adds up all the  x collision values starting from zero to current x Right collision
-{
-    var temp = 0;
-    for(var i = 0; i < GameMapX[mapY].length; i++)
-    {
-        temp += GameMapX[mapY][i];
-        //println(temp);
-    }
-    return temp;
-},
-y: function() //adds up all the  x collision values starting from zero to current x Right collision
-{
-    var temp = 0;
-    for(var i = 0; i < GameMapY.length; i++)
-    {
-        temp += GameMapY[i][mapX];
-        //println(temp);
-    }
-    return temp;
-},
-}; //adds up all the room width and heights to declare how far the character should be allowed to go
-
-
-//Logic for the key presses that in turn becomes the movement
-var firstClick = []; //array used for when the key is only pressed once
-var key_temp = false; //checks to see if one of the allowed keys are being pressed
-keyPressed = function() {
-    
-    if (keys[keyCode]) {
-        firstClick[keyCode] = false; //makes it false so that it is only one
-    } else {
-        firstClick[keyCode] = true; // first time you click
-    }
-    
-    keys[keyCode] = true; //adds into the keys array as true for when you press the key
-    key_temp = true;
-}; 
-keyReleased = function() {
-    keys[keyCode] = false; //gets rid of value from keys array by setting it as false
-    firstClick[keyCode] = false; //makes it false so that it is only one for when you release it
-};
-
-var frame = 0; //remembers which movement key is currently being pressed
+}}; //Properties and logic of the camera system
 
 MainCharacter.sprite = function(){
     var wasd = function() //variable to organize movement and make it easier to access
@@ -2396,7 +2437,7 @@ MainCharacter.sprite = function(){
         frame = 68;
         if(frame === 68)
         { //specific animation that plays at this key press
-        MC.side.animation(MainCharacter.mapX-scene.x,MainCharacter.mapY-scene.y,4,true);
+        MainCharacter.side.animation(MainCharacter.mapX-scene.x,MainCharacter.mapY-scene.y,4,true);
         }
     }
     else if(keys[65] && MainCharacter.mapX > 0)
@@ -2405,7 +2446,7 @@ MainCharacter.sprite = function(){
         frame = 65;
         if(frame === 65)
          { //specific animation that plays at this key press
-        MC.side.animation(MainCharacter.mapX-scene.x,MainCharacter.mapY-scene.y,4);
+        MainCharacter.side.animation(MainCharacter.mapX-scene.x,MainCharacter.mapY-scene.y,4);
          }
     }
     
@@ -2414,7 +2455,7 @@ MainCharacter.sprite = function(){
         MainCharacter.mapY-= 4; //moves Character coordinates by -Y
         frame = 87;
         if(frame === 87){ //specific animation that plays at this key press
-        MC.back.animation(MainCharacter.mapX-scene.x,MainCharacter.mapY-scene.y,4);
+        MainCharacter.back.animation(MainCharacter.mapX-scene.x,MainCharacter.mapY-scene.y,4);
         }
     }
     
@@ -2424,7 +2465,7 @@ MainCharacter.sprite = function(){
         frame = 83; 
         if(frame === 83)
         { //specific animation that plays at this key press
-        MC.front.animation(MainCharacter.mapX-scene.x,MainCharacter.mapY-scene.y,4);
+        MainCharacter.front.animation(MainCharacter.mapX-scene.x,MainCharacter.mapY-scene.y,4);
         }
     }
     else{key_temp = false;}
@@ -2435,22 +2476,22 @@ MainCharacter.sprite = function(){
     {
         if(frame === 68) 
         {
-        MC.side.still(MainCharacter.mapX-scene.x,MainCharacter.mapY-scene.y,4,true);
+        MainCharacter.side.still(MainCharacter.mapX-scene.x,MainCharacter.mapY-scene.y,4,true);
         }
         else if (frame === 65) {
-        MC.side.still(MainCharacter.mapX-scene.x,MainCharacter.mapY-scene.y,4);
+        MainCharacter.side.still(MainCharacter.mapX-scene.x,MainCharacter.mapY-scene.y,4);
         }
         else if (frame === 87) 
         {
-        MC.back.still(MainCharacter.mapX-scene.x,MainCharacter.mapY-scene.y,4);
+        MainCharacter.back.still(MainCharacter.mapX-scene.x,MainCharacter.mapY-scene.y,4);
         }
         else if (frame === 83) 
         {
-        MC.front.still(MainCharacter.mapX-scene.x,MainCharacter.mapY-scene.y,4);
+        MainCharacter.front.still(MainCharacter.mapX-scene.x,MainCharacter.mapY-scene.y,4);
         }
         else if (frame === 0)
         {
-            MC.front.still(MainCharacter.mapX-scene.x,MainCharacter.mapY-scene.y,4);
+            MainCharacter.front.still(MainCharacter.mapX-scene.x,MainCharacter.mapY-scene.y,4);
         }
     }  
 };
@@ -2458,7 +2499,7 @@ MainCharacter.sprite = function(){
 wasd();
  
     
-};
+}; //player logic, movement, and movement animation
 
 var collisions = function() //collisions and checks for any differences in the mapX and mapY values
 {
@@ -2469,6 +2510,7 @@ scene.collision.TopY = (Actual.y()-scene.sizeY-scene.collision.width) || 0;
 scene.collision.LeftX = (Actual.x()-scene.sizeX-scene.collision.width) || 0;
 scene.collision.BottomY = (Actual.y()-scene.collision.width) || 0;
 };
+/*** Game Execution ***/
 draw = function() {
 
     background(255,255,255);
@@ -2480,18 +2522,23 @@ draw = function() {
     
     fill(0,255,0);
      rect(GameMapX[0][0]-scene.x-10,0-scene.y,GameMapX[0][1],GameMapY[0][1]);
+     
+     
+     rect(-scene.x+200,0-scene.y+100,GameMapX[0][0]-300,GameMapY[0][0]-300);
+     
+     
      rect(-scene.x-10,GameMapY[0][0]-scene.y,GameMapX[1][0],GameMapY[1][0]);
      rect(limit.x()-GameMapX[1][2]-scene.x-10,GameMapY[0][2]-scene.y,GameMapX[1][2],GameMapY[1][2]);
 
     collisions(); //collisions of the rooms
     scene.collision.active(mapX,mapY); //call function for active collisions
-    fill(8, 8, 8);
+
+    fill(0,0,0);
     MainCharacter.sprite();
-    
-    //several rectangles scattered across to prove that the system is working 
+    //MainCharacter.front.animation(237,300,2);
+
     rect(100-scene.x,800-scene.y,100,100);
     //rect(100-scene.x,100-scene.y,100,100);
     rect(1800-scene.x,0-scene.y,100,100);
-    rect(800-scene.x,0-scene.y,100,100);
-    
+    rect(800-scene.x,0-scene.y,100,100);  
 };
