@@ -2289,17 +2289,17 @@ var MainCharacter = {
         {
             if(MainCharacter.animationFrame < 7 || MainCharacter.animationFrame > 11.49)
                 {
-                    MainCharacter.animationFrame = 7;
+                    MainCharacter.animationFrame = 11;
                     
                 }
-            if(MainCharacter.animationFrame >= 11 && MainCharacter.animationFrame <= 11.49 && !MainCharacter.flip)
+            if(MainCharacter.animationFrame >= 7 && MainCharacter.animationFrame <= 7.49 && !MainCharacter.flip)
                 {
                     MainCharacter.flag = true;
-                    return MainCharacter.flag;
+                    return true;
                     
                 }
                 else{ MainCharacter.flag = false; }
-                MainCharacter.animationFrame+= 0.15*1.25;
+                MainCharacter.animationFrame-= 0.15*1.45;
                 //println(walkAnimation);
                 //rect(a,b,(spriteSize)*(c || scaled_size),(spriteSize)*(c || scaled_size));
             drawSprite(floor(MainCharacter.animationFrame), a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),  (spriteSize)*(c || scaled_size));
@@ -2694,4 +2694,3 @@ draw = function() {
     rect(1800-scene.x,0-scene.y,100,100);
     rect(800-scene.x,0-scene.y,100,100);  
 };
-
