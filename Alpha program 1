@@ -2561,7 +2561,7 @@ var MainCharacter = {
         
         still: function(a,b,c)
         {
-            drawSprite(92, a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),  (spriteSize)*(c || scaled_size),false);
+            drawSprite(0, a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),  (spriteSize)*(c || scaled_size),false);
         },
         walk: function(a,b,c,d,e)
         {
