@@ -1,13 +1,9 @@
 /***Global Variables***/
 var mapX = 0; //starting x coordinate for map
 var mapY = 0; //starting y coordinate for map
-var GameMapX = [[800,1200,800],//The size of each room in the map
-           [1000,800,1000],
-           [1100,600,1100]]; //that can be adjusted
+var GameMapX = [[800]]; //that can be adjusted
 
-var GameMapY = [[1200,1200,1200], //however you want
-[600,600,600],
-[600,600,600]];//and the system will adjust all the camera aspects to it.
+var GameMapY = [[1200]];//and the system will adjust all the camera aspects to it.
 
 var limit = {
     x: function() //adds up all the  x collision values starting from zero to current x Right collision
@@ -106,6 +102,190 @@ var coolDown = function(a)
     else{return true;}
 };
 
+var sword = function(){
+    pushMatrix();
+    translate(-21,450);
+    rotate(-82);
+    //drawSprite(65,205,177,24*3,24*3); //Frame 6
+    popMatrix();
+    pushMatrix();
+    translate(-108,173);
+    rotate(-33);
+    //drawSprite(66,205,177,24*3,24*3); //Frame 7
+    popMatrix();
+    pushMatrix();
+    translate(-71,508);
+    rotate(-85);
+    //drawSprite(67,259,211,24*3,24*3); //Frame 8
+    popMatrix();
+    pushMatrix();
+    translate(-33,534);
+    rotate(-85);
+    //drawSprite(67,259,211,24*3,24*3); //Frame 9
+    popMatrix();
+    pushMatrix();
+    translate(402,615);
+    rotate(-161);
+    //drawSprite(61,205,177,24*3,24*3); //Frame 16
+    popMatrix();
+    pushMatrix();
+    translate(402,615);
+    rotate(-161);
+    //drawSprite(61,205,177,24*3,24*3); //Frame 17
+    popMatrix();
+    translate(702,406);
+    rotate(-219);
+    //drawSprite(61,233,269,24*3,24*3); //Frame 18 
+    popMatrix();
+    pushMatrix();
+    translate(209,-3);
+    rotate(35);
+    //drawSprite(61,205,177,24*3,24*3); //Frame 25
+    popMatrix();
+    pushMatrix();
+    translate(21,-19);
+    rotate(4);
+    //drawSprite(61,205,177,24*3,24*3); //Frame 26
+    popMatrix();
+    pushMatrix();
+    translate(45,-128);
+    rotate(13);
+    //drawSprite(61,233,269,24*3,24*3); //Frame 27 
+    popMatrix();};
+// NOLAN'S BITMOJI    
+var drawMyHead = function (x, y, H)
+{
+noStroke();
+
+fill(250, 212, 165); //skin tone
+
+ellipse(x+(30 * H / 200), y+(15 * H / 200), 80 *H / 200 , 99 * H / 200); //head base
+
+fill(133, 92, 10); //hair color
+quad(x+(19*H/200), y-(12*H/200), x+(41*H/200), y-(35*H/200), x+8*H/200, y-30*H/200, x-12*H/200, y-1*H/200); //left hair part
+quad(x+(41*H/200), y-(12*H/200), x+(22*H/200), y-(35*H/200), x+(54*H/200), y-(31*H/200), x+70*H/200, y-1*H/200); //right hair part
+triangle(x+(29*H/200), y-(35*H/200), x+(51*H/200), y-(12*H/200), x+(15*H/200), y-(11*H/200)); //middle hair part
+fill(133, 92, 10); //hair strands color
+triangle(x+(23*H/200), y-(32*H/200), x+(62*H/200), y+(2*H/200), x+(14*H/200), y-(29*H/200)); //hair strand
+triangle(x+(22*H/200), y-(31*H/200), x+(53*H/200), y+(2*H/200), x+(14*H/200), y-(29*H/200)); //hair strand
+triangle(x+(49*H/200), y-(31*H/200), x+(71*H/200), y+(6*H/200), x+(37*H/200), y-(30*H/200)); //hair strand
+triangle(x-(4*H/200), y-(17*H/200), x+(41*H/200), y-(1*H/200), x+(14*H/200), y-(29*H/200)); //hair strand
+
+fill(5, 5, 5); //eye color
+ellipse(x+(15*H/200), y+(7*H/200), 18*H/200, 12*H/200); //left eye outline
+ellipse(x+(45*H/200), y+(7*H/200), 18*H/200, 12*H/200); //right eye outline
+fill(255, 255, 255); //eyeball color
+ellipse(x+(15*H/200), y+(7*H/200), 18*H/200, 12*H/200); //left eyeball
+ellipse(x+(45*H/200), y+(7*H/200), 18*H/200, 12*H/200); //right eyeball
+fill(80, 105, 6); //pupil color
+ellipse(x+(16*H/200), y+(7*H/200), 6*H/200, 4*H/200); //left pupil
+ellipse(x+(46*H/200), y+(7*H/200), 6*H/200, 4*H/200); //right pupil
+
+fill(240, 192, 222); //mouth color
+arc(x+(32*H/200), y+(42*H/200), 36*H/200, 31*H/200, 3*H/200,178); //mouth
+fill(255, 255, 255); //teeth color
+quad(x+(48*H/200), y+(46*H/200), x+(18*H/200), y+(47*H/200), x+(16*H/200), y+(44*H/200), x+(49*H/200), y+(43*H/200)); //top teeth
+quad(x+(40*H/200), y+(55*H/200), x+(26*H/200), y+(56*H/200), x+(20*H/200), y+(53*H/200), x+(46*H/200), y+(52*H/200)); //bottom teeth
+
+fill(0, 0, 0); //nose color
+bezier(x+(41*H/200), y+(24*H/200), x+(15*H/200), y+(48*H/200), x+(52*H/200), y+(24*H/200), x+(31*H/200), y+(17*H/200)); //nose
+
+fill(0, 0, 0); //right airpod outline color
+bezier(x+(72*H/200), y+(40*H/200), x+(83*H/200), y-(13*H/200), x+(49*H/200), y+(18*H/200), x+(71*H/200), y+(16*H/200)); //right airpod outline
+fill(255, 255, 255); //right airpod color
+bezier(x+(72*H/200), y+(40*H/200), x+(83*H/200), y-(13*H/200), x+(49*H/200), y+(18*H/200), x+(71*H/200), y+(16*H/200)); //right airpod
+fill(0, 0, 0); //left airpod outline color
+bezier(x-(12*H/200), y+(40*H/200), x-(18*H/200), y-(13*H/200), x+(11*H/200), y+(18*H/200), x-(8*H/200), y+(16*H/200)); //left airpod outline
+fill(255, 255, 255); //left airpod color
+bezier(x-(12*H/200), y+(40*H/200), x-(18*H/200), y-(13*H/200), x+(11*H/200), y+(18*H/200), x-(8*H/200), y+(16*H/200)); //leftt airpod  
+};
+var drawMyBody = function(x, y,H) {
+noStroke();
+fill(250, 178, 90); //shirt color
+rect(x+(2*H/200), y+(66*H/200), 59*H/200, 70*H/200); //shirt
+
+fill(0, 0, 0); //shirt text color
+textSize(23*H/200); //shirt text size
+text("NM", x+(17*H/200), y+(112*H/200)); //shirt text
+};
+var drawMyBitmoji = function(x, y, H) {
+    
+    drawMyBody(x, y, H);
+    drawMyHead(x, y, H);
+    
+};
+// JESHUA'S BITMOJI    
+var BitmojiX = 100;
+var BitmojiY= 100;
+var Height = 100;
+var drawBitmoji = function(BitmojiX, BitmojiY,Height)
+{ 
+    var drawBitmojiHead = function(BitmojiX,BitmojiY,Height)
+{
+    fill (255, 220, 177); //skin color
+    noStroke();
+ellipse (BitmojiX+(Height/100), BitmojiY+(Height/100), Height, Height); //head
+    stroke(0);
+    strokeWeight(1);
+        
+        arc(BitmojiX+(Height/100),BitmojiY+(Height/100*16),Height*7/100,Height*7/100,-80,180); //nose
+    fill(0);
+        
+        arc (BitmojiX+(Height/100),BitmojiY+(Height/100*23),Height*7/21,Height*-33/100,-178,0); //mouth
+    fill(255);
+            
+            rect(BitmojiX-(Height/100*15),BitmojiY+(Height/100*23),Height*18/58,Height*1/31,3);//teeth
+            
+    noStroke();
+    fill(250, 150, 150);
+        
+        arc (BitmojiX+(Height/100),BitmojiY+(Height/100*36),Height*1/5,Height*7/100,-178,186); //tongue
+    noStroke ();
+    fill(255);
+    
+        arc (BitmojiX+(Height/100),BitmojiY-(Height/100*12),Height*19/25,Height*79/100, -180,0); //head size      clean up
+    fill(255); //clean up
+    fill(0, 0, 0);
+        arc (BitmojiX-(Height/100*46),BitmojiY+(Height/100*37),Height*23/100,Height*11/10,0,361); //left chisel
+        arc (BitmojiX+(Height/100*45),BitmojiY+(Height/100*37),Height*23/100,Height*11/10,0,361); //right chisel
+    noStroke();
+        arc (BitmojiX-(Height/100*46),BitmojiY+(Height/100*33),Height*25/20,Height*-29/50,299,319); //left jaw       line
+        arc (BitmojiX+(Height/100*46),BitmojiY+(Height/100*33),Height*25/20,Height*-29/50,221,237); //right jaw      line
+        arc (BitmojiX-(Height/100*49),BitmojiY+(Height/100*37),Height*23/100,Height*32/25,0,363); //left chisel      clean up
+        fill(0, 0, 0);
+        arc (BitmojiX+(Height/100*49),BitmojiY+(Height/100*37),Height*6/25,Height*37/25,0,363); //right chisel       clean up
+    strokeWeight(2);
+             //clean up
+    strokeWeight(1);
+    fill(255,220,177); //skin tone for ear
+        arc (BitmojiX-(Height/100*34),BitmojiY+(Height/100*12),Height*3/10,Height*23/100,-270,-82); //left ear
+        arc (BitmojiX+(Height/100*33),BitmojiY+(Height/100*12),Height*3/10,Height*23/100,-96,89); //right ear
+
+    fill(0); //color for hair & eyes
+        arc (BitmojiX-(Height/100*35),BitmojiY+(Height/100*19),Height*13/20,Height*69/100,-104.7,-85); //left side burn
+        arc (BitmojiX+(Height/100*35),BitmojiY+(Height/100*19),Height*13/20,Height*69/100,-101,-79); //right side burn
+        arc (BitmojiX-(Height/100*1.5),BitmojiY-(Height/100*14),Height*43/50,Height*69/100,-178,0); //hair
+        
+ellipse (BitmojiX-(Height/100*15),BitmojiY+(Height/100*5),Height*1/10,Height*1/5); //left eye ball
+ellipse (BitmojiX+(Height/100*13),BitmojiY+(Height/100*5),Height*1/10,Height*1/5); //right eye ball
+    fill (255, 220, 177); //skin color
+    stroke(0);
+        arc(BitmojiX-(Height/100*24),BitmojiY+(Height/100*27),Height*11/100,Height*1/5,85,177); // left     dimpal
+        arc(BitmojiX+(Height/100*23),BitmojiY+(Height/100*27),Height*11/100,Height*1/5,-2,101); // right        dimpal
+};
+
+var drawBitmojiBody = function(BitmojiX, BitmojiY,Height)
+{
+    fill(12, 12, 173); //jacket color
+arc (BitmojiX+(Height/100),BitmojiY+(Height/100*50),Height*49/100,Height*-9/25,156,385); //neck
+arc (BitmojiX+(Height/100),BitmojiY+(Height/100*75),Height*107/100,Height*12/25,-178,0); //hair
+    fill(13, 13, 122); 
+    strokeWeight(3);
+arc (BitmojiX+(Height/100*32),BitmojiY+(Height/100*56),Height*39/100,Height*-1/5,317,523); //hood 
+};
+    drawBitmojiHead(BitmojiX, BitmojiY,Height);
+    drawBitmojiBody(BitmojiX, BitmojiY,Height);
+};
 /***Game Variables, Logic, Collision Detections, and Sprites***/
 var colors = {
     colorData: [
@@ -1664,7 +1844,6 @@ var sprites = [
 [0,0,0,0,0,0,0,0,0,0],
 ],
 },
-
     ///* WIZARD ANIMATIONS *///
 {imageData: [
 /*57 WIZARD FRONT - STILL*/
@@ -2151,7 +2330,54 @@ var sprites = [
 [0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ],
 },{imageData: [
-/*67 SHIELD*/
+/*67 SWORD 2*/
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,14],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,21,32,1,14],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,21,32,32,1,14],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,21,32,32,1,14,14],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,21,32,32,1,23,13,14],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,21,32,32,1,14,23,23,14],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,21,32,32,1,0,14,13,13,14],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,21,32,32,1,0,0,0,14,13,14],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,1,21,32,32,1,0,0,0,0,14,23,14],
+[0,0,0,0,0,0,0,0,0,0,0,0,1,21,32,32,1,0,0,0,0,0,14,23,14],
+[0,0,0,0,0,1,1,0,0,0,0,1,21,32,32,1,0,0,0,0,0,0,14,14,0],
+[0,0,0,0,0,1,35,1,1,0,1,21,32,32,1,0,0,0,0,0,0,0,14,0,0],
+[0,0,0,0,0,0,1,35,35,1,21,32,32,1,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,1,35,35,29,32,1,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,1,35,35,1,0,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,1,36,1,35,35,1,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,1,36,1,0,1,35,1,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,1,36,1,0,0,0,1,35,1,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,1,35,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+],
+}, {imageData: [
+/*68 SWORD 3*/
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,14],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,21,32,1,14],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,21,32,32,1,14],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,21,32,32,1,14,14],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,21,32,32,1,23,13,14],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,21,32,32,1,23,24,23,14],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,21,32,32,1,14,23,13,13,14],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,21,32,32,1,14,14,13,23,13,14],
+[0,0,0,0,0,0,0,0,0,0,0,0,0,1,21,32,32,1,0,0,14,23,24,23,14],
+[0,0,0,0,0,0,0,0,0,0,0,0,1,21,32,32,1,0,0,0,14,32,24,23,14],
+[0,0,0,0,0,1,1,0,0,0,0,1,21,32,32,1,0,0,0,0,14,23,13,13,14],
+[0,0,0,0,0,1,35,1,1,0,1,21,32,32,1,0,0,0,0,0,0,14,32,23,14],
+[0,0,0,0,0,0,1,35,35,1,21,32,32,1,0,0,0,0,0,0,0,14,14,23,14],
+[0,0,0,0,0,0,0,1,35,35,29,32,1,0,0,0,0,0,0,0,0,14,13,14,14],
+[0,0,0,0,0,0,0,0,1,35,35,1,0,0,0,0,0,0,0,0,0,14,14,13,14],
+[0,0,0,0,0,0,0,1,36,1,35,35,1,0,0,0,0,0,0,0,0,14,23,14,0],
+[0,0,0,0,0,0,1,36,1,0,1,35,1,0,0,0,0,0,0,0,0,14,24,14,0],
+[0,0,0,0,0,1,36,1,0,0,0,1,35,1,0,0,0,0,0,0,0,14,24,14,0],
+[0,0,0,0,1,35,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,14,14,0,0],
+[0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14,0,0,0],
+],
+},
+{imageData: [
+/*69 SHIELD*/
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0],
 [0,0,0,0,1,32,32,32,32,32,32,32,32,32,32,32,32,32,1,0,0,0,0,0],
@@ -2170,7 +2396,7 @@ var sprites = [
 [0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0],
 ],
 },{imageData: [
-/*68 COIN STILL*/
+/*70 COIN STILL*/
 [0,0,0,1,1,1,1,0,0,0],
 [0,0,1,35,35,35,35,1,0,0],
 [0,1,35,37,37,37,37,35,1,0],
@@ -2184,7 +2410,7 @@ var sprites = [
 [0,0,0,1,1,1,1,0,0,0],
 ],
 },{imageData: [
-/*69 COIN FRAME 1*/
+/*71 COIN FRAME 1*/
 [0,0,37,37,37,37,0,0,0,0],
 [0,36,36,36,35,35,37,0,0,0],
 [35,35,35,37,35,37,35,37,0,0],
@@ -2198,7 +2424,7 @@ var sprites = [
 [0,0,37,37,37,37,0,0,0,0],
 ],
 },{imageData: [
-/*70 COIN FRAME 2*/
+/*72 COIN FRAME 2*/
 [0,0,0,1,1,1,1,0,0,0],
 [0,0,0,1,35,35,1,0,0,0],
 [0,0,0,1,37,37,1,0,0,0],
@@ -2212,7 +2438,7 @@ var sprites = [
 [0,0,0,1,1,1,1,0,0,0],
 ],
 },{imageData: [
-/*71 KEY*/
+/*73 KEY*/
 [0,0,1,1,1,0,0],
 [0,1,35,35,35,1,0],
 [1,35,36,1,36,35,1],
@@ -2229,7 +2455,7 @@ var sprites = [
 [1,1,1,1,1,0,0],
 ],
 },{imageData: [
-/*72 STAR*/
+/*74 STAR*/
 [0,0,19,0,0],
 [0,19,23,19,0],
 [19,23,23,23,19],
@@ -2237,7 +2463,7 @@ var sprites = [
 [0,0,19,0,0],
 ],
 },{imageData: [
-/*73 FIREBALL*/
+/*75 FIREBALL*/
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -2266,84 +2492,84 @@ var sprites = [
 },
             // HEALTH BARS //
 {imageData: [
-/*74 BAR FULL*/
+/*76 BAR FULL*/
 [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 [1,1,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,1,1],
 [1,1,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,1,1],
 [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 ],
 },{imageData: [
-/*75 BAR 9/10*/
+/*77 BAR 9/10*/
 [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 [1,1,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,32,32,1,1],
 [1,1,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,32,32,1,1],
 [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 ],
 },{imageData: [
-/*76 BAR 8/10*/
+/*78 BAR 8/10*/
 [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 [1,1,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,32,32,32,32,1,1],
 [1,1,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,32,32,32,32,1,1],
 [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 ],
 },{imageData: [
-/*77 BAR 7/10*/
+/*79 BAR 7/10*/
 [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 [1,1,27,27,27,27,27,27,27,27,27,27,27,27,27,27,32,32,32,32,32,32,1,1],
 [1,1,27,27,27,27,27,27,27,27,27,27,27,27,27,27,32,32,32,32,32,32,1,1],
 [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 ],
 },{imageData: [
-/*78 BAR 6/10*/
+/*80 BAR 6/10*/
 [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 [1,1,27,27,27,27,27,27,27,27,27,27,27,27,32,32,32,32,32,32,32,32,1,1],
 [1,1,27,27,27,27,27,27,27,27,27,27,27,27,32,32,32,32,32,32,32,32,1,1],
 [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 ],
 },{imageData: [
-/*79 BAR HALF*/
+/*81 BAR HALF*/
 [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 [1,1,27,27,27,27,27,27,27,27,27,27,32,32,32,32,32,32,32,32,32,32,1,1],
 [1,1,27,27,27,27,27,27,27,27,27,27,32,32,32,32,32,32,32,32,32,32,1,1],
 [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 ],
 },{imageData: [
-/*80 BAR 4/10*/
+/*82 BAR 4/10*/
 [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 [1,1,27,27,27,27,27,27,27,27,32,32,32,32,32,32,32,32,32,32,32,32,1,1],
 [1,1,27,27,27,27,27,27,27,27,32,32,32,32,32,32,32,32,32,32,32,32,1,1],
 [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 ],
 },{imageData: [
-/*81 BAR 3/10*/
+/*83 BAR 3/10*/
 [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 [1,1,27,27,27,27,27,27,32,32,32,32,32,32,32,32,32,32,32,32,32,32,1,1],
 [1,1,27,27,27,27,27,27,32,32,32,32,32,32,32,32,32,32,32,32,32,32,1,1],
 [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 ],
 },{imageData: [
-/*82 BAR 2/10*/
+/*84 BAR 2/10*/
 [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 [1,1,27,27,27,27,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,1,1],
 [1,1,27,27,27,27,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,1,1],
 [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 ],
 },{imageData: [
-/*83 BAR 1/10*/
+/*85 BAR 1/10*/
 [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 [1,1,27,27,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,1,1],
 [1,1,27,27,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,1,1],
 [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 ],
 },{imageData: [
-/*84 BAR DEAD*/
+/*86 BAR DEAD*/
 [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 [1,1,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,1,1],
 [1,1,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,32,1,1],
 [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 ],
 },{imageData: [
-/*85 HEART FULL*/
+/*87 HEART FULL*/
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -2360,7 +2586,7 @@ var sprites = [
 [0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0],
 ],
 },{imageData: [
-/*86 HEART 7/8*/
+/*88 HEART 7/8*/
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -2377,7 +2603,7 @@ var sprites = [
 [0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0],
 ],
 },{imageData: [
-/*87 HEART 6/8*/
+/*89 HEART 6/8*/
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -2394,7 +2620,7 @@ var sprites = [
 [0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0],
 ],
 },{imageData: [
-/*88 HEART 5/8*/
+/*90 HEART 5/8*/
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -2411,7 +2637,7 @@ var sprites = [
 [0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0],
 ],
 },{imageData: [
-/*89 HEART 4/8*/
+/*91 HEART 4/8*/
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -2428,7 +2654,7 @@ var sprites = [
 [0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0],
 ],
 },{imageData: [
-/*90 HEART 3/8*/
+/*92 HEART 3/8*/
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -2445,7 +2671,7 @@ var sprites = [
 [0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0],
 ],
 },{imageData: [
-/*91 HEART 2/8*/
+/*93 HEART 2/8*/
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -2462,7 +2688,7 @@ var sprites = [
 [0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0],
 ],
 },{imageData: [
-/*92 HEART 1/8*/
+/*94 HEART 1/8*/
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -2479,7 +2705,7 @@ var sprites = [
 [0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0],
 ],
 },{imageData: [
-/*93 HEART DEAD*/
+/*95 HEART DEAD*/
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -2494,6 +2720,22 @@ var sprites = [
 [0,0,0,0,0,0,0,0,0,1,32,32,32,1,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,1,32,1,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0],
+],
+},
+{imageData: [
+/*96 MC HEAD*/
+[0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,1,1,20,18,20,18,20,20,18,1,1,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,1,20,18,20,20,20,18,20,20,18,1,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,1,18,20,20,20,1,1,18,20,18,1,0,0,0,0,0,0,0],
+[0,0,0,0,0,1,20,20,18,20,24,24,24,20,20,20,1,0,0,0,0,0,0,0],
+[0,0,0,0,0,1,20,20,1,20,1,24,1,21,1,20,20,1,0,0,0,0,0,0],
+[0,0,0,0,0,0,1,1,24,21,1,24,1,21,24,1,1,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,1,24,24,24,24,24,24,24,1,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,1,24,24,24,24,24,24,24,1,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,1,24,22,22,22,22,22,24,1,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,1,24,24,24,24,24,1,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0],
 ],
 },
 ];
@@ -2547,7 +2789,6 @@ var drawSprite = function(sprite,x,y,w,h,flip,bw){
     }
     popMatrix();
 };
-
 var MainCharacter = {
     mapX: 300, //if you want to start in another room you must 
     mapY: 300, //write in the value between where the room is found( for now)
@@ -2596,19 +2837,17 @@ var MainCharacter = {
             },
         attack: function(a,b,c)
         {
-            if(MainCharacter.animationFrame < 6 || MainCharacter.animationFrame > 9.49)
+            if(MainCharacter.animationFrame < 7 || MainCharacter.animationFrame > 9.49)
                 {
-                    MainCharacter.animationFrame = 6;
+                    MainCharacter.animationFrame = 7;
                     
                 }
-            if(MainCharacter.animationFrame >= 6 && MainCharacter.animationFrame <= 9.49 && !MainCharacter.flip)
+            if(MainCharacter.animationFrame >= 9 && MainCharacter.animationFrame <= 9.45 && !MainCharacter.flip)
                 {
                     MainCharacter.flag = true;
-                    return true;
-                    
                 }
                 else{ MainCharacter.flag = false; }
-                MainCharacter.animationFrame+= 0.15*0.45;
+                MainCharacter.animationFrame+= 0.15*0.5;
                 //println(walkAnimation);
                 //rect(a,b,(spriteSize)*(c || scaled_size),(spriteSize)*(c || scaled_size));
             drawSprite(floor(MainCharacter.animationFrame), a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),  (spriteSize)*(c || scaled_size));
@@ -2654,27 +2893,23 @@ var MainCharacter = {
             //rect(a,b,(spriteSize)*(c || scaled_size),(spriteSize)*(c || scaled_size));
         drawSprite(floor(MainCharacter.animationFrame), a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),  (spriteSize)*(c || scaled_size),d);
         },
-    attack: function(a,b,c)
+    attack: function(a,b,c,d)
     {
-        if(MainCharacter.flag === false)
-        {
-        if(MainCharacter.animationFrame < 18 || MainCharacter.animationFrame > 22.49)
+        if(MainCharacter.animationFrame < 17 || MainCharacter.animationFrame > 19.49)
             {
-                MainCharacter.animationFrame = 18;
+                MainCharacter.animationFrame = 19;
                 
             }
-        if(MainCharacter.animationFrame >= 22 && MainCharacter.animationFrame <= 22.49 && !MainCharacter.flip)
+        if(MainCharacter.animationFrame >= 17 && MainCharacter.animationFrame <= 17.49 && !MainCharacter.flip)
             {
                 MainCharacter.flag = true;
-                return MainCharacter.flag;
                 
             }
-            
-            MainCharacter.animationFrame+= 0.15;
+            else{MainCharacter.flag = false;}
+            MainCharacter.animationFrame-= 0.15*0.7;
             //println(walkAnimation);
             //rect(a,b,(spriteSize)*(c || scaled_size),(spriteSize)*(c || scaled_size));
-        drawSprite(floor(MainCharacter.animationFrame), a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),  (spriteSize)*(c || scaled_size),MainCharacter.flip);
-    }
+        drawSprite(floor(MainCharacter.animationFrame), a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),  (spriteSize)*(c || scaled_size),d);
     }
     },
     back: {
@@ -2695,22 +2930,22 @@ var MainCharacter = {
     },
     animation: function(a,b,c,d)//uses sprite's walking frames and portays an illusion of it walking
     {
-        if(MainCharacter.animationFrame < 22 || MainCharacter.animationFrame > 27.49)
+        if(MainCharacter.animationFrame < 21 || MainCharacter.animationFrame > 24.49)
                 {
-                    MainCharacter.animationFrame = 23;
+                    MainCharacter.animationFrame = 21;
                     
                 }
-        if(MainCharacter.animationFrame >= 27 && MainCharacter.animationFrame <= 27.49 && !MainCharacter.flip)
+        if(MainCharacter.animationFrame >= 24 && MainCharacter.animationFrame <= 24.49 && !MainCharacter.flip)
             {
                 MainCharacter.flip = true;
-                MainCharacter.animationFrame = 23;
+                MainCharacter.animationFrame = 21;
                 
             }
-            if(MainCharacter.animationFrame >= 27 && MainCharacter.animationFrame <= 27.49 && MainCharacter.flip)
+            if(MainCharacter.animationFrame >= 24 && MainCharacter.animationFrame <= 24.49 && MainCharacter.flip)
             {
                 //println(walkAnimation);
                 MainCharacter.flip = false;
-                MainCharacter.animationFrame = 23;
+                MainCharacter.animationFrame = 21;
             }
             MainCharacter.animationFrame+= 0.15;
             
@@ -2719,10 +2954,215 @@ var MainCharacter = {
             
         drawSprite(floor(MainCharacter.animationFrame), a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),  (spriteSize)*(c || scaled_size),d);
         
-        }
+        },
+        attack: function(a,b,c,d)
+    {
+        if(MainCharacter.animationFrame < 25 || MainCharacter.animationFrame > 28.49)
+            {
+                MainCharacter.animationFrame = 28;
+                
+            }
+        if(MainCharacter.animationFrame >= 25 && MainCharacter.animationFrame <= 25.49 && !MainCharacter.flip)
+            {
+                MainCharacter.flag = true;
+                
+            }
+            else{MainCharacter.flag = false;}
+            MainCharacter.animationFrame-= 0.15*0.9;
+            //println(walkAnimation);
+            //rect(a,b,(spriteSize)*(c || scaled_size),(spriteSize)*(c || scaled_size));
+        drawSprite(floor(MainCharacter.animationFrame), a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),  (spriteSize)*(c || scaled_size),d);
+    }
     },
+    hurtbox: {},
 };//Main character assortment and interactions
+var Ghost = {
+    mapX: 300, //if you want to start in another room you must 
+    mapY: 300, //write in the value between where the room is found( for now)
+    width: 24,
+    height: 24,
+    animationFrame: 1,//A sprite counter variable used to switch through different frames of sprites through different interactions
+    activeStill: false,
+    flip: false,
+    flag: false,
+    front: {
+        
+        still: function(a,b,c)
+        {
+            drawSprite(29, a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),  (spriteSize)*(c || scaled_size),false);
+        },
+        walk: function(a,b,c,d,e)
+        {
+            if(a<34 && a > 30)
+            {
+            drawSprite(a, b || spriteX, c || spriteY, (spriteSize)*(d || scaled_size),  (spriteSize)*(d || scaled_size),e);
+            }
+            
+        },
+        animation: function(a,b,c)//uses sprite's walking frames and portays an illusion of it walking
+        {
+            if(Ghost.animationFrame < 30 || Ghost.animationFrame > 34.49)
+                {
+                    Ghost.animationFrame = 30;
+                    
+                }
+            if(Ghost.animationFrame >= 34 && Ghost.animationFrame <= 34.49 && !Ghost.flip)
+                {
+                    Ghost.flip = true;
+                    Ghost.animationFrame = 30;
+                    
+                }
+                if(Ghost.animationFrame >= 34 && Ghost.animationFrame <= 34.49 && Ghost.flip)
+                {
+                    Ghost.flip = false;
+                    Ghost.animationFrame = 30;
+                }
+                Ghost.animationFrame+= 0.15;
+                //println(walkAnimation);
+                //rect(a,b,(spriteSize)*(c || scaled_size),(spriteSize)*(c || scaled_size));
+            drawSprite(floor(Ghost.animationFrame), a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),  (spriteSize)*(c || scaled_size),Ghost.flip);
+            },
+        attack: function(a,b,c)
+        {
+            if(Ghost.animationFrame < 35 || Ghost.animationFrame > 38.49)
+                {
+                    Ghost.animationFrame = 35;
+                    
+                }
+            if(Ghost.animationFrame >= 38 && Ghost.animationFrame <= 38.45 && !Ghost.flip)
+                {
+                    Ghost.flag = true;
+                }
+                else{ Ghost.flag = false; }
+                Ghost.animationFrame+= 0.15*0.5;
+                //println(walkAnimation);
+                //rect(a,b,(spriteSize)*(c || scaled_size),(spriteSize)*(c || scaled_size));
+            drawSprite(floor(Ghost.animationFrame), a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),  (spriteSize)*(c || scaled_size));
+        }
+        },
+    side: {
+        still: function(a,b,c,d)
+        {
+                            fill(0,0,0);
+            //rect(a,b,(spriteSize)*(c || scaled_size),(spriteSize)*(c || scaled_size));
+            drawSprite(39, a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),(spriteSize)*(c || scaled_size),d);
 
+        },
+        walk: function(a,b,c,d,e)
+    {
+        if(a<44 && a > 40)
+        {
+        drawSprite(a, b || spriteX, c || spriteY, (spriteSize)*(d || scaled_size),  (spriteSize)*(d || scaled_size),e);
+        }
+        
+    },
+    animation: function(a,b,c,d)//uses sprite's walking frames and portays an illusion of it walking
+    {
+        if(Ghost.animationFrame < 40 || Ghost.animationFrame > 44.49)
+                {
+                    Ghost.animationFrame = 40;
+                    
+                }
+        if(Ghost.animationFrame >= 44 && Ghost.animationFrame <= 44.49 && !Ghost.flip)
+            {
+                Ghost.flip = true;
+                Ghost.animationFrame = 40;
+                
+            }
+            if(Ghost.animationFrame >= 44 && Ghost.animationFrame <= 44.49 && Ghost.flip)
+            {
+                //println(walkAnimation);
+                Ghost.flip = false;
+                Ghost.animationFrame = 40;
+            }
+            Ghost.animationFrame+= 0.15;
+            //println(walkAnimation);
+            //rect(a,b,(spriteSize)*(c || scaled_size),(spriteSize)*(c || scaled_size));
+        drawSprite(floor(Ghost.animationFrame), a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),  (spriteSize)*(c || scaled_size),d);
+        },
+    attack: function(a,b,c,d)
+    {
+        if(Ghost.animationFrame < 45 || Ghost.animationFrame > 46.49)
+            {
+                Ghost.animationFrame = 46;
+                
+            }
+        if(Ghost.animationFrame >= 45 && Ghost.animationFrame <= 45.49 && !Ghost.flip)
+            {
+                Ghost.flag = true;
+                
+            }
+            else{Ghost.flag = false;}
+            Ghost.animationFrame-= 0.15*0.7;
+            //println(walkAnimation);
+            //rect(a,b,(spriteSize)*(c || scaled_size),(spriteSize)*(c || scaled_size));
+        drawSprite(floor(Ghost.animationFrame), a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),  (spriteSize)*(c || scaled_size),d);
+    }
+    },
+    back: {
+        still: function(a,b,c,d)
+        {
+                            fill(0,0,0);
+            //rect(a,b,(spriteSize)*(c || scaled_size),(spriteSize)*(c || scaled_size));
+            drawSprite(47, a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),(spriteSize)*(c || scaled_size),d);
+
+        },
+        walk: function(a,b,c,d,e)
+    {
+        if(a<52 && a > 48)
+        {
+        drawSprite(a, b || spriteX, c || spriteY, (spriteSize)*(d || scaled_size),  (spriteSize)*(d || scaled_size),e);
+        }
+        
+    },
+    animation: function(a,b,c,d)//uses sprite's walking frames and portays an illusion of it walking
+    {
+        if(Ghost.animationFrame < 48 || Ghost.animationFrame > 52.49)
+                {
+                    Ghost.animationFrame = 48;
+                    
+                }
+        if(Ghost.animationFrame >= 52 && Ghost.animationFrame <= 52.49 && !Ghost.flip)
+            {
+                Ghost.flip = true;
+                Ghost.animationFrame = 48;
+                
+            }
+            if(Ghost.animationFrame >= 52 && Ghost.animationFrame <= 52.49 && Ghost.flip)
+            {
+                //println(walkAnimation);
+                Ghost.flip = false;
+                Ghost.animationFrame = 48;
+            }
+            Ghost.animationFrame+= 0.15;
+            
+            //println(walkAnimation);
+            //rect(a,b,(spriteSize)*(c || scaled_size),(spriteSize)*(c || scaled_size));
+            
+        drawSprite(floor(Ghost.animationFrame), a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),  (spriteSize)*(c || scaled_size),d);
+        
+        },
+        attack: function(a,b,c,d)
+    {
+        if(Ghost.animationFrame < 53 || Ghost.animationFrame > 54.49)
+            {
+                Ghost.animationFrame = 54;
+                
+            }
+        if(Ghost.animationFrame >= 53 && Ghost.animationFrame <= 53.49 && !Ghost.flip)
+            {
+                Ghost.flag = true;
+                
+            }
+            else{Ghost.flag = false;}
+            Ghost.animationFrame-= 0.15*0.9;
+            //println(walkAnimation);
+            //rect(a,b,(spriteSize)*(c || scaled_size),(spriteSize)*(c || scaled_size));
+        drawSprite(floor(Ghost.animationFrame), a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),  (spriteSize)*(c || scaled_size),d);
+    }
+    },
+    hurtbox: {},
+};
 var scene = {
     sizeX: 0, //current room width (is called and assigned a value later down the line)
     sizeY: 0, // same thing here
@@ -2856,6 +3296,152 @@ collision: { //collision detections
                 }
     }   },
 }}; //Properties and logic of the camera system
+var Sword = {
+    x: 0,
+    y: 0,
+    animationFrame: 1,
+    flip: false,
+    flag: false,
+    front: {attack: function(a,b,c)
+        {
+                if(Sword.animationFrame > 4.5 || Sword.animationFrame < 1 && !Sword.flip) //resets the sword's animation frames
+                {
+                Sword.animationFrame = 1;    
+                }
+                if(Sword.animationFrame >= 1.5 && Sword.animationFrame <= 2.45 && !Sword.flip)
+                {
+                pushMatrix();
+                translate(a-scene.x+115,b-scene.y+63);
+                rotate(107);
+            drawSprite(66,10,-14,24*3,24*3);
+            popMatrix();
+                }
+                if(Sword.animationFrame >= 2.5 && Sword.animationFrame <= 3.45 && !Sword.flip)
+                {
+            pushMatrix();
+            translate(a-scene.x+115,b-scene.y+25);
+            rotate(80);
+            drawSprite(67,10,-14,24*3,24*3);
+            popMatrix();
+                }
+                if(Sword.animationFrame >= 3.5 && Sword.animationFrame <= 4.45 && !Sword.flip)
+                {
+            pushMatrix();
+                translate(a-scene.x+95,b-scene.y+2);
+                rotate(48);
+            drawSprite(68,10,-14,24*3,24*3);
+            popMatrix();
+                }
+                else{ Sword.flag = false; }
+                Sword.animationFrame+= 0.15*0.7;
+                println(Sword.animationFrame);
+                //rect(a,b,(spriteSize)*(c || scaled_size),(spriteSize)*(c || scaled_size));
+            /*drawSprite(7,300,300,24*4,24*4);
+pushMatrix();
+            pushMatrix();
+                translate(a-scene.x+115,b-scene.y+63);
+                rotate(107);
+            drawSprite(64,10,-14,24*3,24*3);
+            popMatrix();*/
+            
+        }},
+    leftSide: {attack: function(a,b,c)
+{
+    if(Sword.animationFrame > 6.5 || Sword.animationFrame < 5) //resets the sword's animation frames
+                {
+                Sword.animationFrame = 5;    
+                }
+                if(Sword.animationFrame >= 4.5 && Sword.animationFrame <= 5.45 && !Sword.flip)
+                {
+                pushMatrix();
+                translate(a-scene.x+80,b-scene.y+8);
+                rotate(50);
+            drawSprite(66,10,-14,24*3,24*3);
+            popMatrix();
+                }
+                if(Sword.animationFrame >= 5.5 && Sword.animationFrame <= 6.45 && !Sword.flip)
+                {
+                 pushMatrix();
+                translate(a-scene.x+70,b-scene.y+8);
+                rotate(50);
+            drawSprite(66,10,-14,24*3,24*3);
+            popMatrix();
+                }
+                Sword.animationFrame+= 0.15*0.5;
+}},
+    rightSide: {attack: function(a,b,c)
+{
+    if(Sword.animationFrame > 8.5 || Sword.animationFrame < 7) //resets the sword's animation frames
+                {
+                Sword.animationFrame = 7;    
+                }
+                if(Sword.animationFrame >= 6.5 && Sword.animationFrame <= 7.45)
+                {
+                pushMatrix();
+                translate(a-scene.x-22,b-scene.y+120);
+                rotate(50);
+            drawSprite(66,10,-14,-24*3,-24*3);
+            popMatrix();
+                }
+                if(Sword.animationFrame >= 7.5 && Sword.animationFrame <= 8.45)
+                {
+                 pushMatrix();
+                translate(a-scene.x-13,b-scene.y+120);
+                rotate(50);
+            drawSprite(66,10,-14,-24*3,-24*3);
+            popMatrix();
+                }
+                Sword.animationFrame+= 0.15*0.5;
+                /*pushMatrix();
+                translate(a-scene.x-13,b-scene.y+120);
+                rotate(50);
+            drawSprite(64,10,-14,-24*3,-24*3);
+            popMatrix();*/
+}},
+    back: {attack: function(a,b,c)
+        {
+                if(Sword.animationFrame > 10.5 || Sword.animationFrame < 8 && !Sword.flip) //resets the sword's animation frames
+                {
+                Sword.animationFrame = 8;    
+                }
+                if(Sword.animationFrame >= 7.5 && Sword.animationFrame <= 8.45 && !Sword.flip)
+                {
+                pushMatrix();
+                translate(a-scene.x+-40,b-scene.y+14);
+                rotate(2);
+            drawSprite(66,10,-14,24*3,24*3,true);
+            popMatrix();
+                }
+                if(Sword.animationFrame >= 8.5 && Sword.animationFrame <= 9.45 && !Sword.flip)
+                {
+                pushMatrix();
+                translate(a-scene.x+24,b-scene.y+-18);
+                rotate(-300);
+            drawSprite(67,10,-14,24*3,24*3,true);
+            popMatrix();
+                }
+                if(Sword.animationFrame >= 9.5 && Sword.animationFrame <= 10.45 && !Sword.flip)
+                {
+            pushMatrix();
+                translate(a-scene.x+100,b-scene.y+19);
+                rotate(-255);
+            drawSprite(68,10,-14,24*3,24*3,true);
+            popMatrix();
+                }
+                else{ Sword.flag = false; }
+                Sword.animationFrame+= 0.15*0.7;
+                //println(Sword.animationFrame);
+                //rect(a,b,(spriteSize)*(c || scaled_size),(spriteSize)*(c || scaled_size));
+          /* drawSprite(25,300,300,24*4,24*4);
+pushMatrix();
+                pushMatrix();
+                translate(a-scene.x+-40,b-scene.y+14);
+                rotate(2);
+            drawSprite(64,10,-14,24*3,24*3,true);
+            popMatrix();*/
+            
+        }},
+};
 
 MainCharacter.sprite = function(){
     var wasd = function() //variable to organize movement and make it easier to access
@@ -2927,27 +3513,39 @@ MainCharacter.sprite = function(){
             MainCharacter.front.still(MainCharacter.mapX-scene.x,MainCharacter.mapY-scene.y,4);
         }
     }
+   
     //attack animation organization
     if(keys[80] && !key_temp && MainCharacter.activeStill)
     {
-     //MainCharacter.activeStill = false;   
         if(frame === 68) 
         {
-        MainCharacter.side.still(MainCharacter.mapX-scene.x,MainCharacter.mapY-scene.y,4,true);
+            
+            rect(MainCharacter.mapX-scene.x+60,MainCharacter.mapY-scene.y+50,80,30);
+        MainCharacter.side.attack(MainCharacter.mapX-scene.x,MainCharacter.mapY-scene.y,4,true);
+        Sword.leftSide.attack(MainCharacter.mapX,MainCharacter.mapY);
         }
         else if (frame === 65) {
-        MainCharacter.side.still(MainCharacter.mapX-scene.x,MainCharacter.mapY-scene.y,4);
+            rect(MainCharacter.mapX-scene.x+35,MainCharacter.mapY-scene.y+50,-80,30);
+        MainCharacter.side.attack(MainCharacter.mapX-scene.x,MainCharacter.mapY-scene.y,4);
+        Sword.rightSide.attack(MainCharacter.mapX,MainCharacter.mapY);
         }
         else if (frame === 87) 
         {
-        MainCharacter.back.still(MainCharacter.mapX-scene.x,MainCharacter.mapY-scene.y,4);
+            rect(MainCharacter.mapX-scene.x,MainCharacter.mapY-scene.y,60,70);
+            Sword.back.attack(MainCharacter.mapX,MainCharacter.mapY);
+        MainCharacter.back.attack(MainCharacter.mapX-scene.x,MainCharacter.mapY-scene.y,4);
+        
         }
         else if (frame === 83) 
         {
-            //key_temp = true;
+            
+            
+            rect(MainCharacter.mapX-scene.x+60,MainCharacter.mapY-scene.y+50,80,90);
+            Sword.front.attack(MainCharacter.mapX,MainCharacter.mapY);
         MainCharacter.front.attack(MainCharacter.mapX-scene.x,MainCharacter.mapY-scene.y,4);
+        fill(0,0,0);
+        
         }
-        else{key_temp = false;}
         if (frame === 0)
         {
             MainCharacter.front.still(MainCharacter.mapX-scene.x,MainCharacter.mapY-scene.y,4);}
@@ -2970,41 +3568,59 @@ scene.collision.TopY = (Actual.y()-scene.sizeY-scene.collision.width) || 0;
 scene.collision.LeftX = (Actual.x()-scene.sizeX-scene.collision.width) || 0;
 scene.collision.BottomY = (Actual.y()-scene.collision.width) || 0;
 };
-var sword = function(){
-    pushMatrix();
-    translate(-21,450);
-    rotate(-82);
-    //drawSprite(65,205,177,24*3,24*3); //Frame 6
-    translate(-108,173);
-    rotate(-33);
-    //drawSprite(66,205,177,24*3,24*3); //Frame 7
-    translate(-71,508);
-    rotate(-85);
-    //drawSprite(67,259,211,24*3,24*3); //Frame 8 
-    translate(-33,534);
-    rotate(-85);
-    //drawSprite(67,259,211,24*3,24*3); //Frame 9
-    
-    translate(402,615);
-    rotate(-161);
-    //drawSprite(61,205,177,24*3,24*3); //Frame 16
-    translate(402,615);
-    rotate(-161);
-    //drawSprite(61,205,177,24*3,24*3); //Frame 17
-    translate(702,406);
-    rotate(-219);
-    //drawSprite(61,233,269,24*3,24*3); //Frame 18 
-    
-    translate(209,-3);
-    rotate(35);
-    //drawSprite(61,205,177,24*3,24*3); //Frame 25
-    translate(21,-19);
-    rotate(4);
-    //drawSprite(61,205,177,24*3,24*3); //Frame 26
-    translate(45,-128);
-    rotate(13);
-    //drawSprite(61,233,269,24*3,24*3); //Frame 27 
-    popMatrix();
+var coin_temp = 1;
+var UI = function()
+{
+var Lives = 3;
+var a = 87;
+fill(0,0,0);
+rect(0,0,width,70);
+drawSprite(87,-19,-20,120,84);
+var coin = function()
+{
+            if(coin_temp >= 1 && coin_temp <= 4.49)
+                {
+                 drawSprite(70,92,5,50,50);
+                }
+                 if(coin_temp >= 4 && coin_temp <= 7.49)
+                {
+                    drawSprite(71,97,10,40,44);
+                }
+                if(coin_temp >= 7.5 && coin_temp <= 11.49)
+                {
+                    drawSprite(72,92,5,50,50);
+                }
+                if(coin_temp >= 11.5 && coin_temp <= 15.49)
+                {
+                    drawSprite(71,92,10,40,44,true);
+                }
+                if(coin_temp >= 15.5)
+                {
+                    coin_temp = 1;
+                }
+                coin_temp+= 0.07;
+};
+coin();
+fill(255, 255, 255);
+textSize(12);
+text("CREATORS",323,12);
+drawMyBitmoji(366,27,60); //NOLAN
+drawBitmoji(336,33,33); //JESHUA
+drawSprite(96,139,-2,110,69);
+fill(255, 255, 255);
+textSize(22);
+if (Lives === 3) {
+ text("X 3", 234, 44);   
+}
+if (Lives === 2) {
+ text("X 2", 234, 44);   
+}
+if (Lives === 1) {
+ text("X 1", 234, 44);   
+}
+if (Lives === 0) {
+ //splashScreen;
+}
 };
 /*** Game Execution ***/
 draw = function() {
@@ -3014,29 +3630,21 @@ draw = function() {
     fill(255, 0, 0); //rectangles to distinguish the rooms
     rect(-scene.x,0-scene.y,GameMapX[0][0],GameMapY[0][0]);
     rect(limit.x()-GameMapX[0][2]-scene.x-10,0-scene.y,GameMapX[0][2],GameMapY[0][2]);
-    rect(GameMapX[1][0]-scene.x-10,GameMapY[0][0]-scene.y,GameMapX[1][1],GameMapY[1][1]);
-    
-    fill(0,255,0);
-     rect(GameMapX[0][0]-scene.x-10,0-scene.y,GameMapX[0][1],GameMapY[0][1]);
-     
-     
-     rect(-scene.x+200,0-scene.y+100,GameMapX[0][0]-300,GameMapY[0][0]-300);
-     
-     
-     rect(-scene.x-10,GameMapY[0][0]-scene.y,GameMapX[1][0],GameMapY[1][0]);
-     rect(limit.x()-GameMapX[1][2]-scene.x-10,GameMapY[0][2]-scene.y,GameMapX[1][2],GameMapY[1][2]);
 
     collisions(); //collisions of the rooms
     scene.collision.active(mapX,mapY); //call function for active collisions
 
     fill(0,0,0);
     MainCharacter.sprite(48,48);
-    sword();
+    UI();
     //MainCharacter.front.animation(237,300,2);
-
-
+//drawSprite(0,300,300,24*8,24*8);
     rect(100-scene.x,800-scene.y,100,100);
-    //rect(100-scene.x,100-scene.y,100,100);
-    rect(1800-scene.x,0-scene.y,100,100);
-    rect(800-scene.x,0-scene.y,100,100);  
+    //println(MainCharacter.mapX);
+    //println(MainCharacter.mapY);
+    //drawSprite(64,29,51,180,180);
+    //drawSprite(65,197,51,25*7,180);
+    //drawSprite(66,397,51,25*7,180);
+    //println();
+    //Sword.back.attack(MainCharacter.mapX,MainCharacter.mapY);
 };
