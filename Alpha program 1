@@ -139,7 +139,6 @@ arc (BitmojiX+(Height/100*32),BitmojiY+(Height/100*56),Height*39/100,Height*-1/5
     drawBitmojiBody(BitmojiX, BitmojiY,Height);
 };
 
-
 // KHAN BUTTON
 var Button = function(config) {
     this.x = config.x || 0;
@@ -181,15 +180,6 @@ var startButton = new Button({
     onClick: function() {
         currentScene = 1;}
 });
-//help button
-var helpButton = new Button({
-    x: 90,
-    y: 222,
-    width: 218,
-    label: "HOW TO PLAY",
-    onClick: function() {
-        currentScene = 2;}
-});
 // SPLASH SCREEN
 var splashback = function(c){
     noStroke();
@@ -226,7 +216,7 @@ var drawSplash = function(){
     text("Jeshua Benzant", 124, 373);
     text("& Nolan Marx", 132, 391);
     startButton.draw();
-    helpButton.draw();
+
 };
 // SPLASH SCREEN LOSER
 var splashbackL = function(c){
@@ -247,7 +237,7 @@ var splashbackL = function(c){
     }    
 };
 var drawSplashLose = function(){
-    currentScene = 0;
+    currentScene = 2;
     splashbackL(color(212, 32, 19));
     fill(138, 16, 0);
     rect(0,350,401,60);
@@ -258,7 +248,7 @@ var drawSplashLose = function(){
     textAlign(CENTER, TOP);
     text("YOU DIED!", 194, 9);
     startButton.draw();
-    helpButton.draw();
+
 };
 // SPLASH SCREEN WINNER
 var splashbackW = function(c){
@@ -279,7 +269,7 @@ var splashbackW = function(c){
     }    
 };
 var drawSplashWin = function(){
-    currentScene = 0;
+    currentScene = 3;
     splashback(color(228, 242, 78));
     fill(217, 203, 9);
     rect(0,350,401,60);
@@ -293,7 +283,7 @@ var drawSplashWin = function(){
     textAlign(CENTER, TOP);
     text("YOU WIN!", 194, 9);
     startButton.draw();
-    helpButton.draw();
+
 };
 
 
@@ -391,6 +381,10 @@ var coolDown = function(a)
     else{return true;}
 };
 /***Game Variables, Logic, Collision Detections, and Sprites***/
+    // DRAW GAME
+var Game = function() {
+    currentScene = 1; 
+    
 var colors = {
     colorData: [
     /*      ORDER OF COLORS: 0 = null,*/
@@ -3979,29 +3973,27 @@ Ghost_AI.prototype.draw = function() {
             if (((this.x > (MainCharacter.mapX-scene.x+60) || this.x <  (MainCharacter.mapX-scene.x+140)) &&( this.y > (MainCharacter.mapY-scene.y+50) || this.y < (MainCharacter.mapY-scene.y+80))) && MainCharacter.flag)
            { 
          this.done = false;
-            if (Ghost.frame === 1 && MainCharacter.flag)
+            if (Ghost.frame === 1)
             {
                 println( Ghost.health);
-                this.y += 15;
-                if(this.y === Ghost.map+15)
-                {
+                this.y += 5;
+                
                 Ghost.health--;
-                }
                 MainCharacter.flag = false;
             }
             else if (Ghost.frame === 2)
             {
-                this.y -= 15;
+                this.y -= 5;
                 Ghost.health--;
             }
             else if (Ghost.frame === 3)
             {
-                this.x += 15;
+                this.x += 5;
                 Ghost.health--;
             }
             else if (Ghost.frame === 4)
             {
-                this.x -= 15;
+                this.x -= 5;
                 Ghost.health--;
             }
             else{this.done = true;}
@@ -4044,4 +4036,5 @@ draw = function() {
         //drawSprite(55,100,100,24*8,24*8);
         coolDown(5);
         println(coolDown(5));
+};
 };
