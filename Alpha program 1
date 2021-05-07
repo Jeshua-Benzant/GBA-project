@@ -181,6 +181,7 @@ var startButton = new Button({
         currentScene = 1;}
 });
 // SPLASH SCREEN
+
 var splashback = function(c){
     noStroke();
     fill(0, 2, 125);
@@ -199,7 +200,8 @@ var splashback = function(c){
     }    
 };
 var drawSplash = function(){
-    currentScene = 0;
+if(currentScene === 0)
+{
     splashback(color(99, 19, 212));
     fill(94, 0, 138);
     rect(0,350,401,60);
@@ -216,8 +218,10 @@ var drawSplash = function(){
     text("Jeshua Benzant", 124, 373);
     text("& Nolan Marx", 132, 391);
     startButton.draw();
-
+}
 };
+
+
 // SPLASH SCREEN LOSER
 var splashbackL = function(c){
     noStroke();
@@ -382,8 +386,11 @@ var coolDown = function(a)
 };
 /***Game Variables, Logic, Collision Detections, and Sprites***/
     // DRAW GAME
+    
+    
 var Game = function() {
-    currentScene = 1; 
+    if (currentScene === 1)
+    {
     
 var colors = {
     colorData: [
@@ -4019,12 +4026,8 @@ Ghost_AI.prototype.draw = function() {
 };
 var Ghost1 = new Ghost_AI(100,10,5);
 var Ghost2 = new Ghost_AI(-100,0,4);
-/*** Game Execution ***/
-draw = function() {
 
-    background(255,255,255);
-    
-    fill(255, 0, 0); //rectangles to distinguish the rooms
+fill(255, 0, 0); //rectangles to distinguish the rooms
     rect(-scene.x,0-scene.y,GameMapX[0][0],GameMapY[0][0]);
 
     collisions(); //collisions of the rooms
@@ -4035,18 +4038,31 @@ draw = function() {
 
     Ghost1.draw();
     Ghost2.draw();
+    
+    rect(100-scene.x,800-scene.y,100,100);
+    
+    UI();
+}};
+currentScene = 0;
+/*** Game Execution ***/
+draw = function() {
+
+    background(255,255,255);
+    drawSplash();
+    Game();
+    
     //MainCharacter.front.animation(237,300,2);
 //drawSprite(0,300,300,24*8,24*8);
-    rect(100-scene.x,800-scene.y,100,100);
+    
     //println(MainCharacter.mapX);
-    println(MainCharacter.mapY);
+    //println(MainCharacter.mapY);
     //drawSprite(64,29,51,180,180);
     //drawSprite(65,197,51,25*7,180);
     //drawSprite(66,397,51,25*7,180);
     //println();
     //Sword.back.attack(MainCharacter.mapX,MainCharacter.mapY);
-        UI();
+        
         //drawSprite(55,100,100,24*8,24*8);
-        coolDown(5);
-        println(coolDown(5));
+        //coolDown(5);
+        //println(coolDown(5));
 };
