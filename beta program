@@ -2852,43 +2852,43 @@ var Ghost = {
         },
         animation: function(a,b,c)//uses sprite's walking frames and portays an illusion of it walking
         {
-            if(MainCharacter.animationFrame < 30 || MainCharacter.animationFrame > 34.49)
+            if(Ghost.animationFrame < 30 || Ghost.animationFrame > 34.49)
                 {
-                    MainCharacter.animationFrame = 30;
+                    Ghost.animationFrame = 30;
                     
                 }
-            if(MainCharacter.animationFrame >= 34 && MainCharacter.animationFrame <= 34.49 && !MainCharacter.flip)
+            if(Ghost.animationFrame >= 34 && Ghost.animationFrame <= 34.49 && !Ghost.flip)
                 {
-                    MainCharacter.flip = true;
-                    MainCharacter.animationFrame = 30;
+                    Ghost.flip = true;
+                    Ghost.animationFrame = 30;
                     
                 }
-                if(MainCharacter.animationFrame >= 34 && MainCharacter.animationFrame <= 34.49 && MainCharacter.flip)
+                if(Ghost.animationFrame >= 34 && Ghost.animationFrame <= 34.49 && Ghost.flip)
                 {
-                    MainCharacter.flip = false;
-                    MainCharacter.animationFrame = 30;
+                    Ghost.flip = false;
+                    Ghost.animationFrame = 30;
                 }
-                MainCharacter.animationFrame+= 0.15;
+                Ghost.animationFrame+= 0.15;
                 //println(walkAnimation);
                 //rect(a,b,(spriteSize)*(c || scaled_size),(spriteSize)*(c || scaled_size));
-            drawSprite(floor(MainCharacter.animationFrame), a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),  (spriteSize)*(c || scaled_size),MainCharacter.flip);
+            drawSprite(floor(Ghost.animationFrame), a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),  (spriteSize)*(c || scaled_size),Ghost.flip);
             },
         attack: function(a,b,c)
         {
-            if(MainCharacter.animationFrame < 35 || MainCharacter.animationFrame > 38.49)
+            if(Ghost.animationFrame < 35 || Ghost.animationFrame > 38.49)
                 {
-                    MainCharacter.animationFrame = 35;
+                    Ghost.animationFrame = 35;
                     
                 }
-            if(MainCharacter.animationFrame >= 38 && MainCharacter.animationFrame <= 38.45 && !MainCharacter.flip)
+            if(Ghost.animationFrame >= 38 && Ghost.animationFrame <= 38.45 && !Ghost.flip)
                 {
-                    MainCharacter.flag = true;
+                    Ghost.flag = true;
                 }
-                else{ MainCharacter.flag = false; }
-                MainCharacter.animationFrame+= 0.15*0.5;
+                else{ Ghost.flag = false; }
+                Ghost.animationFrame+= 0.15*0.5;
                 //println(walkAnimation);
                 //rect(a,b,(spriteSize)*(c || scaled_size),(spriteSize)*(c || scaled_size));
-            drawSprite(floor(MainCharacter.animationFrame), a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),  (spriteSize)*(c || scaled_size));
+            drawSprite(floor(Ghost.animationFrame), a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),  (spriteSize)*(c || scaled_size));
         }
         },
     side: {
@@ -2909,45 +2909,45 @@ var Ghost = {
     },
     animation: function(a,b,c,d)//uses sprite's walking frames and portays an illusion of it walking
     {
-        if(MainCharacter.animationFrame < 40 || MainCharacter.animationFrame > 44.49)
+        if(Ghost.animationFrame < 40 || Ghost.animationFrame > 44.49)
                 {
-                    MainCharacter.animationFrame = 40;
+                    Ghost.animationFrame = 40;
                     
                 }
-        if(MainCharacter.animationFrame >= 44 && MainCharacter.animationFrame <= 44.49 && !MainCharacter.flip)
+        if(Ghost.animationFrame >= 44 && Ghost.animationFrame <= 44.49 && !Ghost.flip)
             {
-                MainCharacter.flip = true;
-                MainCharacter.animationFrame = 40;
+                Ghost.flip = true;
+                Ghost.animationFrame = 40;
                 
             }
-            if(MainCharacter.animationFrame >= 44 && MainCharacter.animationFrame <= 44.49 && MainCharacter.flip)
+            if(Ghost.animationFrame >= 44 && Ghost.animationFrame <= 44.49 && Ghost.flip)
             {
                 //println(walkAnimation);
-                MainCharacter.flip = false;
-                MainCharacter.animationFrame = 40;
+                Ghost.flip = false;
+                Ghost.animationFrame = 40;
             }
-            MainCharacter.animationFrame+= 0.15;
+            Ghost.animationFrame+= 0.15;
             //println(walkAnimation);
             //rect(a,b,(spriteSize)*(c || scaled_size),(spriteSize)*(c || scaled_size));
-        drawSprite(floor(MainCharacter.animationFrame), a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),  (spriteSize)*(c || scaled_size),d);
+        drawSprite(floor(Ghost.animationFrame), a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),  (spriteSize)*(c || scaled_size),d);
         },
     attack: function(a,b,c,d)
     {
-        if(MainCharacter.animationFrame < 45 || MainCharacter.animationFrame > 46.49)
+        if(Ghost.animationFrame < 45 || Ghost.animationFrame > 46.49)
             {
-                MainCharacter.animationFrame = 46;
+                Ghost.animationFrame = 46;
                 
             }
-        if(MainCharacter.animationFrame >= 45 && MainCharacter.animationFrame <= 45.49 && !MainCharacter.flip)
+        if(Ghost.animationFrame >= 45 && Ghost.animationFrame <= 45.49 && !Ghost.flip)
             {
-                MainCharacter.flag = true;
+                Ghost.flag = true;
                 
             }
-            else{MainCharacter.flag = false;}
-            MainCharacter.animationFrame-= 0.15*0.7;
+            else{Ghost.flag = false;}
+            Ghost.animationFrame-= 0.15*0.7;
             //println(walkAnimation);
             //rect(a,b,(spriteSize)*(c || scaled_size),(spriteSize)*(c || scaled_size));
-        drawSprite(floor(MainCharacter.animationFrame), a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),  (spriteSize)*(c || scaled_size),d);
+        drawSprite(floor(Ghost.animationFrame), a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),  (spriteSize)*(c || scaled_size),d);
     }
     },
     back: {
@@ -2968,48 +2968,48 @@ var Ghost = {
     },
     animation: function(a,b,c,d)//uses sprite's walking frames and portays an illusion of it walking
     {
-        if(MainCharacter.animationFrame < 48 || MainCharacter.animationFrame > 52.49)
+        if(Ghost.animationFrame < 48 || Ghost.animationFrame > 52.49)
                 {
-                    MainCharacter.animationFrame = 48;
+                    Ghost.animationFrame = 48;
                     
                 }
-        if(MainCharacter.animationFrame >= 52 && MainCharacter.animationFrame <= 52.49 && !MainCharacter.flip)
+        if(Ghost.animationFrame >= 52 && Ghost.animationFrame <= 52.49 && !Ghost.flip)
             {
-                MainCharacter.flip = true;
-                MainCharacter.animationFrame = 48;
+                Ghost.flip = true;
+                Ghost.animationFrame = 48;
                 
             }
-            if(MainCharacter.animationFrame >= 52 && MainCharacter.animationFrame <= 52.49 && MainCharacter.flip)
+            if(Ghost.animationFrame >= 52 && Ghost.animationFrame <= 52.49 && Ghost.flip)
             {
                 //println(walkAnimation);
-                MainCharacter.flip = false;
-                MainCharacter.animationFrame = 48;
+                Ghost.flip = false;
+                Ghost.animationFrame = 48;
             }
-            MainCharacter.animationFrame+= 0.15;
+            Ghost.animationFrame+= 0.15;
             
             //println(walkAnimation);
             //rect(a,b,(spriteSize)*(c || scaled_size),(spriteSize)*(c || scaled_size));
             
-        drawSprite(floor(MainCharacter.animationFrame), a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),  (spriteSize)*(c || scaled_size),d);
+        drawSprite(floor(Ghost.animationFrame), a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),  (spriteSize)*(c || scaled_size),d);
         
         },
         attack: function(a,b,c,d)
     {
-        if(MainCharacter.animationFrame < 53 || MainCharacter.animationFrame > 54.49)
+        if(Ghost.animationFrame < 53 || Ghost.animationFrame > 54.49)
             {
-                MainCharacter.animationFrame = 54;
+                Ghost.animationFrame = 54;
                 
             }
-        if(MainCharacter.animationFrame >= 53 && MainCharacter.animationFrame <= 53.49 && !MainCharacter.flip)
+        if(Ghost.animationFrame >= 53 && Ghost.animationFrame <= 53.49 && !Ghost.flip)
             {
-                MainCharacter.flag = true;
+                Ghost.flag = true;
                 
             }
-            else{MainCharacter.flag = false;}
-            MainCharacter.animationFrame-= 0.15*0.9;
+            else{Ghost.flag = false;}
+            Ghost.animationFrame-= 0.15*0.9;
             //println(walkAnimation);
             //rect(a,b,(spriteSize)*(c || scaled_size),(spriteSize)*(c || scaled_size));
-        drawSprite(floor(MainCharacter.animationFrame), a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),  (spriteSize)*(c || scaled_size),d);
+        drawSprite(floor(Ghost.animationFrame), a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),  (spriteSize)*(c || scaled_size),d);
     }
     },
     hurtbox: {},
