@@ -2652,11 +2652,11 @@ var MainCharacter = {
         
         still: function(a,b,c)
         {
-            drawSprite(29, a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),  (spriteSize)*(c || scaled_size),false);
+            drawSprite(0, a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),  (spriteSize)*(c || scaled_size),false);
         },
         walk: function(a,b,c,d,e)
         {
-            if(a<34 && a > 30)
+            if(a<7 && a > 1)
             {
             drawSprite(a, b || spriteX, c || spriteY, (spriteSize)*(d || scaled_size),  (spriteSize)*(d || scaled_size),e);
             }
@@ -2664,21 +2664,21 @@ var MainCharacter = {
         },
         animation: function(a,b,c)//uses sprite's walking frames and portays an illusion of it walking
         {
-            if(MainCharacter.animationFrame < 30 || MainCharacter.animationFrame > 34.49)
+            if(MainCharacter.animationFrame < 2 || MainCharacter.animationFrame > 6.49)
                 {
-                    MainCharacter.animationFrame = 30;
+                    MainCharacter.animationFrame = 2;
                     
                 }
-            if(MainCharacter.animationFrame >= 34 && MainCharacter.animationFrame <= 34.49 && !MainCharacter.flip)
+            if(MainCharacter.animationFrame >= 6 && MainCharacter.animationFrame <= 6.49 && !MainCharacter.flip)
                 {
                     MainCharacter.flip = true;
-                    MainCharacter.animationFrame = 30;
+                    MainCharacter.animationFrame = 2;
                     
                 }
-                if(MainCharacter.animationFrame >= 34 && MainCharacter.animationFrame <= 34.49 && MainCharacter.flip)
+                if(MainCharacter.animationFrame >= 6 && MainCharacter.animationFrame <= 6.49 && MainCharacter.flip)
                 {
                     MainCharacter.flip = false;
-                    MainCharacter.animationFrame = 30;
+                    MainCharacter.animationFrame = 2;
                 }
                 MainCharacter.animationFrame+= 0.15;
                 //println(walkAnimation);
@@ -2708,12 +2708,12 @@ var MainCharacter = {
         {
                             fill(0,0,0);
             //rect(a,b,(spriteSize)*(c || scaled_size),(spriteSize)*(c || scaled_size));
-            drawSprite(10, a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),(spriteSize)*(c || scaled_size),d);
+            drawSprite(12, a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),(spriteSize)*(c || scaled_size),d);
 
         },
         walk: function(a,b,c,d,e)
     {
-        if(a<15 && a > 11)
+        if(a<17 && a > 11)
         {
         drawSprite(a, b || spriteX, c || spriteY, (spriteSize)*(d || scaled_size),  (spriteSize)*(d || scaled_size),e);
         }
@@ -2721,22 +2721,22 @@ var MainCharacter = {
     },
     animation: function(a,b,c,d)//uses sprite's walking frames and portays an illusion of it walking
     {
-        if(MainCharacter.animationFrame < 11 || MainCharacter.animationFrame > 15.49)
+        if(MainCharacter.animationFrame < 12 || MainCharacter.animationFrame > 16.49)
                 {
-                    MainCharacter.animationFrame = 11;
+                    MainCharacter.animationFrame = 12;
                     
                 }
-        if(MainCharacter.animationFrame >= 15 && MainCharacter.animationFrame <= 15.49 && !MainCharacter.flip)
+        if(MainCharacter.animationFrame >= 16 && MainCharacter.animationFrame <= 16.49 && !MainCharacter.flip)
             {
                 MainCharacter.flip = true;
-                MainCharacter.animationFrame = 11;
+                MainCharacter.animationFrame = 12;
                 
             }
-            if(MainCharacter.animationFrame >= 15 && MainCharacter.animationFrame <= 15.49 && MainCharacter.flip)
+            if(MainCharacter.animationFrame >= 16 && MainCharacter.animationFrame <= 16.49 && MainCharacter.flip)
             {
                 //println(walkAnimation);
                 MainCharacter.flip = false;
-                MainCharacter.animationFrame = 11;
+                MainCharacter.animationFrame = 12;
             }
             MainCharacter.animationFrame+= 0.15;
             //println(walkAnimation);
@@ -2745,12 +2745,12 @@ var MainCharacter = {
         },
     attack: function(a,b,c,d)
     {
-        if(MainCharacter.animationFrame < 16 || MainCharacter.animationFrame > 18.49)
+        if(MainCharacter.animationFrame < 17 || MainCharacter.animationFrame > 19.49)
             {
-                MainCharacter.animationFrame = 18;
+                MainCharacter.animationFrame = 19;
                 
             }
-        if(MainCharacter.animationFrame >= 16 && MainCharacter.animationFrame <= 18.49 && !MainCharacter.flip)
+        if(MainCharacter.animationFrame >= 17 && MainCharacter.animationFrame <= 17.49 && !MainCharacter.flip)
             {
                 MainCharacter.flag = true;
                 
@@ -2767,12 +2767,12 @@ var MainCharacter = {
         {
                             fill(0,0,0);
             //rect(a,b,(spriteSize)*(c || scaled_size),(spriteSize)*(c || scaled_size));
-            drawSprite(19, a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),(spriteSize)*(c || scaled_size),d);
+            drawSprite(22, a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),(spriteSize)*(c || scaled_size),d);
 
         },
         walk: function(a,b,c,d,e)
     {
-        if(a<24 && a > 20)
+        if(a<37 && a > 29)
         {
         drawSprite(a, b || spriteX, c || spriteY, (spriteSize)*(d || scaled_size),  (spriteSize)*(d || scaled_size),e);
         }
@@ -2780,22 +2780,22 @@ var MainCharacter = {
     },
     animation: function(a,b,c,d)//uses sprite's walking frames and portays an illusion of it walking
     {
-        if(MainCharacter.animationFrame < 20 || MainCharacter.animationFrame > 24.49)
+        if(MainCharacter.animationFrame < 21 || MainCharacter.animationFrame > 24.49)
                 {
-                    MainCharacter.animationFrame = 20;
+                    MainCharacter.animationFrame = 21;
                     
                 }
         if(MainCharacter.animationFrame >= 24 && MainCharacter.animationFrame <= 24.49 && !MainCharacter.flip)
             {
                 MainCharacter.flip = true;
-                MainCharacter.animationFrame = 20;
+                MainCharacter.animationFrame = 21;
                 
             }
             if(MainCharacter.animationFrame >= 24 && MainCharacter.animationFrame <= 24.49 && MainCharacter.flip)
             {
                 //println(walkAnimation);
                 MainCharacter.flip = false;
-                MainCharacter.animationFrame = 20;
+                MainCharacter.animationFrame = 21;
             }
             MainCharacter.animationFrame+= 0.15;
             
@@ -2807,9 +2807,9 @@ var MainCharacter = {
         },
         attack: function(a,b,c,d)
     {
-        if(MainCharacter.animationFrame < 25 || MainCharacter.animationFrame > 27.49)
+        if(MainCharacter.animationFrame < 25 || MainCharacter.animationFrame > 28.49)
             {
-                MainCharacter.animationFrame = 27;
+                MainCharacter.animationFrame = 28;
                 
             }
         if(MainCharacter.animationFrame >= 25 && MainCharacter.animationFrame <= 25.49 && !MainCharacter.flip)
@@ -2824,8 +2824,7 @@ var MainCharacter = {
         drawSprite(floor(MainCharacter.animationFrame), a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),  (spriteSize)*(c || scaled_size),d);
     }
     },
-    hurtbox: {},   
-    
+    hurtbox: {},
 };//Main character assortment and interactions
 var Ghost = {
     mapX: 300, //if you want to start in another room you must 
