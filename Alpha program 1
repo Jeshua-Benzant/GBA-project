@@ -3979,27 +3979,29 @@ Ghost_AI.prototype.draw = function() {
             if (((this.x > (MainCharacter.mapX-scene.x+60) || this.x <  (MainCharacter.mapX-scene.x+140)) &&( this.y > (MainCharacter.mapY-scene.y+50) || this.y < (MainCharacter.mapY-scene.y+80))) && MainCharacter.flag)
            { 
          this.done = false;
-            if (Ghost.frame === 1)
+            if (Ghost.frame === 1 && MainCharacter.flag)
             {
                 println( Ghost.health);
-                this.y += 5;
-                
+                this.y += 15;
+                if(this.y === Ghost.map+15)
+                {
                 Ghost.health--;
+                }
                 MainCharacter.flag = false;
             }
             else if (Ghost.frame === 2)
             {
-                this.y -= 5;
+                this.y -= 15;
                 Ghost.health--;
             }
             else if (Ghost.frame === 3)
             {
-                this.x += 5;
+                this.x += 15;
                 Ghost.health--;
             }
             else if (Ghost.frame === 4)
             {
-                this.x -= 5;
+                this.x -= 15;
                 Ghost.health--;
             }
             else{this.done = true;}
