@@ -4,6 +4,297 @@ var mapY = 0; //starting y coordinate for map
 var GameMapX = [[800]]; //that can be adjusted
 
 var GameMapY = [[1200]];//and the system will adjust all the camera aspects to it.
+var currentScene = 0;
+
+//BITMOJIS
+//NOLAN'S BITMOJI    
+var drawMyHead = function (x, y, H){
+noStroke();
+
+fill(250, 212, 165); //skin tone
+
+ellipse(x+(30 * H / 200), y+(15 * H / 200), 80 *H / 200 , 99 * H / 200); //head base
+
+fill(133, 92, 10); //hair color
+quad(x+(19*H/200), y-(12*H/200), x+(41*H/200), y-(35*H/200), x+8*H/200, y-30*H/200, x-12*H/200, y-1*H/200); //left hair part
+quad(x+(41*H/200), y-(12*H/200), x+(22*H/200), y-(35*H/200), x+(54*H/200), y-(31*H/200), x+70*H/200, y-1*H/200); //right hair part
+triangle(x+(29*H/200), y-(35*H/200), x+(51*H/200), y-(12*H/200), x+(15*H/200), y-(11*H/200)); //middle hair part
+fill(133, 92, 10); //hair strands color
+triangle(x+(23*H/200), y-(32*H/200), x+(62*H/200), y+(2*H/200), x+(14*H/200), y-(29*H/200)); //hair strand
+triangle(x+(22*H/200), y-(31*H/200), x+(53*H/200), y+(2*H/200), x+(14*H/200), y-(29*H/200)); //hair strand
+triangle(x+(49*H/200), y-(31*H/200), x+(71*H/200), y+(6*H/200), x+(37*H/200), y-(30*H/200)); //hair strand
+triangle(x-(4*H/200), y-(17*H/200), x+(41*H/200), y-(1*H/200), x+(14*H/200), y-(29*H/200)); //hair strand
+
+fill(5, 5, 5); //eye color
+ellipse(x+(15*H/200), y+(7*H/200), 18*H/200, 12*H/200); //left eye outline
+ellipse(x+(45*H/200), y+(7*H/200), 18*H/200, 12*H/200); //right eye outline
+fill(255, 255, 255); //eyeball color
+ellipse(x+(15*H/200), y+(7*H/200), 18*H/200, 12*H/200); //left eyeball
+ellipse(x+(45*H/200), y+(7*H/200), 18*H/200, 12*H/200); //right eyeball
+fill(80, 105, 6); //pupil color
+ellipse(x+(16*H/200), y+(7*H/200), 6*H/200, 4*H/200); //left pupil
+ellipse(x+(46*H/200), y+(7*H/200), 6*H/200, 4*H/200); //right pupil
+
+fill(240, 192, 222); //mouth color
+arc(x+(32*H/200), y+(42*H/200), 36*H/200, 31*H/200, 3*H/200,178); //mouth
+fill(255, 255, 255); //teeth color
+quad(x+(48*H/200), y+(46*H/200), x+(18*H/200), y+(47*H/200), x+(16*H/200), y+(44*H/200), x+(49*H/200), y+(43*H/200)); //top teeth
+quad(x+(40*H/200), y+(55*H/200), x+(26*H/200), y+(56*H/200), x+(20*H/200), y+(53*H/200), x+(46*H/200), y+(52*H/200)); //bottom teeth
+
+fill(0, 0, 0); //nose color
+bezier(x+(41*H/200), y+(24*H/200), x+(15*H/200), y+(48*H/200), x+(52*H/200), y+(24*H/200), x+(31*H/200), y+(17*H/200)); //nose
+
+fill(0, 0, 0); //right airpod outline color
+bezier(x+(72*H/200), y+(40*H/200), x+(83*H/200), y-(13*H/200), x+(49*H/200), y+(18*H/200), x+(71*H/200), y+(16*H/200)); //right airpod outline
+fill(255, 255, 255); //right airpod color
+bezier(x+(72*H/200), y+(40*H/200), x+(83*H/200), y-(13*H/200), x+(49*H/200), y+(18*H/200), x+(71*H/200), y+(16*H/200)); //right airpod
+fill(0, 0, 0); //left airpod outline color
+bezier(x-(12*H/200), y+(40*H/200), x-(18*H/200), y-(13*H/200), x+(11*H/200), y+(18*H/200), x-(8*H/200), y+(16*H/200)); //left airpod outline
+fill(255, 255, 255); //left airpod color
+bezier(x-(12*H/200), y+(40*H/200), x-(18*H/200), y-(13*H/200), x+(11*H/200), y+(18*H/200), x-(8*H/200), y+(16*H/200)); //leftt airpod  
+};
+var drawMyBody = function(x, y,H) {
+noStroke();
+fill(250, 178, 90); //shirt color
+rect(x+(2*H/200), y+(66*H/200), 59*H/200, 70*H/200); //shirt
+
+fill(0, 0, 0); //shirt text color
+textSize(23*H/200); //shirt text size
+text("NM", x+(17*H/200), y+(112*H/200)); //shirt text
+};
+var drawMyBitmoji = function(x, y, H) {
+    
+    drawMyBody(x, y, H);
+    drawMyHead(x, y, H);
+    
+};
+// JESHUA'S BITMOJI    
+var BitmojiX = 100;
+var BitmojiY= 100;
+var Height = 100;
+var drawBitmoji = function(BitmojiX, BitmojiY,Height)
+{ 
+    var drawBitmojiHead = function(BitmojiX,BitmojiY,Height)
+{
+    fill (255, 220, 177); //skin color
+    noStroke();
+ellipse (BitmojiX+(Height/100), BitmojiY+(Height/100), Height, Height); //head
+    stroke(0);
+    strokeWeight(1);
+        
+        arc(BitmojiX+(Height/100),BitmojiY+(Height/100*16),Height*7/100,Height*7/100,-80,180); //nose
+        
+        arc (BitmojiX+(Height/100),BitmojiY+(Height/100*23),Height*7/21,Height*-33/100,-178,0); //mouth
+    fill(255);
+            
+            rect(BitmojiX-(Height/100*15),BitmojiY+(Height/100*23),Height*18/58,Height*1/31,3);//teeth
+            
+    noStroke();
+    fill(250, 150, 150);
+        
+        arc (BitmojiX+(Height/100),BitmojiY+(Height/100*36),Height*1/5,Height*7/100,-178,186); //tongue
+    noStroke ();
+    fill(255);
+    
+        arc (BitmojiX+(Height/100),BitmojiY-(Height/100*12),Height*19/25,Height*79/100, -180,0); //head size      clean up
+    fill(255); //clean up
+    fill(0, 0, 0);
+        arc (BitmojiX-(Height/100*46),BitmojiY+(Height/100*37),Height*23/100,Height*11/10,0,361); //left chisel
+        arc (BitmojiX+(Height/100*45),BitmojiY+(Height/100*37),Height*23/100,Height*11/10,0,361); //right chisel
+    noStroke();
+        arc (BitmojiX-(Height/100*46),BitmojiY+(Height/100*33),Height*25/20,Height*-29/50,299,319); //left jaw       line
+        arc (BitmojiX+(Height/100*46),BitmojiY+(Height/100*33),Height*25/20,Height*-29/50,221,237); //right jaw      line
+        arc (BitmojiX-(Height/100*49),BitmojiY+(Height/100*37),Height*23/100,Height*32/25,0,363); //left chisel      clean up
+        fill(0, 0, 0);
+        arc (BitmojiX+(Height/100*49),BitmojiY+(Height/100*37),Height*6/25,Height*37/25,0,363); //right chisel       clean up
+    strokeWeight(2);
+             //clean up
+    strokeWeight(1);
+    fill(255,220,177); //skin tone for ear
+        arc (BitmojiX-(Height/100*34),BitmojiY+(Height/100*12),Height*3/10,Height*23/100,-270,-82); //left ear
+        arc (BitmojiX+(Height/100*33),BitmojiY+(Height/100*12),Height*3/10,Height*23/100,-96,89); //right ear
+
+    fill(0); //color for hair & eyes
+        arc (BitmojiX-(Height/100*35),BitmojiY+(Height/100*19),Height*13/20,Height*69/100,-104.7,-85); //left side burn
+        arc (BitmojiX+(Height/100*35),BitmojiY+(Height/100*19),Height*13/20,Height*69/100,-101,-79); //right side burn
+        arc (BitmojiX-(Height/100*1.5),BitmojiY-(Height/100*14),Height*43/50,Height*69/100,-178,0); //hair
+        
+ellipse (BitmojiX-(Height/100*15),BitmojiY+(Height/100*5),Height*1/10,Height*1/5); //left eye ball
+ellipse (BitmojiX+(Height/100*13),BitmojiY+(Height/100*5),Height*1/10,Height*1/5); //right eye ball
+    fill (255, 220, 177); //skin color
+    stroke(0);
+        arc(BitmojiX-(Height/100*24),BitmojiY+(Height/100*27),Height*11/100,Height*1/5,85,177); // left     dimpal
+        arc(BitmojiX+(Height/100*23),BitmojiY+(Height/100*27),Height*11/100,Height*1/5,-2,101); // right        dimpal
+};
+
+var drawBitmojiBody = function(BitmojiX, BitmojiY,Height)
+{
+    fill(12, 12, 173); //jacket color
+arc (BitmojiX+(Height/100),BitmojiY+(Height/100*50),Height*49/100,Height*-9/25,156,385); //neck
+arc (BitmojiX+(Height/100),BitmojiY+(Height/100*75),Height*107/100,Height*12/25,-178,0); //hair
+    fill(13, 13, 122); 
+    strokeWeight(3);
+arc (BitmojiX+(Height/100*32),BitmojiY+(Height/100*56),Height*39/100,Height*-1/5,317,523); //hood 
+};
+    drawBitmojiHead(BitmojiX, BitmojiY,Height);
+    drawBitmojiBody(BitmojiX, BitmojiY,Height);
+};
+
+// KHAN BUTTON
+var Button = function(config) {
+    this.x = config.x || 0;
+    this.y = config.y || 0;
+    this.width = config.width || 150;
+    this.height = config.height || 50;
+    this.label = config.label || "Click";
+    this.onClick = config.onClick || function() {};
+};
+// METHOD TO DRAW BUTTON
+Button.prototype.draw = function() {
+    fill(183, 0, 255);
+    rectMode(CORNER);
+    rect(this.x, this.y, this.width, this.height, 5);
+    fill(0, 0, 0);
+    textSize(29);
+    textAlign(LEFT, TOP);
+    text(this.label, this.x+10, this.y+this.height/4);
+};
+//Method to check if mouse is clicked inside the button
+Button.prototype.isMouseInside = function() {
+    return mouseX > this.x &&
+           mouseX < (this.x + this.width) &&
+           mouseY > this.y &&
+           mouseY < (this.y + this.height);
+};
+//Function that produces an onclick if the button is pressed on
+Button.prototype.handleMouseClick = function() {
+    if (this.isMouseInside()) {
+        this.onClick();
+    }
+};
+//start button
+var startButton = new Button({
+    x: 121,
+    y: 135,
+    width: 156,
+    label: "   START",
+    onClick: function() {
+        currentScene = 1;}
+});
+//help button
+var helpButton = new Button({
+    x: 90,
+    y: 222,
+    width: 218,
+    label: "HOW TO PLAY",
+    onClick: function() {
+        currentScene = 1;}
+});
+// SPLASH SCREEN
+var splashback = function(c){
+    noStroke();
+    fill(0, 2, 125);
+    rect(0,0,width,height);
+    for ( var i = 0; i < 10; i ++){
+        for (var j = 0; j < 10; j ++){
+            fill(0, 0, 0,25);
+            rect(6 + i * 39, 7 + j * 39, 36,36);
+            fill(c);
+            pushMatrix();
+            translate(i * 39,j * 39);
+            quad(43,15,11,45,5,45,43,5);
+            quad(40,10,5,40,5,45,43,10);
+            popMatrix();
+        }
+    }    
+};
+var drawSplash = function(){
+    currentScene = 0;
+    splashback(color(99, 19, 212));
+    fill(94, 0, 138);
+    rect(0,350,401,60);
+    drawMyBitmoji(280, 336, 86);
+    drawMyBitmoji(351, 336, 86);
+    textSize(40);
+    fill(94, 0, 138);
+    rect(0,-1,401,60);
+    fill(0, 0, 0);
+    text("Dungeon of the Dead", 11, 42);
+    textSize(20);
+    text("Created by:", 8, 386);
+    textSize(15);
+    text("Jeshua Benzant", 124, 373);
+    text("& Nolan Marx", 132, 391);
+    startButton.draw();
+    helpButton.draw();
+};
+// SPLASH SCREEN LOSER
+var splashbackL = function(c){
+    noStroke();
+    fill(171, 12, 12);
+    rect(0,0,width,height);
+    for ( var i = 0; i < 10; i ++){
+        for (var j = 0; j < 10; j ++){
+            fill(0, 0, 0,25);
+            rect(6 + i * 39, 7 + j * 39, 36,36);
+            fill(c);
+            pushMatrix();
+            translate(i * 39,j * 39);
+            quad(43,15,11,45,5,45,43,5);
+            quad(40,10,5,40,5,45,43,10);
+            popMatrix();
+        }
+    }    
+};
+var drawSplashLose = function(){
+    currentScene = 0;
+    splashbackL(color(212, 32, 19));
+    fill(138, 16, 0);
+    rect(0,350,401,60);
+    textSize(40);
+    fill(138, 16, 0);
+    rect(0,-1,401,60);
+    fill(255, 230, 0);
+    textAlign(CENTER, TOP);
+    text("YOU DIED!", 194, 9);
+    startButton.draw();
+    helpButton.draw();
+};
+// SPLASH SCREEN WINNER
+var splashbackW = function(c){
+    noStroke();
+    fill(213, 232, 44);
+    rect(0,0,width,height);
+    for ( var i = 0; i < 10; i ++){
+        for (var j = 0; j < 10; j ++){
+            fill(0, 0, 0,25);
+            rect(6 + i * 39, 7 + j * 39, 36,36);
+            fill(c);
+            pushMatrix();
+            translate(i * 39,j * 39);
+            quad(43,15,11,45,5,45,43,5);
+            quad(40,10,5,40,5,45,43,10);
+            popMatrix();
+        }
+    }    
+};
+var drawSplashWin = function(){
+    currentScene = 0;
+    splashback(color(228, 242, 78));
+    fill(217, 203, 9);
+    rect(0,350,401,60);
+    fill(255, 0, 0);
+    textSize(20);
+    text("Thanks for playing!!",116,377);
+    textSize(40);
+    fill(217, 203, 9);
+    rect(0,-1,401,60);
+    fill(255, 0, 0);
+    textAlign(CENTER, TOP);
+    text("YOU WIN!", 194, 9);
+    startButton.draw();
+    helpButton.draw();
+};
 
 var limit = {
     x: function() //adds up all the  x collision values starting from zero to current x Right collision
@@ -152,140 +443,7 @@ var sword = function(){
     rotate(13);
     //drawSprite(61,233,269,24*3,24*3); //Frame 27 
     popMatrix();};
-// NOLAN'S BITMOJI    
-var drawMyHead = function (x, y, H)
-{
-noStroke();
-
-fill(250, 212, 165); //skin tone
-
-ellipse(x+(30 * H / 200), y+(15 * H / 200), 80 *H / 200 , 99 * H / 200); //head base
-
-fill(133, 92, 10); //hair color
-quad(x+(19*H/200), y-(12*H/200), x+(41*H/200), y-(35*H/200), x+8*H/200, y-30*H/200, x-12*H/200, y-1*H/200); //left hair part
-quad(x+(41*H/200), y-(12*H/200), x+(22*H/200), y-(35*H/200), x+(54*H/200), y-(31*H/200), x+70*H/200, y-1*H/200); //right hair part
-triangle(x+(29*H/200), y-(35*H/200), x+(51*H/200), y-(12*H/200), x+(15*H/200), y-(11*H/200)); //middle hair part
-fill(133, 92, 10); //hair strands color
-triangle(x+(23*H/200), y-(32*H/200), x+(62*H/200), y+(2*H/200), x+(14*H/200), y-(29*H/200)); //hair strand
-triangle(x+(22*H/200), y-(31*H/200), x+(53*H/200), y+(2*H/200), x+(14*H/200), y-(29*H/200)); //hair strand
-triangle(x+(49*H/200), y-(31*H/200), x+(71*H/200), y+(6*H/200), x+(37*H/200), y-(30*H/200)); //hair strand
-triangle(x-(4*H/200), y-(17*H/200), x+(41*H/200), y-(1*H/200), x+(14*H/200), y-(29*H/200)); //hair strand
-
-fill(5, 5, 5); //eye color
-ellipse(x+(15*H/200), y+(7*H/200), 18*H/200, 12*H/200); //left eye outline
-ellipse(x+(45*H/200), y+(7*H/200), 18*H/200, 12*H/200); //right eye outline
-fill(255, 255, 255); //eyeball color
-ellipse(x+(15*H/200), y+(7*H/200), 18*H/200, 12*H/200); //left eyeball
-ellipse(x+(45*H/200), y+(7*H/200), 18*H/200, 12*H/200); //right eyeball
-fill(80, 105, 6); //pupil color
-ellipse(x+(16*H/200), y+(7*H/200), 6*H/200, 4*H/200); //left pupil
-ellipse(x+(46*H/200), y+(7*H/200), 6*H/200, 4*H/200); //right pupil
-
-fill(240, 192, 222); //mouth color
-arc(x+(32*H/200), y+(42*H/200), 36*H/200, 31*H/200, 3*H/200,178); //mouth
-fill(255, 255, 255); //teeth color
-quad(x+(48*H/200), y+(46*H/200), x+(18*H/200), y+(47*H/200), x+(16*H/200), y+(44*H/200), x+(49*H/200), y+(43*H/200)); //top teeth
-quad(x+(40*H/200), y+(55*H/200), x+(26*H/200), y+(56*H/200), x+(20*H/200), y+(53*H/200), x+(46*H/200), y+(52*H/200)); //bottom teeth
-
-fill(0, 0, 0); //nose color
-bezier(x+(41*H/200), y+(24*H/200), x+(15*H/200), y+(48*H/200), x+(52*H/200), y+(24*H/200), x+(31*H/200), y+(17*H/200)); //nose
-
-fill(0, 0, 0); //right airpod outline color
-bezier(x+(72*H/200), y+(40*H/200), x+(83*H/200), y-(13*H/200), x+(49*H/200), y+(18*H/200), x+(71*H/200), y+(16*H/200)); //right airpod outline
-fill(255, 255, 255); //right airpod color
-bezier(x+(72*H/200), y+(40*H/200), x+(83*H/200), y-(13*H/200), x+(49*H/200), y+(18*H/200), x+(71*H/200), y+(16*H/200)); //right airpod
-fill(0, 0, 0); //left airpod outline color
-bezier(x-(12*H/200), y+(40*H/200), x-(18*H/200), y-(13*H/200), x+(11*H/200), y+(18*H/200), x-(8*H/200), y+(16*H/200)); //left airpod outline
-fill(255, 255, 255); //left airpod color
-bezier(x-(12*H/200), y+(40*H/200), x-(18*H/200), y-(13*H/200), x+(11*H/200), y+(18*H/200), x-(8*H/200), y+(16*H/200)); //leftt airpod  
-};
-var drawMyBody = function(x, y,H) {
-noStroke();
-fill(250, 178, 90); //shirt color
-rect(x+(2*H/200), y+(66*H/200), 59*H/200, 70*H/200); //shirt
-
-fill(0, 0, 0); //shirt text color
-textSize(23*H/200); //shirt text size
-text("NM", x+(17*H/200), y+(112*H/200)); //shirt text
-};
-var drawMyBitmoji = function(x, y, H) {
     
-    drawMyBody(x, y, H);
-    drawMyHead(x, y, H);
-    
-};
-// JESHUA'S BITMOJI    
-var BitmojiX = 100;
-var BitmojiY= 100;
-var Height = 100;
-var drawBitmoji = function(BitmojiX, BitmojiY,Height)
-{ 
-    var drawBitmojiHead = function(BitmojiX,BitmojiY,Height)
-{
-    fill (255, 220, 177); //skin color
-    noStroke();
-ellipse (BitmojiX+(Height/100), BitmojiY+(Height/100), Height, Height); //head
-    stroke(0);
-    strokeWeight(1);
-        
-        arc(BitmojiX+(Height/100),BitmojiY+(Height/100*16),Height*7/100,Height*7/100,-80,180); //nose
-    fill(0);
-        
-        arc (BitmojiX+(Height/100),BitmojiY+(Height/100*23),Height*7/21,Height*-33/100,-178,0); //mouth
-    fill(255);
-            
-            rect(BitmojiX-(Height/100*15),BitmojiY+(Height/100*23),Height*18/58,Height*1/31,3);//teeth
-            
-    noStroke();
-    fill(250, 150, 150);
-        
-        arc (BitmojiX+(Height/100),BitmojiY+(Height/100*36),Height*1/5,Height*7/100,-178,186); //tongue
-    noStroke ();
-    fill(255);
-    
-        arc (BitmojiX+(Height/100),BitmojiY-(Height/100*12),Height*19/25,Height*79/100, -180,0); //head size      clean up
-    fill(255); //clean up
-    fill(0, 0, 0);
-        arc (BitmojiX-(Height/100*46),BitmojiY+(Height/100*37),Height*23/100,Height*11/10,0,361); //left chisel
-        arc (BitmojiX+(Height/100*45),BitmojiY+(Height/100*37),Height*23/100,Height*11/10,0,361); //right chisel
-    noStroke();
-        arc (BitmojiX-(Height/100*46),BitmojiY+(Height/100*33),Height*25/20,Height*-29/50,299,319); //left jaw       line
-        arc (BitmojiX+(Height/100*46),BitmojiY+(Height/100*33),Height*25/20,Height*-29/50,221,237); //right jaw      line
-        arc (BitmojiX-(Height/100*49),BitmojiY+(Height/100*37),Height*23/100,Height*32/25,0,363); //left chisel      clean up
-        fill(0, 0, 0);
-        arc (BitmojiX+(Height/100*49),BitmojiY+(Height/100*37),Height*6/25,Height*37/25,0,363); //right chisel       clean up
-    strokeWeight(2);
-             //clean up
-    strokeWeight(1);
-    fill(255,220,177); //skin tone for ear
-        arc (BitmojiX-(Height/100*34),BitmojiY+(Height/100*12),Height*3/10,Height*23/100,-270,-82); //left ear
-        arc (BitmojiX+(Height/100*33),BitmojiY+(Height/100*12),Height*3/10,Height*23/100,-96,89); //right ear
-
-    fill(0); //color for hair & eyes
-        arc (BitmojiX-(Height/100*35),BitmojiY+(Height/100*19),Height*13/20,Height*69/100,-104.7,-85); //left side burn
-        arc (BitmojiX+(Height/100*35),BitmojiY+(Height/100*19),Height*13/20,Height*69/100,-101,-79); //right side burn
-        arc (BitmojiX-(Height/100*1.5),BitmojiY-(Height/100*14),Height*43/50,Height*69/100,-178,0); //hair
-        
-ellipse (BitmojiX-(Height/100*15),BitmojiY+(Height/100*5),Height*1/10,Height*1/5); //left eye ball
-ellipse (BitmojiX+(Height/100*13),BitmojiY+(Height/100*5),Height*1/10,Height*1/5); //right eye ball
-    fill (255, 220, 177); //skin color
-    stroke(0);
-        arc(BitmojiX-(Height/100*24),BitmojiY+(Height/100*27),Height*11/100,Height*1/5,85,177); // left     dimpal
-        arc(BitmojiX+(Height/100*23),BitmojiY+(Height/100*27),Height*11/100,Height*1/5,-2,101); // right        dimpal
-};
-
-var drawBitmojiBody = function(BitmojiX, BitmojiY,Height)
-{
-    fill(12, 12, 173); //jacket color
-arc (BitmojiX+(Height/100),BitmojiY+(Height/100*50),Height*49/100,Height*-9/25,156,385); //neck
-arc (BitmojiX+(Height/100),BitmojiY+(Height/100*75),Height*107/100,Height*12/25,-178,0); //hair
-    fill(13, 13, 122); 
-    strokeWeight(3);
-arc (BitmojiX+(Height/100*32),BitmojiY+(Height/100*56),Height*39/100,Height*-1/5,317,523); //hood 
-};
-    drawBitmojiHead(BitmojiX, BitmojiY,Height);
-    drawBitmojiBody(BitmojiX, BitmojiY,Height);
-};
 /***Game Variables, Logic, Collision Detections, and Sprites***/
 var colors = {
     colorData: [
@@ -3603,20 +3761,20 @@ var coin = function()
 coin();
 fill(255, 255, 255);
 textSize(12);
-text("CREATORS",323,12);
+text("CREATORS",323,2);
 drawMyBitmoji(366,27,60); //NOLAN
 drawBitmoji(336,33,33); //JESHUA
 drawSprite(96,139,-2,110,69);
 fill(255, 255, 255);
 textSize(22);
 if (Lives === 3) {
- text("X 3", 234, 44);   
+ text("X 3", 234, 20);   
 }
 if (Lives === 2) {
- text("X 2", 234, 44);   
+ text("X 2", 234, 20);   
 }
 if (Lives === 1) {
- text("X 1", 234, 44);   
+ text("X 1", 234, 20);   
 }
 if (Lives === 0) {
  //splashScreen;
