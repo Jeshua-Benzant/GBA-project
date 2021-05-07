@@ -1,0 +1,70 @@
+var BitmojiX = 100;
+var BitmojiY= 100;
+var Height = 100;
+
+var drawBitmoji = function(BitmojiX, BitmojiY,Height)
+{ 
+    var drawBitmojiHead = function(BitmojiX,BitmojiY,Height)
+{
+    fill (255, 220, 177); //skin color
+    noStroke();
+ellipse (BitmojiX+(Height/100), BitmojiY+(Height/100), Height, Height); //head
+    stroke(0);
+    strokeWeight(1);
+        
+        arc(BitmojiX+(Height/100),BitmojiY+(Height/100*16),Height*7/100,Height*7/100,-80,180); //nose
+    fill(0);
+        
+        arc (BitmojiX+(Height/100),BitmojiY+(Height/100*23),Height*7/21,Height*-33/100,-178,0); //mouth
+    fill(255);
+            
+            rect(BitmojiX-(Height/100*15),BitmojiY+(Height/100*23),Height*18/58,Height*1/31,3);//teeth
+            
+    noStroke();
+    fill(250, 150, 150);
+        
+        arc (BitmojiX+(Height/100),BitmojiY+(Height/100*36),Height*1/5,Height*7/100,-178,186); //tongue
+    noStroke ();
+    fill(255);
+    
+        arc (BitmojiX+(Height/100),BitmojiY-(Height/100*15),Height*19/20,Height*79/100, -180,0); //head size      clean up
+    fill(255); //clean up
+        arc (BitmojiX-(Height/100*46),BitmojiY+(Height/100*37),Height*23/100,Height*11/10,0,361); //left chisel
+        arc (BitmojiX+(Height/100*45),BitmojiY+(Height/100*37),Height*23/100,Height*11/10,0,361); //right chisel
+    noStroke();
+        arc (BitmojiX-(Height/100*46),BitmojiY+(Height/100*33),Height*25/20,Height*-29/50,299,319); //left jaw       line
+        arc (BitmojiX+(Height/100*46),BitmojiY+(Height/100*33),Height*25/20,Height*-29/50,221,237); //right jaw      line
+        arc (BitmojiX-(Height/100*49),BitmojiY+(Height/100*37),Height*23/100,Height*32/25,0,363); //left chisel      clean up
+        arc (BitmojiX+(Height/100*49),BitmojiY+(Height/100*37),Height*6/25,Height*37/25,0,363); //right chisel       clean up
+    strokeWeight(2);
+             //clean up
+    strokeWeight(1);
+    fill(255,220,177); //skin tone for ear
+        arc (BitmojiX-(Height/100*34),BitmojiY+(Height/100*12),Height*3/10,Height*23/100,-270,-82); //left ear
+        arc (BitmojiX+(Height/100*33),BitmojiY+(Height/100*12),Height*3/10,Height*23/100,-96,89); //right ear
+
+    fill(0); //color for hair & eyes
+        arc (BitmojiX-(Height/100*35),BitmojiY+(Height/100*19),Height*13/20,Height*69/100,-104.7,-85); //left side burn
+        arc (BitmojiX+(Height/100*35),BitmojiY+(Height/100*19),Height*13/20,Height*69/100,-101,-79); //right side burn
+        arc (BitmojiX-(Height/100*1.5),BitmojiY-(Height/100*14),Height*43/50,Height*69/100,-178,0); //hair
+        
+ellipse (BitmojiX-(Height/100*15),BitmojiY+(Height/100*5),Height*1/10,Height*1/5); //left eye ball
+ellipse (BitmojiX+(Height/100*13),BitmojiY+(Height/100*5),Height*1/10,Height*1/5); //right eye ball
+    fill (255, 220, 177); //skin color
+    stroke(0);
+        arc(BitmojiX-(Height/100*24),BitmojiY+(Height/100*27),Height*11/100,Height*1/5,85,177); // left     dimpal
+        arc(BitmojiX+(Height/100*23),BitmojiY+(Height/100*27),Height*11/100,Height*1/5,-2,101); // right        dimpal
+};
+
+var drawBitmojiBody = function(BitmojiX, BitmojiY,Height)
+{
+    fill(12, 12, 173); //jacket color
+arc (BitmojiX+(Height/100),BitmojiY+(Height/100*50),Height*49/100,Height*-9/25,156,385); //neck
+arc (BitmojiX+(Height/100),BitmojiY+(Height/100*75),Height*107/100,Height*12/25,-178,0); //hair
+    fill(13, 13, 122); 
+    strokeWeight(3);
+arc (BitmojiX+(Height/100*32),BitmojiY+(Height/100*56),Height*39/100,Height*-1/5,317,523); //hood 
+};
+    drawBitmojiHead(BitmojiX, BitmojiY,Height);
+    drawBitmojiBody(BitmojiX, BitmojiY,Height);
+};
