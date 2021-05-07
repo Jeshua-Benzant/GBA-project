@@ -93,18 +93,18 @@ ellipse (BitmojiX+(Height/100), BitmojiY+(Height/100), Height, Height); //head
         
         arc (BitmojiX+(Height/100),BitmojiY+(Height/100*36),Height*1/5,Height*7/100,-178,186); //tongue
     noStroke ();
-    fill(0, 0, 0);
+    fill(0, 2, 125);
     
         arc (BitmojiX+(Height/100),BitmojiY-(Height/100*12),Height*31/25,Height*82/100, -180,0); //head size      clean up
     fill(255); //clean up
-    fill(0, 0, 0);
+    fill(94, 0, 138);
         arc (BitmojiX-(Height/100*46),BitmojiY+(Height/100*37),Height*23/100,Height*11/10,0,361); //left chisel
         arc (BitmojiX+(Height/100*45),BitmojiY+(Height/100*37),Height*23/100,Height*11/10,0,361); //right chisel
     noStroke();
         arc (BitmojiX-(Height/100*46),BitmojiY+(Height/100*33),Height*25/20,Height*-29/50,299,319); //left jaw       line
         arc (BitmojiX+(Height/100*46),BitmojiY+(Height/100*33),Height*25/20,Height*-29/50,221,237); //right jaw      line
         arc (BitmojiX-(Height/100*49),BitmojiY+(Height/100*37),Height*23/100,Height*32/25,0,363); //left chisel      clean up
-        fill(0, 0, 0);
+        fill(94, 0, 138);
         arc (BitmojiX+(Height/100*49),BitmojiY+(Height/100*37),Height*6/25,Height*37/25,0,363); //right chisel       clean up
     strokeWeight(2);
              //clean up
@@ -173,9 +173,9 @@ Button.prototype.handleMouseClick = function() {
 };
 //start button
 var startButton = new Button({
-    x: 121,
-    y: 135,
-    width: 156,
+    x: 226,
+    y: 271,
+    width: 169,
     label: "   START",
     onClick: function() {
         currentScene = 1;}
@@ -186,8 +186,8 @@ var splashback = function(c){
     noStroke();
     fill(0, 2, 125);
     rect(0,0,width,height);
-    for ( var i = 0; i < 10; i ++){
-        for (var j = 0; j < 10; j ++){
+    for ( var i = 0; i < 16; i ++){
+        for (var j = 0; j < 16; j ++){
             fill(0, 0, 0,25);
             rect(6 + i * 39, 7 + j * 39, 36,36);
             fill(c);
@@ -204,19 +204,19 @@ if(currentScene === 0)
 {
     splashback(color(99, 19, 212));
     fill(94, 0, 138);
-    rect(0,350,401,60);
-    drawMyBitmoji(280, 336, 86);
-    drawMyBitmoji(351, 336, 86);
+    rect(0,540,608,60);
+    drawMyBitmoji(280, 540, 86);
+    drawBitmoji(384, 552, 49);
     textSize(40);
     fill(94, 0, 138);
-    rect(0,-1,401,60);
+    rect(0,-1,608,60);
     fill(0, 0, 0);
-    text("Dungeon of the Dead", 11, 42);
+    text("Dungeon of the Dead", 103, 5);
     textSize(20);
-    text("Created by:", 8, 386);
+    text("Created by:", 8, 558);
     textSize(15);
-    text("Jeshua Benzant", 124, 373);
-    text("& Nolan Marx", 132, 391);
+    text("Jeshua Benzant", 124, 548);
+    text("& Nolan Marx", 132, 564);
     startButton.draw();
 }
 };
