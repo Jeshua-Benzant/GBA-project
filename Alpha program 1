@@ -5,7 +5,6 @@ var GameMapX = [[800]]; //that can be adjusted
 
 var GameMapY = [[1200]];//and the system will adjust all the camera aspects to it.
 var currentScene = 0;
-
 //BITMOJIS
 //NOLAN'S BITMOJI    
 var drawMyHead = function (x, y, H){
@@ -68,7 +67,7 @@ var drawMyBitmoji = function(x, y, H) {
     drawMyHead(x, y, H);
     
 };
-// JESHUA'S BITMOJI    
+//Jeshua's Bitmoji
 var BitmojiX = 100;
 var BitmojiY= 100;
 var Height = 100;
@@ -94,9 +93,9 @@ ellipse (BitmojiX+(Height/100), BitmojiY+(Height/100), Height, Height); //head
         
         arc (BitmojiX+(Height/100),BitmojiY+(Height/100*36),Height*1/5,Height*7/100,-178,186); //tongue
     noStroke ();
-    fill(255);
+    fill(0, 0, 0);
     
-        arc (BitmojiX+(Height/100),BitmojiY-(Height/100*12),Height*19/25,Height*79/100, -180,0); //head size      clean up
+        arc (BitmojiX+(Height/100),BitmojiY-(Height/100*12),Height*31/25,Height*82/100, -180,0); //head size      clean up
     fill(255); //clean up
     fill(0, 0, 0);
         arc (BitmojiX-(Height/100*46),BitmojiY+(Height/100*37),Height*23/100,Height*11/10,0,361); //left chisel
@@ -139,6 +138,7 @@ arc (BitmojiX+(Height/100*32),BitmojiY+(Height/100*56),Height*39/100,Height*-1/5
     drawBitmojiHead(BitmojiX, BitmojiY,Height);
     drawBitmojiBody(BitmojiX, BitmojiY,Height);
 };
+
 
 // KHAN BUTTON
 var Button = function(config) {
@@ -188,7 +188,7 @@ var helpButton = new Button({
     width: 218,
     label: "HOW TO PLAY",
     onClick: function() {
-        currentScene = 1;}
+        currentScene = 2;}
 });
 // SPLASH SCREEN
 var splashback = function(c){
@@ -296,6 +296,7 @@ var drawSplashWin = function(){
     helpButton.draw();
 };
 
+
 var limit = {
     x: function() //adds up all the  x collision values starting from zero to current x Right collision
 {
@@ -383,67 +384,12 @@ var coolDown = function(a)
     var cool_temp = a;
     if(a > 0)
     {
-    while (cool_temp > 0)
-    {
-        if( cool_temp === 0)
+        a-= cos(1);
+        if( cool_temp <= 0)
         { return false;}
-        else{
-        cool_temp--;}
-    }}
+    }
     else{return true;}
 };
-
-var sword = function(){
-    pushMatrix();
-    translate(-21,450);
-    rotate(-82);
-    //drawSprite(65,205,177,24*3,24*3); //Frame 6
-    popMatrix();
-    pushMatrix();
-    translate(-108,173);
-    rotate(-33);
-    //drawSprite(66,205,177,24*3,24*3); //Frame 7
-    popMatrix();
-    pushMatrix();
-    translate(-71,508);
-    rotate(-85);
-    //drawSprite(67,259,211,24*3,24*3); //Frame 8
-    popMatrix();
-    pushMatrix();
-    translate(-33,534);
-    rotate(-85);
-    //drawSprite(67,259,211,24*3,24*3); //Frame 9
-    popMatrix();
-    pushMatrix();
-    translate(402,615);
-    rotate(-161);
-    //drawSprite(61,205,177,24*3,24*3); //Frame 16
-    popMatrix();
-    pushMatrix();
-    translate(402,615);
-    rotate(-161);
-    //drawSprite(61,205,177,24*3,24*3); //Frame 17
-    popMatrix();
-    translate(702,406);
-    rotate(-219);
-    //drawSprite(61,233,269,24*3,24*3); //Frame 18 
-    popMatrix();
-    pushMatrix();
-    translate(209,-3);
-    rotate(35);
-    //drawSprite(61,205,177,24*3,24*3); //Frame 25
-    popMatrix();
-    pushMatrix();
-    translate(21,-19);
-    rotate(4);
-    //drawSprite(61,205,177,24*3,24*3); //Frame 26
-    popMatrix();
-    pushMatrix();
-    translate(45,-128);
-    rotate(13);
-    //drawSprite(61,233,269,24*3,24*3); //Frame 27 
-    popMatrix();};
-    
 /***Game Variables, Logic, Collision Detections, and Sprites***/
 var colors = {
     colorData: [
@@ -2002,9 +1948,9 @@ var sprites = [
 [0,0,0,0,0,0,0,0,0,0],
 ],
 },
-    ///* WIZARD ANIMATIONS *///
+    ///* WIZARD ANIMATIONS (unimplemented Boss)*///
 {imageData: [
-/*57 WIZARD FRONT - STILL*/
+/*57 WIZARD FRONT - STILL
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [1,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [1,1,0,1,31,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -2053,9 +1999,9 @@ var sprites = [
 [0,1,29,1,32,1,0,0,0,0,0,1,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,1,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,1,29,1,32,1,0,0,0,0,0,1,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,1,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,1,29,29,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0],
-], 
+*/], 
 },{imageData: [
-/*58 WIZARD FRONT - ATTACK FRAME*/
+/*58 WIZARD FRONT - ATTACK FRAME
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [1,0,0,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [1,1,0,1,31,1,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -2104,9 +2050,9 @@ var sprites = [
 [0,1,29,1,32,1,0,0,0,0,0,1,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,1,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,1,29,1,32,1,0,0,0,0,0,1,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,1,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,1,29,29,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0],
-], 
+*/], 
 },{imageData: [
-/*59 WIZARD FRONT - HURT FRAME*/
+/*59 WIZARD FRONT - HURT FRAME
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [34,0,0,0,34,0,0,0,34,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [34,34,0,34,27,34,0,34,34,0,0,0,0,0,0,0,0,0,0,0,0,0,34,34,34,34,34,34,34,34,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -2155,9 +2101,9 @@ var sprites = [
 [0,34,36,34,27,34,0,0,0,0,0,34,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,34,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,34,36,34,27,34,0,0,0,0,0,34,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,34,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,34,36,36,34,0,0,0,0,0,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,0,0,0,0,0,0,0,0,0,0,0,0],
-], 
+*/], 
 },{imageData: [
-/*60 WIZARD SIDE - STILL*/
+/*60 WIZARD SIDE - STILL
 [0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,1,31,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,1,31,1,0,0,0,0,1,30,30,30,30,30,30,30,30,30,30,30,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -2206,9 +2152,9 @@ var sprites = [
 [0,0,0,0,0,0,0,0,0,1,29,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,1,1,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,1,1,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0],
-], 
+*/], 
 },{imageData: [
-/*61 WIZARD SIDE - ATTACK FRAME*/
+/*61 WIZARD SIDE - ATTACK FRAME
 [0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,1,31,1,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,1,31,1,0,0,0,0,1,30,30,30,30,30,30,30,30,30,30,30,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -2257,9 +2203,9 @@ var sprites = [
 [0,0,0,0,0,0,0,0,0,1,29,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,1,1,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,1,1,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0],
-], 
+*/], 
 },{imageData: [
-/*62 WIZARD SIDE - HURT FRAME*/
+/*62 WIZARD SIDE - HURT FRAME
 [0,0,0,0,0,0,0,0,0,0,34,0,0,0,0,0,0,34,34,34,34,34,34,34,34,34,34,34,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,34,27,34,0,0,0,0,34,27,27,27,27,27,27,27,27,27,27,27,34,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,34,27,34,0,0,0,34,27,27,27,27,27,27,27,27,27,27,27,27,27,34,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -2308,9 +2254,9 @@ var sprites = [
 [0,0,0,0,0,0,0,0,0,34,34,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,34,34,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,0,0,0,0,0,0,0,0,0,0,0],
-], 
+*/], 
 },{imageData: [
-/*63 WIZARD BACK - STILL*/
+/*63 WIZARD BACK - STILL
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,1,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,31,1,0,1,1,0],
@@ -2359,9 +2305,9 @@ var sprites = [
 [0,0,0,0,0,0,0,0,0,0,0,1,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,1,0,0,0,0,1,29,32,1,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,1,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,1,0,0,0,0,0,1,29,1,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,29,1,0,0,0],
-],
+*/],
 },{imageData: [
-/*64 WIZARD BACK - ATTACK FRAME*/
+/*64 WIZARD BACK - ATTACK FRAME
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,1,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,1,31,1,0,1,1,0],
@@ -2410,9 +2356,9 @@ var sprites = [
 [0,0,0,0,0,0,0,0,0,0,0,1,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,1,0,0,0,0,1,29,32,1,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,1,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,30,1,0,0,0,0,0,1,29,1,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,1,29,1,0,0,0],
-],
+*/],
 },{imageData: [
-/*65 WIZARD BACK - HURT FRAME*/
+/*65 WIZARD BACK - HURT FRAME
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,34,0,0,0,34,0,0,0,34,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,34,34,34,34,34,34,34,34,0,0,0,0,0,0,0,0,0,0,0,0,0,34,34,0,34,27,34,0,34,34,0],
@@ -2461,7 +2407,7 @@ var sprites = [
 [0,0,0,0,0,0,0,0,0,0,0,34,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,34,0,0,0,0,34,36,27,34,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,34,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,27,34,0,0,0,0,0,34,36,34,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,34,0,0,0,0,0,34,34,36,34,0,0,0],
-], 
+*/], 
 },
         /// ITEMS ///
 {imageData: [
@@ -2621,7 +2567,7 @@ var sprites = [
 [0,0,19,0,0],
 ],
 },{imageData: [
-/*75 FIREBALL*/
+/*75 FIREBALL (unimplemented)
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -2646,7 +2592,7 @@ var sprites = [
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-],
+*/],
 },
             // HEALTH BARS //
 {imageData: [
@@ -2878,8 +2824,7 @@ var sprites = [
 [0,0,0,0,0,0,0,0,0,1,32,32,32,1,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,1,32,1,0,0,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0],
-],
-},
+],},
 {imageData: [
 /*96 MC HEAD*/
 [0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0],
@@ -2895,6 +2840,168 @@ var sprites = [
 [0,0,0,0,0,0,0,0,1,24,24,24,24,24,1,0,0,0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0],
 ],
+},{imageData: [
+/*97 MC FRONT - HURT FRAME*/
+[0,0,0,0,0,0,0,19,19,19,19,19,19,19,19,19,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,19,19,23,12,23,12,23,23,12,19,19,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,19,23,12,23,23,23,12,23,23,12,19,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,19,12,23,23,23,19,19,12,23,12,19,0,0,0,0,0,0,0],
+[0,0,0,0,0,19,23,23,12,23,24,24,24,23,23,23,19,0,0,0,0,0,0,0],
+[0,0,0,0,0,19,23,23,19,23,19,24,19,6,19,23,23,19,0,0,0,0,0,0],
+[0,0,0,0,0,0,19,19,24,6,19,24,19,6,24,19,19,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,19,24,24,24,24,24,24,24,24,24,19,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,19,24,24,24,24,24,24,24,7,24,19,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,19,24,24,7,7,7,7,7,24,24,19,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,19,24,24,24,24,24,24,24,19,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,19,19,19,19,19,19,19,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,19,19,12,12,12,23,12,12,12,19,19,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,19,12,12,12,12,23,12,12,12,12,19,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,19,12,19,12,23,12,23,12,19,12,19,0,0,0,0,0,0,0],
+[0,0,0,0,0,19,19,12,19,12,23,12,23,12,19,12,19,19,0,0,0,0,0,0],
+[0,0,0,0,0,19,12,12,19,12,23,12,23,12,19,12,12,19,0,0,0,0,0,0],
+[0,0,0,0,0,19,24,24,19,12,23,12,23,12,19,24,24,19,0,0,0,0,0,0],
+[0,0,0,0,0,19,24,24,19,12,12,12,12,12,19,24,24,19,0,0,0,0,0,0],
+[0,0,0,0,0,0,19,19,19,19,19,19,19,19,19,19,19,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,19,19,19,19,19,19,19,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,19,19,0,19,19,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,19,19,0,19,19,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,19,19,19,0,19,19,19,0,0,0,0,0,0,0,0,0],
+], 
+},{imageData: [
+/*98 MC LEFT SIDE - HURT FRAME*/
+[0,0,0,0,0,0,0,0,19,19,19,19,19,19,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,19,23,23,23,23,23,23,19,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,19,19,23,23,23,23,23,23,23,19,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,19,23,23,23,23,23,23,23,23,23,19,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,19,23,19,23,23,23,19,23,23,23,23,19,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,19,24,19,23,19,19,23,23,23,23,19,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,19,24,19,23,19,24,19,19,23,23,19,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,19,24,19,19,24,24,19,19,23,23,19,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,19,24,12,7,24,24,24,24,19,23,19,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,19,24,12,6,24,24,24,24,12,19,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,19,24,24,24,24,24,24,12,19,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,19,7,24,24,12,19,19,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,19,19,19,19,12,12,19,19,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,19,23,23,12,12,12,12,19,19,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,19,23,12,12,19,19,12,12,19,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,19,23,12,12,12,19,12,12,19,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,19,23,12,12,12,19,19,19,19,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,19,12,12,12,12,19,24,24,19,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,24,12,12,12,12,19,24,24,19,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,24,19,19,19,19,19,19,19,19,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,19,19,19,19,19,19,19,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,19,19,19,0,19,19,19,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,19,19,0,0,19,19,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,19,19,19,0,19,19,19,0,0,0,0,0,0,0,0,0],
+], 
+},{imageData: [
+/*99 MC BACK - HURT FRAME*/
+[0,0,0,0,0,0,0,19,19,19,19,19,19,19,19,19,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,19,19,23,23,12,23,23,23,23,19,19,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,19,23,12,23,23,12,23,23,12,23,19,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,19,23,23,12,23,23,12,12,23,23,19,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,19,23,12,23,12,23,12,23,12,23,23,19,0,0,0,0,0,0],
+[0,0,0,0,0,19,23,23,12,23,12,23,12,23,23,23,23,19,0,0,0,0,0,0],
+[0,0,0,0,0,0,19,23,12,12,23,12,23,12,23,23,19,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,19,23,23,12,23,23,23,23,12,23,19,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,19,19,23,23,23,23,23,23,23,23,19,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,19,24,19,23,23,19,19,23,19,23,19,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,19,24,19,19,24,24,19,24,19,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,19,19,19,19,19,19,19,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,19,19,12,12,12,23,12,12,12,19,19,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,19,12,19,12,12,12,12,12,19,12,19,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,19,12,19,12,12,12,12,12,19,12,19,0,0,0,0,0,0,0],
+[0,0,0,0,0,19,19,12,19,12,12,12,12,12,19,12,19,19,0,0,0,0,0,0],
+[0,0,0,0,0,19,12,12,19,12,12,12,12,12,19,12,12,19,0,0,0,0,0,0],
+[0,0,0,0,0,19,24,24,19,12,12,12,12,12,19,24,24,19,0,0,0,0,0,0],
+[0,0,0,0,0,19,24,24,19,12,12,12,12,12,19,24,24,19,0,0,0,0,0,0],
+[0,0,0,0,0,0,19,19,19,19,19,19,19,19,19,19,19,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,19,19,19,19,19,19,19,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,19,19,0,19,19,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,19,19,0,19,19,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,19,19,19,0,19,19,19,0,0,0,0,0,0,0,0,0],
+], 
+},{imageData: [
+/*100 GHOST FRONT - HURT FRAME*/
+[0,0,0,0,0,0,0,19,19,19,19,19,19,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,19,12,12,12,12,12,12,19,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,19,12,19,19,19,19,19,19,12,19,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,19,12,19,19,19,19,19,19,19,19,12,19,0,0,0,0,0,0,0,0],
+[0,0,0,0,19,12,19,19,12,19,19,12,19,19,12,19,0,0,0,0,0,0,0,0],
+[0,0,0,0,19,12,19,19,19,19,19,19,19,19,12,19,0,0,0,0,0,0,0,0],
+[0,0,0,0,19,12,19,19,19,19,19,19,19,19,12,19,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,19,12,19,19,19,19,19,19,12,19,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,19,12,19,19,19,19,12,19,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,19,12,12,19,19,12,12,19,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,19,12,12,12,12,12,12,12,12,19,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,19,12,12,12,23,23,12,12,12,12,12,19,0,0,0,0,0,0,0,0],
+[0,0,0,0,19,12,12,12,12,23,23,12,12,12,12,19,0,0,0,0,0,0,0,0],
+[0,0,0,0,19,12,12,19,19,12,12,19,19,12,12,19,0,0,0,0,0,0,0,0],
+[0,0,0,19,12,12,19,0,19,12,23,19,0,19,12,12,19,0,0,0,0,0,0,0],
+[0,0,0,19,12,19,0,19,23,12,12,12,19,0,19,12,19,0,0,0,0,0,0,0],
+[0,19,12,12,12,19,0,19,19,23,23,19,19,0,19,12,12,12,19,0,0,0,0,0],
+[0,0,19,12,12,12,0,19,12,23,12,12,19,0,19,12,12,19,0,0,0,0,0,0],
+[0,19,12,12,12,0,0,19,23,12,12,23,19,0,0,19,12,12,19,0,0,0,0,0],
+[0,19,12,12,19,0,0,19,12,12,23,19,0,0,0,19,12,12,19,0,0,0,0,0],
+[0,19,12,19,0,0,19,23,12,12,19,19,0,0,0,0,19,12,19,0,0,0,0,0],
+[0,0,19,0,0,0,19,23,12,12,19,0,0,0,0,0,0,19,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,19,23,12,12,19,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,19,19,19,19,19,0,0,0,0,0,0,0,0,0,0,0],
+],
+},{imageData: [
+/*101 GHOST LEFT SIDE - HURT FRAME*/
+[0,0,0,0,0,0,0,19,19,19,19,19,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,19,12,12,12,12,12,19,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,19,23,19,19,12,12,12,12,19,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,23,19,19,19,19,12,12,12,19,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,12,12,19,12,19,19,12,12,12,19,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,12,19,19,19,19,19,12,12,12,19,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,19,19,19,19,19,12,12,12,12,19,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,19,23,19,19,12,12,12,12,12,19,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,19,12,12,12,12,12,12,19,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,19,12,12,12,12,12,12,12,19,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,19,12,12,12,12,12,12,12,12,12,19,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,19,12,12,23,23,12,12,12,12,12,12,19,0,0,0,0,0,0,0],
+[0,0,0,0,0,19,12,12,12,23,23,12,12,12,12,12,19,0,0,0,0,0,0,0],
+[0,0,0,0,0,19,12,19,12,12,12,12,12,19,19,12,12,19,0,0,0,0,0,0],
+[0,0,0,0,19,12,19,0,19,12,12,12,19,0,0,19,12,19,0,0,0,0,0,0],
+[0,0,0,19,12,19,0,0,19,12,12,12,19,0,0,0,19,12,19,0,0,0,0,0],
+[0,19,19,12,12,19,0,0,19,19,24,19,19,0,0,0,19,12,19,0,0,0,0,0],
+[19,12,12,12,19,0,0,0,19,12,12,12,19,0,0,0,19,12,12,19,0,0,0,0],
+[19,12,12,19,0,0,0,0,19,12,12,19,0,0,0,0,0,19,12,12,19,0,0,0],
+[0,19,19,0,0,0,0,19,12,12,19,0,0,0,0,0,0,19,12,12,19,0,0,0],
+[0,0,0,0,0,0,0,19,12,12,19,0,0,0,0,0,0,0,19,12,19,0,0,0],
+[0,0,0,0,0,0,19,19,12,12,19,0,0,0,0,0,0,0,0,19,0,0,0,0],
+[0,0,0,0,0,0,0,0,19,12,12,19,0,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,0,19,19,19,19,0,0,0,0,0,0,0,0,0,0,0],
+], 
+},{imageData: [
+/*102 GHOST BACK - HURT FRAME*/
+[0,0,0,0,0,0,0,19,19,19,19,19,19,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,19,23,19,19,19,19,23,19,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,19,23,19,19,19,19,19,19,23,19,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,19,12,23,19,19,19,19,19,19,23,12,19,0,0,0,0,0,0,0,0],
+[0,0,0,0,19,12,23,19,19,19,19,19,19,23,12,19,0,0,0,0,0,0,0,0],
+[0,0,0,0,19,12,23,19,19,19,19,19,19,23,12,19,0,0,0,0,0,0,0,0],
+[0,0,0,0,19,12,12,23,19,19,19,19,23,12,12,19,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,19,12,12,23,19,19,23,12,12,19,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,19,12,23,19,19,23,12,19,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,19,12,12,23,23,12,12,19,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,19,12,12,12,12,12,12,12,12,19,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,19,12,12,12,12,12,12,12,12,12,12,19,0,0,0,0,0,0,0,0],
+[0,0,0,0,19,12,12,12,12,12,12,12,12,12,12,19,0,0,0,0,0,0,0,0],
+[0,0,0,0,19,12,12,19,19,12,12,19,19,12,12,19,0,0,0,0,0,0,0,0],
+[0,0,0,19,12,12,19,0,19,12,12,19,0,19,12,12,19,0,0,0,0,0,0,0],
+[0,0,0,19,12,19,0,19,12,12,12,12,19,0,19,12,19,0,0,0,0,0,0,0],
+[0,19,12,12,12,19,0,19,19,19,19,19,19,0,19,12,12,12,19,0,0,0,0,0],
+[0,0,19,12,12,12,0,19,23,12,12,12,19,0,19,12,12,19,0,0,0,0,0,0],
+[0,19,12,12,12,0,0,19,23,12,12,23,19,0,0,19,12,12,19,0,0,0,0,0],
+[0,19,12,12,19,0,0,0,19,23,12,12,19,0,0,19,12,12,19,0,0,0,0,0],
+[0,19,12,19,0,0,0,0,19,19,23,12,23,19,0,0,19,12,19,0,0,0,0,0],
+[0,0,19,0,0,0,0,0,0,19,12,12,12,19,0,0,0,19,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,0,19,23,23,12,19,0,0,0,0,0,0,0,0,0,0,0],
+[0,0,0,0,0,0,0,19,19,19,19,19,0,0,0,0,0,0,0,0,0,0,0,0],
+],
 },
 ];
 var drawSprite = function(sprite,x,y,w,h,flip,bw){
@@ -2908,8 +3015,7 @@ var drawSprite = function(sprite,x,y,w,h,flip,bw){
     var stop = true;
     pushMatrix();
     translate(x,y);
-    for(yarray = 0; yarray < currentSprite.imageData.length; yarray++){
-        for(xarray = 0; xarray < currentSprite.imageData[yarray].length; xarray++){
+    for(yarray = 0; yarray < currentSprite.imageData.length; yarray++){for(xarray = 0; xarray < currentSprite.imageData[yarray].length; xarray++){
             if(!stop){
                 if(last === currentSprite.imageData[yarray][xarray] && pyarray === yarray){
                     last = currentSprite.imageData[yarray][xarray];
@@ -2956,6 +3062,8 @@ var MainCharacter = {
     activeStill: false,
     flip: false,
     flag: false,
+    attack: false,
+    
     front: {
         
         still: function(a,b,c)
@@ -3134,6 +3242,140 @@ var MainCharacter = {
     },
     hurtbox: {},
 };//Main character assortment and interactions
+var scene = {
+    sizeX: 0, //current room width (is called and assigned a value later down the line)
+    sizeY: 0, // same thing here
+    
+    //current camera frame position
+    x: GameMapX[mapY][mapX]/width,
+    y: GameMapY[mapY][mapX]/height,
+collision: { //collision detections 
+    RightX: 0, //(is called and assigned a value later down the line)
+    TopY: 0, // same thing here
+    LeftX: 0, // same thing here
+    BottomY: 0, // same thing here
+    width: 10, //width of detection range
+    
+    active: function(a,b) //active detection function (uses mapX & mapY)
+    {
+        if(Stationary) //stationary camera logic (sees how will the camera react to a room bigger than the canvas width and height itself.
+        { 
+            
+            if(MainCharacter.mapX-scene.collision.LeftX > width/2 && 
+            MainCharacter.mapX-scene.collision.RightX < -width/2)
+           {
+           
+            //println("it works");
+            scene.x = MainCharacter.mapX-width/2;
+           
+           }
+           if( 
+            (MainCharacter.mapY >scene.collision.TopY+height/2) && 
+            (MainCharacter.mapY <scene.collision.BottomY- height/2))
+           {
+           
+            //println("it works");
+            scene.y = MainCharacter.mapY-height/2;
+        }
+        }
+        /* (This was part of what was going to be a bigger map with several different rooms, and interactions between themthe map however was shortened due to time capacity
+        
+        //Right Scroll detection logic
+        if(MainCharacter.mapX-(scene.collision.RightX)>=30)
+        {
+            lastCollision.x = scene.sizeX; //for debugging purposes
+            Stationary = false;
+            
+                SceneMove = true;
+                if(SceneMove)
+                {
+                scene.x+= cos(1)*8;
+                //println("moving");
+                    if(scene.x >= scene.collision.RightX)
+                    {
+                        SceneMove = false;
+                        mapX++;
+                        if(scene.sizeX > width || scene.sizeY > height)
+                        {
+                        Stationary = true;
+                        }
+                    }
+                }
+        }
+        
+        //Bottom Scroll detection logic
+        if(MainCharacter.mapY-(scene.collision.BottomY)>=30)
+        {
+            lastCollision.y = scene.sizeY; //for debugging purposes
+            Stationary = false;
+            
+                SceneMove = true;
+                println(SceneMove);
+                if(SceneMove)
+                {
+                scene.y+= cos(1)*8;
+                //println("moving");
+                    if(scene.y >= scene.collision.BottomY)
+                    {
+                        SceneMove = false;
+                        mapY++;
+                        
+                        if(scene.sizeX > width || scene.sizeY > height)
+                        {
+                            println("big room");
+                        Stationary = true;
+                        }
+                    }
+                }
+        }
+        //Top Scroll detection
+        if((MainCharacter.mapY-scene.collision.TopY)<=-35 && mapY > 0)
+        {
+            lastCollision.y = scene.sizeY; //for debugging purposes
+            Stationary = false;
+                SceneMove = true;
+                if(SceneMove)
+                {
+                    
+                scene.y-= cos(1)*8;
+                //println("top scroll");
+                    if(scene.y <=scene.collision.TopY-height)
+                    {
+                        mapY--;
+                        SceneMove = false;
+                        
+                        if(GameMapX[mapY][mapX] > width ||GameMapY[mapY][mapX] > height)
+                        {
+                        Stationary = true;
+                        }
+                        
+                    }
+                }
+        }
+        //Left Scroll detection
+        if((MainCharacter.mapX-scene.collision.LeftX)<=-35 && mapX > 0)
+        {
+            lastCollision.x = scene.sizeX; //for debugging purposes
+            Stationary = false;
+                SceneMove = true;
+                if(SceneMove)
+                {
+                    
+                scene.x-= cos(1)*8;
+                //println("moving");
+                    if(scene.x <=scene.collision.LeftX-width)
+                    {
+                        mapX--;
+                        SceneMove = false;
+                        
+                        if(GameMapX[mapY][mapX] > width ||GameMapY[mapY][mapX] > height)
+                        {
+                        Stationary = true;
+                        }
+                    }
+                }
+    }*/   },
+}}; //Properties and logic of the camera system
 var Ghost = {
     mapX: 300, //if you want to start in another room you must 
     mapY: 300, //write in the value between where the room is found( for now)
@@ -3143,6 +3385,25 @@ var Ghost = {
     activeStill: false,
     flip: false,
     flag: false,
+    frame: 0,
+    health: 2,
+    death: false,
+    healthBar: function(a,b)
+    {
+        if (Ghost.health === 2)
+        {
+            drawSprite(76,a-scene.x,b-scene.y,24*3,12);
+        }
+        else if (Ghost.health === 1)
+        {
+            drawSprite(81,a-scene.x,b-scene.y,24*4,24);
+        }
+        else if (Ghost.health === 0)
+        {
+            drawSprite(86,-scene.x,b-scene.y,24*4,24);
+            Ghost.death = true;
+        }
+    },
     front: {
         
         still: function(a,b,c)
@@ -3206,7 +3467,7 @@ var Ghost = {
             drawSprite(39, a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),(spriteSize)*(c || scaled_size),d);
 
         },
-        walk: function(a,b,c,d,e)
+        walk: function(a,b,c,d,e) //used for debugging
     {
         if(a<44 && a > 40)
         {
@@ -3284,7 +3545,6 @@ var Ghost = {
             {
                 Ghost.flip = true;
                 Ghost.animationFrame = 48;
-                
             }
             if(Ghost.animationFrame >= 52 && Ghost.animationFrame <= 52.49 && Ghost.flip)
             {
@@ -3293,8 +3553,6 @@ var Ghost = {
                 Ghost.animationFrame = 48;
             }
             Ghost.animationFrame+= 0.15;
-            
-            //println(walkAnimation);
             //rect(a,b,(spriteSize)*(c || scaled_size),(spriteSize)*(c || scaled_size));
             
         drawSprite(floor(Ghost.animationFrame), a || spriteX, b || spriteY, (spriteSize)*(c || scaled_size),  (spriteSize)*(c || scaled_size),d);
@@ -3321,139 +3579,6 @@ var Ghost = {
     },
     hurtbox: {},
 };
-var scene = {
-    sizeX: 0, //current room width (is called and assigned a value later down the line)
-    sizeY: 0, // same thing here
-    
-    //current camera frame position
-    x: GameMapX[mapY][mapX]/width,
-    y: GameMapY[mapY][mapX]/height,
-collision: { //collision detections 
-    RightX: 0, //(is called and assigned a value later down the line)
-    TopY: 0, // same thing here
-    LeftX: 0, // same thing here
-    BottomY: 0, // same thing here
-    width: 10, //width of detection range
-    
-    active: function(a,b) //active detection function (uses mapX & mapY)
-    {
-        if(Stationary) //stationary camera logic (sees how will the camera react to a room bigger than the canvas width and height itself.
-        { 
-            
-            if(MainCharacter.mapX-scene.collision.LeftX > width/2 && 
-            MainCharacter.mapX-scene.collision.RightX < -width/2)
-           {
-           
-            //println("it works");
-            scene.x = MainCharacter.mapX-width/2;
-           
-           }
-           if( 
-            (MainCharacter.mapY >scene.collision.TopY+height/2) && 
-            (MainCharacter.mapY <scene.collision.BottomY- height/2))
-           {
-           
-            //println("it works");
-            scene.y = MainCharacter.mapY-height/2;
-        }
-        }
-        
-        //Right Scroll detection logic
-        if(MainCharacter.mapX-(scene.collision.RightX)>=30)
-        {
-            lastCollision.x = scene.sizeX; //for debugging purposes
-            Stationary = false;
-            
-                SceneMove = true;
-                if(SceneMove)
-                {
-                scene.x+= cos(1)*8;
-                //println("moving");
-                    if(scene.x >= scene.collision.RightX)
-                    {
-                        SceneMove = false;
-                        mapX++;
-                        if(scene.sizeX > width || scene.sizeY > height)
-                        {
-                        Stationary = true;
-                        }
-                    }
-                }
-        }
-        
-        //Bottom Scroll detection logic
-        if(MainCharacter.mapY-(scene.collision.BottomY)>=30)
-        {
-            lastCollision.y = scene.sizeY; //for debugging purposes
-            Stationary = false;
-            
-                SceneMove = true;
-                println(SceneMove);
-                if(SceneMove)
-                {
-                scene.y+= cos(1)*8;
-                //println("moving");
-                    if(scene.y >= scene.collision.BottomY)
-                    {
-                        SceneMove = false;
-                        mapY++;
-                        
-                        if(scene.sizeX > width || scene.sizeY > height)
-                        {
-                            println("big room");
-                        Stationary = true;
-                        }
-                    }
-                }
-        }
-        //Top Scroll detection
-        if((MainCharacter.mapY-scene.collision.TopY)<=-35 && mapY > 0)
-        {
-            lastCollision.y = scene.sizeY; //for debugging purposes
-            Stationary = false;
-                SceneMove = true;
-                if(SceneMove)
-                {
-                    
-                scene.y-= cos(1)*8;
-                //println("top scroll");
-                    if(scene.y <=scene.collision.TopY-height/*scene.sizeX*(a-1)*/)
-                    {
-                        mapY--;
-                        SceneMove = false;
-                        
-                        if(GameMapX[mapY][mapX] > width ||GameMapY[mapY][mapX] > height)
-                        {
-                        Stationary = true;
-                        }
-                        
-                    }
-                }
-        }
-        //Left Scroll detection
-        if((MainCharacter.mapX-scene.collision.LeftX)<=-35 && mapX > 0)
-        {
-            lastCollision.x = scene.sizeX; //for debugging purposes
-            Stationary = false;
-                SceneMove = true;
-                if(SceneMove)
-                {
-                    
-                scene.x-= cos(1)*8;
-                //println("moving");
-                    if(scene.x <=scene.collision.LeftX-width/*scene.sizeX*(a-1)*/)
-                    {
-                        mapX--;
-                        SceneMove = false;
-                        
-                        if(GameMapX[mapY][mapX] > width ||GameMapY[mapY][mapX] > height)
-                        {
-                        Stationary = true;
-                        }
-                    }
-                }
-    }   },
-}}; //Properties and logic of the camera system
 var Sword = {
     x: 0,
     y: 0,
@@ -3675,6 +3800,7 @@ MainCharacter.sprite = function(){
     //attack animation organization
     if(keys[80] && !key_temp && MainCharacter.activeStill)
     {
+        MainCharacter.attack = true;
         if(frame === 68) 
         {
             
@@ -3704,12 +3830,13 @@ MainCharacter.sprite = function(){
         fill(0,0,0);
         
         }
+        
         if (frame === 0)
         {
             MainCharacter.front.still(MainCharacter.mapX-scene.x,MainCharacter.mapY-scene.y,4);}
             
     }
-    
+    else{MainCharacter.attack = false;}
 };
 
 wasd();
@@ -3733,53 +3860,158 @@ var Lives = 3;
 var a = 87;
 fill(0,0,0);
 rect(0,0,width,70);
-drawSprite(87,-19,-20,120,84);
+drawSprite(87,0,-20,120,84);
 var coin = function()
 {
-            if(coin_temp >= 1 && coin_temp <= 4.49)
+            if(coin_temp >= 1 && coin_temp <= 5.49)
                 {
-                 drawSprite(70,92,5,50,50);
+                 drawSprite(70,120,5,59,61);
                 }
-                 if(coin_temp >= 4 && coin_temp <= 7.49)
+                 if(coin_temp >= 5.5 && coin_temp <= 8.49)
                 {
-                    drawSprite(71,97,10,40,44);
+                    drawSprite(71,130,10,49,51);
                 }
-                if(coin_temp >= 7.5 && coin_temp <= 11.49)
+                if(coin_temp >= 8.5 && coin_temp <= 12.49)
                 {
-                    drawSprite(72,92,5,50,50);
+                    drawSprite(72,120,5,59,61);
                 }
-                if(coin_temp >= 11.5 && coin_temp <= 15.49)
+                if(coin_temp >= 12.5 && coin_temp <= 16.49)
                 {
-                    drawSprite(71,92,10,40,44,true);
+                    drawSprite(71,122,10,49,51,true);
                 }
-                if(coin_temp >= 15.5)
+                if(coin_temp >= 16.5)
                 {
                     coin_temp = 1;
                 }
-                coin_temp+= 0.07;
+                coin_temp+= 0.5;
 };
 coin();
 fill(255, 255, 255);
 textSize(12);
-text("CREATORS",323,2);
-drawMyBitmoji(366,27,60); //NOLAN
-drawBitmoji(336,33,33); //JESHUA
-drawSprite(96,139,-2,110,69);
+text("CREATORS:",419,44);
+drawMyBitmoji(556,27,60); //NOLAN
+drawBitmoji(506,33,33); //JESHUA
+drawSprite(96,247,-2,110,69);
 fill(255, 255, 255);
-textSize(22);
-if (Lives === 3) {
- text("X 3", 234, 20);   
-}
-if (Lives === 2) {
- text("X 2", 234, 20);   
-}
-if (Lives === 1) {
- text("X 1", 234, 20);   
-}
-if (Lives === 0) {
+textSize(42);
+
+ text("X " + Lives, 340, 51);
+ text("X " + Lives, 189, 51);
+
+/*if (Lives === 0) {
  //splashScreen;
-}
+}*/
 };
+var Ghost_AI = function(a,b,c)
+{
+    this.x = a+Ghost.mapX;
+    this.y = b+Ghost.mapY;
+    this.size = c;
+    this.done = false;
+    this.still = false;
+    this.health = Ghost.health*c/4;
+    
+           //println(Ghost.frame);
+    //println(this.y > (MainCharacter.mapY-scene.y+50));
+    //println(dist(Ghost.mapX,this.y,MainCharacter.mapX,MainCharacter.mapY));
+     
+};
+Ghost_AI.prototype.draw = function() {
+    if(this.size > 0)
+    {
+    Ghost.healthBar(this.x,this.y-10);
+    if(dist(this.x,this.y,MainCharacter.mapX,MainCharacter.mapY) > 10) //function for Ghost to follow main Character
+    {
+
+        //println("good");
+        if(this.y-MainCharacter.mapY >100 )
+        {
+            println("working");
+            Ghost.back.animation(this.x-scene.x,this.y-scene.y,this.size);
+            Ghost.frame = 1;
+         this.y-= cos(1)*3;   
+        }
+        else if (this.y - MainCharacter.mapY <-100)
+        {
+            //println("working");
+            Ghost.front.animation(this.x-scene.x,this.y-scene.y,this.size);
+            this.y += cos(1)*3;
+            Ghost.frame = 2;
+        }
+        if(this.x-MainCharacter.mapX >100 )
+        {
+            //println("working");
+            Ghost.side.animation(this.x-scene.x,this.y-scene.y,this.size);
+         this.x-= cos(1)*3;
+         Ghost.frame = 3;
+        }
+        else if (this.x - MainCharacter.mapX <-100)
+        {
+            //println("working");
+            Ghost.side.animation(this.x-scene.x,this.y-scene.y,this.size,true);
+            this.x+= cos(1)*3;
+            Ghost.frame = 4;
+        }
+        else{this.still = true;}
+    }
+        if(this.still) //if the ghost get close enough to the player it will stand still and prepare to attack
+        {
+            if (Ghost.frame === 1)
+            {
+                Ghost.back.animation(this.x-scene.x,this.y-scene.y,this.size);
+            }
+            else if (Ghost.frame === 2)
+            {
+                Ghost.front.animation(this.x-scene.x,this.y-scene.y,this.size);
+            }
+            else if (Ghost.frame === 3)
+            {
+                Ghost.side.animation(this.x-scene.x,this.y-scene.y,this.size);
+            }
+            else if (Ghost.frame === 4)
+            {
+                Ghost.side.animation(this.x-scene.x,this.y-scene.y,this.size,true);
+            }
+            else{this.done = true;}
+        }
+        if (this.done) {/*Ghost.front.animation(this.x-scene.x,this.y-scene.y,this.size,true);*/
+            }
+            if (((this.x > (MainCharacter.mapX-scene.x+60) || this.x <  (MainCharacter.mapX-scene.x+140)) &&( this.y > (MainCharacter.mapY-scene.y+50) || this.y < (MainCharacter.mapY-scene.y+80))) && MainCharacter.flag)
+           { 
+         this.done = false;
+            if (Ghost.frame === 1)
+            {
+                println( Ghost.health);
+                this.y += 5;
+                
+                Ghost.health--;
+                MainCharacter.flag = false;
+            }
+            else if (Ghost.frame === 2)
+            {
+                this.y -= 5;
+                Ghost.health--;
+            }
+            else if (Ghost.frame === 3)
+            {
+                this.x += 5;
+                Ghost.health--;
+            }
+            else if (Ghost.frame === 4)
+            {
+                this.x -= 5;
+                Ghost.health--;
+            }
+            else{this.done = true;}
+        }
+        if(Ghost.health <= 0)
+        {
+            
+            this.size -= cos(1)/4;
+        }}
+};
+var Ghost1 = new Ghost_AI(100,10,5);
+var Ghost2 = new Ghost_AI(-100,0,4);
 /*** Game Execution ***/
 draw = function() {
 
@@ -3787,22 +4019,27 @@ draw = function() {
     
     fill(255, 0, 0); //rectangles to distinguish the rooms
     rect(-scene.x,0-scene.y,GameMapX[0][0],GameMapY[0][0]);
-    rect(limit.x()-GameMapX[0][2]-scene.x-10,0-scene.y,GameMapX[0][2],GameMapY[0][2]);
 
     collisions(); //collisions of the rooms
     scene.collision.active(mapX,mapY); //call function for active collisions
 
     fill(0,0,0);
     MainCharacter.sprite(48,48);
-    UI();
+
+    Ghost1.draw();
+    Ghost2.draw();
     //MainCharacter.front.animation(237,300,2);
 //drawSprite(0,300,300,24*8,24*8);
     rect(100-scene.x,800-scene.y,100,100);
     //println(MainCharacter.mapX);
-    //println(MainCharacter.mapY);
+    println(MainCharacter.mapY);
     //drawSprite(64,29,51,180,180);
     //drawSprite(65,197,51,25*7,180);
     //drawSprite(66,397,51,25*7,180);
     //println();
     //Sword.back.attack(MainCharacter.mapX,MainCharacter.mapY);
+        UI();
+        //drawSprite(55,100,100,24*8,24*8);
+        coolDown(5);
+        println(coolDown(5));
 };
