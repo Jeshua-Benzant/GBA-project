@@ -3013,18 +3013,6 @@ var Ghost = {
     },
     hurtbox: {},
 };
-
-var Sword = {
-    x: 0,
-    y: 0,
-    animationFrame: 1,
-    flip: false,
-    flag: false,
-    front: {},
-    leftSide: {},
-    rightSide: {},
-    back: {},
-};
 var scene = {
     sizeX: 0, //current room width (is called and assigned a value later down the line)
     sizeY: 0, // same thing here
@@ -3158,8 +3146,13 @@ collision: { //collision detections
                 }
     }   },
 }}; //Properties and logic of the camera system
-
-Sword.front.attack = function(a,b,c)
+var Sword = {
+    x: 0,
+    y: 0,
+    animationFrame: 1,
+    flip: false,
+    flag: false,
+    front: {attack: function(a,b,c)
         {
                 if(Sword.animationFrame > 4.5 || Sword.animationFrame < 1 && !Sword.flip) //resets the sword's animation frames
                 {
@@ -3170,7 +3163,7 @@ Sword.front.attack = function(a,b,c)
                 pushMatrix();
                 translate(a-scene.x+115,b-scene.y+63);
                 rotate(107);
-            drawSprite(64,10,-14,24*3,24*3);
+            drawSprite(66,10,-14,24*3,24*3);
             popMatrix();
                 }
                 if(Sword.animationFrame >= 2.5 && Sword.animationFrame <= 3.45 && !Sword.flip)
@@ -3178,7 +3171,7 @@ Sword.front.attack = function(a,b,c)
             pushMatrix();
             translate(a-scene.x+115,b-scene.y+25);
             rotate(80);
-            drawSprite(65,10,-14,24*3,24*3);
+            drawSprite(67,10,-14,24*3,24*3);
             popMatrix();
                 }
                 if(Sword.animationFrame >= 3.5 && Sword.animationFrame <= 4.45 && !Sword.flip)
@@ -3186,7 +3179,7 @@ Sword.front.attack = function(a,b,c)
             pushMatrix();
                 translate(a-scene.x+95,b-scene.y+2);
                 rotate(48);
-            drawSprite(66,10,-14,24*3,24*3);
+            drawSprite(68,10,-14,24*3,24*3);
             popMatrix();
                 }
                 else{ Sword.flag = false; }
@@ -3201,8 +3194,8 @@ pushMatrix();
             drawSprite(64,10,-14,24*3,24*3);
             popMatrix();*/
             
-        };
-Sword.leftSide.attack = function(a,b,c)
+        }},
+    leftSide: {attack: function(a,b,c)
 {
     if(Sword.animationFrame > 6.5 || Sword.animationFrame < 5) //resets the sword's animation frames
                 {
@@ -3213,7 +3206,7 @@ Sword.leftSide.attack = function(a,b,c)
                 pushMatrix();
                 translate(a-scene.x+80,b-scene.y+8);
                 rotate(50);
-            drawSprite(64,10,-14,24*3,24*3);
+            drawSprite(66,10,-14,24*3,24*3);
             popMatrix();
                 }
                 if(Sword.animationFrame >= 5.5 && Sword.animationFrame <= 6.45 && !Sword.flip)
@@ -3221,12 +3214,12 @@ Sword.leftSide.attack = function(a,b,c)
                  pushMatrix();
                 translate(a-scene.x+70,b-scene.y+8);
                 rotate(50);
-            drawSprite(64,10,-14,24*3,24*3);
+            drawSprite(66,10,-14,24*3,24*3);
             popMatrix();
                 }
                 Sword.animationFrame+= 0.15*0.5;
-};
-Sword.rightSide.attack = function(a,b,c)
+}},
+    rightSide: {attack: function(a,b,c)
 {
     if(Sword.animationFrame > 8.5 || Sword.animationFrame < 7) //resets the sword's animation frames
                 {
@@ -3237,7 +3230,7 @@ Sword.rightSide.attack = function(a,b,c)
                 pushMatrix();
                 translate(a-scene.x-22,b-scene.y+120);
                 rotate(50);
-            drawSprite(64,10,-14,-24*3,-24*3);
+            drawSprite(66,10,-14,-24*3,-24*3);
             popMatrix();
                 }
                 if(Sword.animationFrame >= 7.5 && Sword.animationFrame <= 8.45)
@@ -3245,7 +3238,7 @@ Sword.rightSide.attack = function(a,b,c)
                  pushMatrix();
                 translate(a-scene.x-13,b-scene.y+120);
                 rotate(50);
-            drawSprite(64,10,-14,-24*3,-24*3);
+            drawSprite(66,10,-14,-24*3,-24*3);
             popMatrix();
                 }
                 Sword.animationFrame+= 0.15*0.5;
@@ -3254,8 +3247,8 @@ Sword.rightSide.attack = function(a,b,c)
                 rotate(50);
             drawSprite(64,10,-14,-24*3,-24*3);
             popMatrix();*/
-};
-Sword.back.attack = function(a,b,c)
+}},
+    back: {attack: function(a,b,c)
         {
                 if(Sword.animationFrame > 10.5 || Sword.animationFrame < 8 && !Sword.flip) //resets the sword's animation frames
                 {
@@ -3266,7 +3259,7 @@ Sword.back.attack = function(a,b,c)
                 pushMatrix();
                 translate(a-scene.x+-40,b-scene.y+14);
                 rotate(2);
-            drawSprite(64,10,-14,24*3,24*3,true);
+            drawSprite(66,10,-14,24*3,24*3,true);
             popMatrix();
                 }
                 if(Sword.animationFrame >= 8.5 && Sword.animationFrame <= 9.45 && !Sword.flip)
@@ -3274,7 +3267,7 @@ Sword.back.attack = function(a,b,c)
                 pushMatrix();
                 translate(a-scene.x+24,b-scene.y+-18);
                 rotate(-300);
-            drawSprite(65,10,-14,24*3,24*3,true);
+            drawSprite(67,10,-14,24*3,24*3,true);
             popMatrix();
                 }
                 if(Sword.animationFrame >= 9.5 && Sword.animationFrame <= 10.45 && !Sword.flip)
@@ -3282,7 +3275,7 @@ Sword.back.attack = function(a,b,c)
             pushMatrix();
                 translate(a-scene.x+100,b-scene.y+19);
                 rotate(-255);
-            drawSprite(66,10,-14,24*3,24*3,true);
+            drawSprite(68,10,-14,24*3,24*3,true);
             popMatrix();
                 }
                 else{ Sword.flag = false; }
@@ -3297,7 +3290,9 @@ pushMatrix();
             drawSprite(64,10,-14,24*3,24*3,true);
             popMatrix();*/
             
-        };
+        }},
+};
+
 MainCharacter.sprite = function(){
     var wasd = function() //variable to organize movement and make it easier to access
 {if (!SceneMove) //wont move if there is a room transition (old Nintendo Gameboy effect)
